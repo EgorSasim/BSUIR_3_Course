@@ -30,5 +30,9 @@ class Book {
 		hash = 31 * hash + price;
 		return hash;
 	}
+
+	public String toString() {
+		return this.author + "\n" + this.title + "\n" + Integer.toString(this.price) + "\n";
+	}
 }
 

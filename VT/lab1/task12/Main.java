@@ -15,8 +15,13 @@ class Main {
 		int hC = book.hashCode();
 		int hC2 = book2.hashCode();
 
+		String bStr = book.toString();
+		String b2Str = book2.toString(); 
+
 		System.out.println(res);
 		System.out.println(hC == hC2);
+		System.out.println(bStr);
+		System.out.println(b2Str);
 
 	}
 }
