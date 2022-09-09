@@ -14,7 +14,7 @@ class Book {
 			return false;
 		Field[] thisField = this.getClass().getDeclaredFields(); 
 		Field[] objFields = obj.getClass().getDeclaredFields();
-				
+
 		if (thisField.length != objFields.length) 
 			return false;
 		Book tmp = (Book)obj;
@@ -22,5 +22,13 @@ class Book {
 
 		return this.author == tmp.author && this.price == tmp.price && this.title == tmp.title; 
 	}	
+
+	public int hashCode() {
+		int hash = 3;
+		hash = 31 * hash + (title == null ? 0 : title.hashCode());
+		hash = 31 * hash + (author == null ? 0 : title.hashCode());
+		hash = 31 * hash + price;
+		return hash;
+	}
 }
 

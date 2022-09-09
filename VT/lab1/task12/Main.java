@@ -7,12 +7,16 @@ class Main {
 
 		Book book2 = new Book();
 		book2.author = "John konor";
-		book2.price = 3;
+		book2.price = 35;
 		book2.title = "Terminator 3";
 
 		boolean res = book.equals(book2);
 
+		int hC = book.hashCode();
+		int hC2 = book2.hashCode();
+
 		System.out.println(res);
+		System.out.println(hC == hC2);
 
 	}
 }
