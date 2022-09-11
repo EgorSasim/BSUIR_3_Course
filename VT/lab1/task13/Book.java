@@ -2,10 +2,10 @@ import java.util.*;
 import java.lang.reflect.Field;
 
 class Book {
-	public 	String title;
-	public 	String author;
-	public 	int price;
-	public 	static int edition;
+	private 	String title;
+	private 	String author;
+	private 	int price;
+	private 	static int edition;
 
 	public boolean equals(Object obj) {
 		if (obj == this) 
