@@ -2,8 +2,8 @@ import java.util.Comparator;
 
 class sortByTitleAuthor implements Comparator<Book> {
 	public int compare(Book book1, Book book2) {
-		int titleCompare = book1.title.compareTo(book2.title);
-        int authorCompare = book1.author.compareTo(book2.author);
+		int titleCompare = book1.getTitle().compareTo(book2.getTitle());
+        int authorCompare = book1.getAuthor().compareTo(book2.getAuthor());
 
         return (titleCompare == 0) ? authorCompare : titleCompare;
 	} 

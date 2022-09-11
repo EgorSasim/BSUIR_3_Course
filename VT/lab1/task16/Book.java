@@ -2,17 +2,23 @@ import java.util.*;
 import java.lang.reflect.Field;
 
 class Book {
-	public 	String title;
-	public 	String author;
-	public 	int price;
-	public 	static int edition;
+	private 	String title;
+	private 	String author;
+	private 	int price;
+	private 	static int edition;
 
-	public Book(String _title, String _author, int _price) {
-		title = _title;
-		author = _author;
-		price = _price;
+	public String getTitle() {
+		return title;
 	}
 
+	public String getAuthor() {
+		return author;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+	
 	public boolean equals(Object obj) {
 		if (obj == this) 
 			return true;
