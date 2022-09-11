@@ -2,11 +2,11 @@ import java.util.*;
 import java.lang.reflect.Field;
 
 class Book implements Comparable<Book> {
-	public 	String title;
-	public 	String author;
-	public 	int price;
-	public 	static int edition;
-	public int isbn;
+	private 	String title;
+	private 	String author;
+	private 	int price;
+	private 	static int edition;
+	private int isbn;
 
 	public boolean equals(Object obj) {
 		if (obj == this) 
