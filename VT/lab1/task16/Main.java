@@ -15,7 +15,7 @@ class Main {
         }
         System.out.println();
 
-        Collections.sort(arr, new sortByTitleAuthor());
+        Collections.sort(arr, new sortByAuthorTitle());
 
         for (int i = 0; i < arr.size(); ++i) {
             System.out.println(arr.get(i).title  + " " + arr.get(i).author);
