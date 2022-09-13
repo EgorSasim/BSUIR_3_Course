@@ -1,0 +1,20 @@
+threads: 
+  - id: 1
+	time: 0ms
+	methods:
+	  - name: MyMethod
+		class: Foo
+		time: 0ms
+		  - name: InnerMethod
+			class: Bar
+			time: 0ms
+  - id: 4
+	time: 296ms
+	methods:
+	  - name: M1
+		class: C
+		time: 96ms
+	  - name: M2
+		class: C
+		time: 200ms
+

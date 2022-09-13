@@ -1,0 +1,15 @@
+<root>
+	<thread id ="1" time="0ms>"
+		<method name="MyMethod" time="0ms" class="Foo">
+			<method name="InnerMethod" time="0ms" class="Bar">
+			</method>
+		</method>
+	</thread>
+	<thread id ="4" time="296ms>"
+		<method name="M1" time="96ms" class="C">
+		</method>
+		<method name="M2" time="200ms" class="C">
+		</method>
+	</thread>
+</root>
+
