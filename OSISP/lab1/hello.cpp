@@ -6,20 +6,17 @@
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR pCmdLine, int nCmdShow)
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow)
 {
-
     // Register the window class.
     const wchar_t CLASS_NAME[]  = L"Sample Window Class";
     
-    WNDCLASS wc;
-    memset( &wc, 0, sizeof(wc) );
+    WNDCLASS wc = { };
 
     wc.lpfnWndProc   = WindowProc;
     wc.hInstance     = hInstance;
     wc.lpszClassName = CLASS_NAME;
     wc.hCursor = LoadCursor(NULL, IDC_ARROW);
-
     RegisterClass(&wc);
 
     // Create the window.
@@ -35,7 +32,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR pCmdLine, int nCmdShow)
 
         NULL,       // Parent window    
         NULL,       // Menu
-        NULL, 	    // Instance handle
+        hInstance,  // Instance handle
         NULL        // Additional application data
         );
 
@@ -47,8 +44,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR pCmdLine, int nCmdShow)
     ShowWindow(hwnd, nCmdShow);
 
     // Run the message loop.
+
     MSG msg = { };
-    while (GetMessage(&msg, NULL, 0, 0))
+    while (GetMessage(&msg, NULL, 0, 0) > 0)
     {
         TranslateMessage(&msg);
         DispatchMessage(&msg);
@@ -65,18 +63,22 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         PostQuitMessage(0);
         return 0;
 
+#if 0
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hwnd, &ps);
 
             // All painting occurs here, between BeginPaint and EndPaint.
-            FillRect(hdc, &ps.rcPaint, (HBRUSH) (COLOR_WINDOW+1));
+
+            HBRUSH hBruh = CreateSolidBrush(RGB(255,0,255));
+
+            FillRect(hdc, &ps.rcPaint, hBruh);
+
             EndPaint(hwnd, &ps);
         }
         return 0;
+#endif
     }
-
     return DefWindowProc(hwnd, uMsg, wParam, lParam);
 }
-
