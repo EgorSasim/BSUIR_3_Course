@@ -10,21 +10,21 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
 {
     
     // Register the window class.
-    const wchar_t CLASS_NAME[]  = L"Sample Window Class";
+    const wchar_t MAIN_NAME[]  = L"Main Window Class";
     
     WNDCLASS wc = { };
 
     wc.lpfnWndProc   = WindowProc;
     wc.hInstance     = hInstance;
-    wc.lpszClassName = CLASS_NAME;
+    wc.lpszClassName = MAIN_NAME;
 
     RegisterClass(&wc);
 
 
-    HWND hwnd = CreateWindowEx(
+    HWND hwndMain = CreateWindowEx(
         0,                              // Optional window styles.
-        CLASS_NAME,                     // Window class
-        L"Learn to Program Windows",    // Window text
+        MAIN_NAME,                     // Window class
+        L"Rectangle movement",    // Window text
         WS_OVERLAPPEDWINDOW,            // Window style
 
         // Size and position
@@ -36,14 +36,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
         NULL        // Additional application data
         );
 
-    if (hwnd == NULL)
+    if (hwndMain == NULL)
     {
         return 0;
     }
 
-    ShowWindow(hwnd, nCmdShow);
+    ShowWindow(hwndMain, nCmdShow);
 
-    // Run the message loop.
 
     MSG msg = { };
     while (GetMessage(&msg, NULL, 0, 0) > 0)
