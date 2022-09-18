@@ -1,6 +1,6 @@
 ﻿using Faker.Core;
 using Test.Classes.SimpleClasses;
-using System;
+using System.Collections.Generic;
 
 namespace Faker.Example 
 {
@@ -37,7 +37,15 @@ namespace Faker.Example
             dt = _faker.Create<DateTime>();
             Console.WriteLine($"Date and Time: {dt.ToString()}");
 
+            //Lists
+            List<int> list = _faker.Create<List<int>>();
+            list.ForEach(Console.WriteLine);
 
+            List<Dog> dogList = _faker.Create<List<Dog>>();
+            foreach(Dog doggy in dogList)
+            {
+                doggy.showInfo();
+            }
         }
     }
 }
