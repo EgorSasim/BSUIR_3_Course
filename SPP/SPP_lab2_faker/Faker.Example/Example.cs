@@ -30,7 +30,7 @@ namespace Faker.Example
             Console.WriteLine($"Rand int: {randInt}\nRand float: {randFloat}\nRand double: {randDouble}\nRand string: {randString}\nRand string2: {randString2}");
         
             dog = _faker.Create<Dog>();
-            dog.showName();
+            dog.showInfo();
         }
     }
 }

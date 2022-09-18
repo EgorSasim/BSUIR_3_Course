@@ -2,17 +2,25 @@ namespace Test.Classes.SimpleClasses
 {
     public class Dog 
     {
-        public string name;
         public string ownerName;
+        public int legsAmount;
+        private string name;
+        private double tailSize;
 
         public Dog(string _name) 
         {
             name = _name;
         }
 
-        public void showName()
+        public Dog(string _name, double _tailSize)
         {
-            Console.WriteLine($"Dog name: {name}, Owner name: {ownerName}");
+            name = _name;
+            tailSize = _tailSize;
+        }
+
+        public void showInfo()
+        {
+            Console.WriteLine($"Dog name: {name}, Owner name: {ownerName}, Legs amount: {legsAmount}, Tail size: {tailSize}");
         }
     }
 }
