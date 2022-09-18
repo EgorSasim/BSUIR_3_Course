@@ -1,0 +1,44 @@
+{
+	"threads": [
+		{
+			"id": "1"
+			"time": "0ms"
+			"methods": [
+				{
+					"name": "MyMethod"
+					"class": "Foo"
+					"time": "0ms"
+					"methods": [
+					{
+						"name": "InnerMethod"
+						"class": "Bar"
+						"time": "0ms"
+						"methods": [
+						]
+					},
+					]
+				},
+			]
+		},
+		{
+			"id": "4"
+			"time": "296ms"
+			"methods": [
+				{
+					"name": "M1"
+					"class": "C"
+					"time": "96ms"
+					"methods": [
+					]
+				},
+				{
+					"name": "M2"
+					"class": "C"
+					"time": "200ms"
+					"methods": [
+					]
+				},
+			]
+		},
+	]
+}
