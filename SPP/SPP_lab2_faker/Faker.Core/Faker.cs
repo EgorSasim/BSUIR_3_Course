@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace Faker.Core
 {
-    public class Faker : IFaker
+    public class Faker23 : IFaker
     {
         public T Create<T>() => (T)Create(typeof(T));
         private HashSet<Type> _dependens = new();
