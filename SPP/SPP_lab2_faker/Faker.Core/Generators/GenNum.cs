@@ -1,11 +1,11 @@
 using System.Reflection;
 namespace Faker.Core.Generators 
 {
-    internal class GeneratorNumeric: Generator 
+    internal class NumericGenerator: Generator 
     {
-         static GeneratorNumeric()
+         static NumericGenerator()
         {
-            var genFunctions = typeof(GeneratorNumeric).GetMethods(BindingFlags.NonPublic | BindingFlags.Static);
+            var genFunctions = typeof(NumericGenerator).GetMethods(BindingFlags.NonPublic | BindingFlags.Static);
 
             foreach (var func in genFunctions) simpleGenerators[func.ReturnType] = () => func.Invoke(null, null);
         }
