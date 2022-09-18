@@ -3,12 +3,15 @@
 #endif 
 
 #include <windows.h>
+#include <string>
 
-RECT clientRect;
-int rectTopLeftX = 0;
-int rectTopLeftY = 0;
-int rectBottomRightX = 50;
-int rectBottomRightY = 50;
+using namespace std;
+
+
+int rectTopLeftX = 50;
+int rectTopLeftY = 50;
+int rectBottomRightX = 150;
+int rectBottomRightY = 150;
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
@@ -70,10 +73,36 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
             MessageBox(hwnd, L"Have a good day)", L"Goodbye", MB_OK | MB_ICONINFORMATION);
             PostQuitMessage(0);
             return 0;
+        case WM_KEYDOWN:
+            switch (wParam)
+            {
+            case VK_ESCAPE:
+                PostQuitMessage(0);
+                break;
+            case VK_RIGHT:
+                rectTopLeftX += 10;
+                rectBottomRightX += 10;   
+                break;
+            case VK_LEFT:
+                rectTopLeftX -= 10;
+                rectBottomRightX -= 10;   
+                break;
+            case VK_UP:
+                rectTopLeftY -= 10;
+                rectBottomRightY -= 10;   
+                break;
+            case VK_DOWN:
+                rectTopLeftY += 10;
+                rectBottomRightY += 10;   
+                break;
+            
+            default:
+                break;
+            }
+            return 0;
 
         case WM_PAINT:
             {
-                GetClientRect(hwnd, &clientRect);
                 PAINTSTRUCT ps;
 
                 HDC hdc = BeginPaint(hwnd, &ps);
