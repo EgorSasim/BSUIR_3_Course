@@ -18,6 +18,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
     wc.hInstance     = hInstance;
     wc.lpszClassName = MAIN_NAME;
     wc.hCursor = LoadCursor(NULL, IDC_ARROW);
+    wc.hbrBackground  = (HBRUSH)GetStockObject(BLACK_BRUSH);
 
     RegisterClass(&wc);
 
@@ -69,7 +70,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
                 PAINTSTRUCT ps;
                 HDC hdc = BeginPaint(hwnd, &ps);
 
-                FillRect(hdc, &ps.rcPaint, (HBRUSH) (2));
+                //FillRect(hdc, &ps.rcPaint, (HBRUSH) (2));
 
                 EndPaint(hwnd, &ps);
             }
