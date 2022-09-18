@@ -4,6 +4,12 @@
 
 #include <windows.h>
 
+RECT clientRect;
+int rectTopLeftX = 0;
+int rectTopLeftY = 0;
+int rectBottomRightX = 50;
+int rectBottomRightY = 50;
+
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int nCmdShow)
@@ -67,10 +73,23 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
         case WM_PAINT:
             {
+                GetClientRect(hwnd, &clientRect);
                 PAINTSTRUCT ps;
+
                 HDC hdc = BeginPaint(hwnd, &ps);
 
-                //FillRect(hdc, &ps.rcPaint, (HBRUSH) (2));
+                    HPEN newPen = CreatePen(PS_SOLID, 5, RGB(0,0, 255));
+                    HBRUSH newBrush = CreateSolidBrush(RGB(255,255,0));
+
+                    HGDIOBJ oldPen = SelectObject(hdc, newPen);
+                    HGDIOBJ oldBrush = SelectObject(hdc, newBrush);
+
+                    Rectangle(hdc, rectTopLeftX, rectTopLeftY, rectBottomRightX, rectBottomRightY);
+
+                    SelectObject(hdc, oldBrush);
+                    SelectObject(hdc, oldPen);
+                    DeleteObject(newPen);
+                    DeleteObject(newBrush);
 
                 EndPaint(hwnd, &ps);
             }
