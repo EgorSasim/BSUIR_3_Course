@@ -99,6 +99,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
             default:
                 break;
             }
+            InvalidateRect(hwnd, NULL, TRUE);
             return 0;
 
         case WM_PAINT:
