@@ -121,15 +121,32 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
             InvalidateRect(hwnd, NULL, TRUE);
             return 0;
         case WM_LBUTTONDOWN: 
-            rectTopLeftX -= 10;
-            rectBottomRightX -= 10;   
+            if (wParam & MK_SHIFT) 
+            {
+                rectTopLeftY -= 10;
+                rectBottomRightY -= 10;   
+            }
+            else 
+            {
+                rectTopLeftX -= 10;
+                rectBottomRightX -= 10;   
+            }
             InvalidateRect(hwnd, NULL, TRUE);
             return 0;
         case WM_RBUTTONDOWN: 
-            rectTopLeftX += 10;
-            rectBottomRightX += 10;   
+            if (wParam & MK_SHIFT) 
+            {
+                rectTopLeftY += 10;
+                rectBottomRightY += 10;   
+            }
+            else 
+            {
+                rectTopLeftX += 10;
+                rectBottomRightX += 10;   
+            }
             InvalidateRect(hwnd, NULL, TRUE);
             return 0;
+        
         case WM_PAINT:
         {
             PAINTSTRUCT ps;
