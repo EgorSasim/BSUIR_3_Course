@@ -12,18 +12,21 @@ using namespace std;
 #define K_KEY 0x4B
 #define L_KEY 0x4C
 
-HINSTANCE mainInst;
-
 int rectTopLeftX = 50;
 int rectTopLeftY = 50;
 int rectBottomRightX = 150;
 int rectBottomRightY = 150;
+
+HWND hPenguin;
+HBITMAP hPenguinImg;
  
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
+
+void loadImg();
+void loadControls(HWND hwnd);
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int nCmdShow)
 {
-    mainInst = hInstance;
     
     // Register the window class.
     const wchar_t MAIN_NAME[]  = L"Main Window Class";
@@ -193,7 +196,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
                 HGDIOBJ oldPen = SelectObject(hdc, newPen);
                 HGDIOBJ oldBrush = SelectObject(hdc, newBrush);
 
-                HANDLE img = LoadImageW(mainInst, L"img1.png", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+                Rectangle(hdc, rectTopLeftX, rectTopLeftY, rectBottomRightX, rectBottomRightY);
 
                 SelectObject(hdc, oldBrush);
                 SelectObject(hdc, oldPen);
@@ -201,8 +204,17 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
                 DeleteObject(newBrush);
 
             EndPaint(hwnd, &ps);
+            return 0;
         }
-        return 0;
+        
+        case WM_CREATE: 
+        {
+            loadImg();
+            loadControls(hwnd);
+            break;
+        }
+
+
         case WM_CLOSE: 
         {
             if (MessageBox(hwnd, L"Do you really want to quit?", L"My application", MB_OKCANCEL | MB_ICONQUESTION) == IDOK)
@@ -215,4 +227,15 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     }
     
     return DefWindowProc(hwnd, uMsg, wParam, lParam);
+}
+
+void loadControls(HWND hwnd)
+{
+    hPenguin = CreateWindow(L"Static", NULL, WS_VISIBLE | WS_CHILD | SS_BITMAP, rectTopLeftX, rectTopLeftY, 50, 50, hwnd, NULL, NULL, NULL);
+    SendMessage(hPenguin, STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)hPenguinImg);
+}
+
+void loadImg() 
+{
+    hPenguinImg = (HBITMAP)LoadImageW(NULL, L"penguin.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
 }
