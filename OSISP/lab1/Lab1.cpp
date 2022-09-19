@@ -146,7 +146,38 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
             }
             InvalidateRect(hwnd, NULL, TRUE);
             return 0;
-        
+        case WM_MOUSEWHEEL: 
+        {
+            int wheelDelta = GET_WHEEL_DELTA_WPARAM(wParam);
+            if (wheelDelta > 0) 
+            {
+                if (wParam & MK_SHIFT) 
+                {
+                    rectTopLeftX -= 10;
+                    rectBottomRightX -= 10; 
+                }
+                else 
+                {
+                    rectTopLeftY -= 10;
+                    rectBottomRightY -= 10;  
+                }
+            } 
+            else 
+            {
+                if (wParam & MK_SHIFT) 
+                {
+                    rectTopLeftX += 10;
+                    rectBottomRightX += 10; 
+                }
+                else 
+                {
+                    rectTopLeftY += 10;
+                    rectBottomRightY += 10; 
+                }
+            }
+            InvalidateRect(hwnd, NULL, TRUE);
+            return 0;
+        }
         case WM_PAINT:
         {
             PAINTSTRUCT ps;
