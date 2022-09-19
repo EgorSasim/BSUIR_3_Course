@@ -23,8 +23,6 @@ HBITMAP hPenguinImg;
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 
-void loadImg();
-void loadControls(HWND hwnd);
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int nCmdShow)
 {
     
@@ -209,8 +207,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         
         case WM_CREATE: 
         {
-            loadImg();
-            loadControls(hwnd);
+            hPenguinImg = (HBITMAP)LoadImage(NULL, L"penguin.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
             break;
         }
 
@@ -227,15 +224,4 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     }
     
     return DefWindowProc(hwnd, uMsg, wParam, lParam);
-}
-
-void loadControls(HWND hwnd)
-{
-    hPenguin = CreateWindow(L"Static", NULL, WS_VISIBLE | WS_CHILD | SS_BITMAP, rectTopLeftX, rectTopLeftY, 50, 50, hwnd, NULL, NULL, NULL);
-    SendMessage(hPenguin, STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)hPenguinImg);
-}
-
-void loadImg() 
-{
-    hPenguinImg = (HBITMAP)LoadImageW(NULL, L"penguin.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
 }
