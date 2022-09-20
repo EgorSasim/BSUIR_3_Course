@@ -16,12 +16,8 @@ int rectTopLeftX = 50;
 int rectTopLeftY = 50;
 int rectBottomRightX = 150;
 int rectBottomRightY = 150;
-
-HWND hPenguin;
-HBITMAP hPenguinImg;
  
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int nCmdShow)
 {
@@ -66,7 +62,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
     MSG msg = { };
     while (GetMessage(&msg, NULL, 0, 0) > 0)
     {
-        TranslateMessage(&msg);
+    //    TranslateMessage(&msg);
         DispatchMessage(&msg);
     }
 
@@ -75,6 +71,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
+    RECT mWinRect;
+
     switch (uMsg)
     {
         case WM_DESTROY:
@@ -185,6 +183,9 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         case WM_PAINT:
         {
             PAINTSTRUCT ps;
+            GetWindowRect(hwnd, &mWinRect);
+            int mWWidth = mWinRect.right - mWinRect.left;
+            int mWHeight = mWinRect.bottom - mWinRect.top;
 
             HDC hdc = BeginPaint(hwnd, &ps);
 
@@ -194,6 +195,18 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
                 HGDIOBJ oldPen = SelectObject(hdc, newPen);
                 HGDIOBJ oldBrush = SelectObject(hdc, newBrush);
 
+
+
+ 
+                if (rectTopLeftX <= 0 || rectTopLeftY <= 0 || rectBottomRightX >= mWWidth || rectBottomRightY >= mWHeight)
+                {
+                    rectTopLeftX = 50;
+                    rectTopLeftY = 50;
+                    rectBottomRightX = 150;
+                    rectBottomRightY = 150;     
+                }
+                              
+                
                 Rectangle(hdc, rectTopLeftX, rectTopLeftY, rectBottomRightX, rectBottomRightY);
 
                 SelectObject(hdc, oldBrush);
@@ -202,16 +215,8 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
                 DeleteObject(newBrush);
 
             EndPaint(hwnd, &ps);
-            return 0;
         }
-        
-        case WM_CREATE: 
-        {
-            hPenguinImg = (HBITMAP)LoadImage(NULL, L"penguin.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-            break;
-        }
-
-
+        return 0;
         case WM_CLOSE: 
         {
             if (MessageBox(hwnd, L"Do you really want to quit?", L"My application", MB_OKCANCEL | MB_ICONQUESTION) == IDOK)
