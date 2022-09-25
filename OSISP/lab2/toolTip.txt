@@ -1,0 +1,1 @@
+-lole32 -lcomctl32 -loleaut32 -luuid -lgdi32;
