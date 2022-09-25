@@ -11,6 +11,8 @@ using namespace Gdiplus;
 
 #include <stdio.h>
 
+int TABLE_ROW_NUM = 5;
+int TABLE_COL_NUM = 5;
 
 
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
@@ -27,6 +29,19 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR args, int
     GdiplusStartupInput gdiplusStartupInput;
     ULONG_PTR           gdiplusToken;
 
+    int argc;
+    LPWSTR *argList = CommandLineToArgvW(GetCommandLineW(), &argc);
+    if (argc == 1) 
+    {
+        MessageBox(NULL, L"No parameters was passed\nDefault parameters will be used(5x5)", L"Tooltip", MB_OK);
+    } else 
+    {
+       TABLE_ROW_NUM = atoi((char*)argList[1]);
+       TABLE_COL_NUM = atoi((char*)argList[2]);
+       printf("%dx%d", TABLE_ROW_NUM, TABLE_COL_NUM);
+    }
+    LocalFree(argList);
+   
 
     // Initialize GDI+.
     GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
@@ -82,7 +97,7 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
                 FillRect(hdc, &ps.rcPaint, CreateSolidBrush(RGB(234, 12, 76)));
-                DrawTable(hWnd, hdc, 5, 5);
+                DrawTable(hWnd, hdc, TABLE_ROW_NUM, TABLE_COL_NUM);
             EndPaint(hWnd, &ps);
             return 0;
         }
