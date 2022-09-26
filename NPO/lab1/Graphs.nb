@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     28875,        721]
-NotebookOptionsPosition[     28367,        703]
-NotebookOutlinePosition[     28919,        723]
-CellTagsIndexPosition[     28876,        720]
+NotebookDataLength[     28923,        721]
+NotebookOptionsPosition[     28415,        703]
+NotebookOutlinePosition[     28967,        723]
+CellTagsIndexPosition[     28924,        720]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -329,8 +329,8 @@ Cell[BoxData[{
   RowBox[{"Print", "[", 
    RowBox[{"\"\<a3(2,2) = \>\"", ",", " ", 
     RowBox[{"a3", "[", 
-     RowBox[{"2", ",", "2"}], "]"}]}], "]"}], "\n", 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+     RowBox[{"2", ",", "2"}], "]"}]}], "]"}], "\[IndentingNewLine]", 
+  "\n"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Print", 
    RowBox[{
@@ -697,8 +697,8 @@ Cell[BoxData[{
    3.872251631363697*^9, 3.8722516373238*^9}, {3.872251731789754*^9, 
    3.8722517355967216`*^9}, {3.872251778746674*^9, 3.872251779699279*^9}, {
    3.8722519865851793`*^9, 3.872251988707324*^9}, {3.87225204034438*^9, 
-   3.872252259235483*^9}, 
-   3.872252369483419*^9},ExpressionUUID->"d7f4d71f-5fdf-4093-9628-\
+   3.872252259235483*^9}, 3.872252369483419*^9, {3.873011033017227*^9, 
+   3.8730110397030907`*^9}},ExpressionUUID->"d7f4d71f-5fdf-4093-9628-\
 4d18697126f7"]
 },
 WindowSize->{927, 1023},
@@ -722,7 +722,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 27805, 681, 2298, "Input",ExpressionUUID->"d7f4d71f-5fdf-4093-9628-4d18697126f7"]
+Cell[558, 20, 27853, 681, 2298, "Input",ExpressionUUID->"d7f4d71f-5fdf-4093-9628-4d18697126f7"]
 }
 ]
 *)
