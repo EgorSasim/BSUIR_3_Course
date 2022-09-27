@@ -125,9 +125,8 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
                 // DrawTable(hWnd, hdc, TABLE_ROW_NUM, TABLE_COL_NUM);
                 SetTableCellsProps(hWnd, hdc, CELLS_ARR, TABLE_ROW_NUM, TABLE_COL_NUM);
                 DrawTableCelss(hdc, CELLS_ARR, RGB(0,255,0), RGB(0, 0, 255), TABLE_ROW_NUM, TABLE_COL_NUM);
-                WriteTextToTable(hdc, CELLS_TEXT, -1, CELLS_ARR, DT_CENTER | DT_SINGLELINE | DT_VCENTER, TABLE_ROW_NUM, TABLE_COL_NUM);
+                WriteTextToTable(hdc, CELLS_TEXT, -1, CELLS_ARR, DT_CENTER | DT_WORDBREAK, TABLE_ROW_NUM, TABLE_COL_NUM);
                 // CheckTableCellsProps(CELLS_ARR, TABLE_ROW_NUM, TABLE_COL_NUM);
-
             EndPaint(hWnd, &ps);
             return 0;
         }
@@ -202,6 +201,7 @@ void DrawTableCelss(HDC hdc, RECT *tableCells, COLORREF penCol, COLORREF brushCo
         for (int col = 0; col < colsNum; ++col)
         {
             Rectangle(hdc, tableCells[row * rowsNum + col].left, tableCells[row * rowsNum + col].top, tableCells[row * rowsNum + col].right, tableCells[row * rowsNum + col].bottom);
+            InflateRect(&tableCells[row * rowsNum + col], -5, -5);
         }
     }
 }
