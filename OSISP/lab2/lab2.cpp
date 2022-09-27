@@ -13,11 +13,15 @@ using namespace Gdiplus;
 
 int TABLE_ROW_NUM = 5;
 int TABLE_COL_NUM = 5;
-
+RECT *CELLS_ARR;
 
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
 void DrawTable(HWND hWnd, HDC hdc, int rowsNum, int colNum);
- 
+void ShowText(HDC hdc, LPCTSTR lpctstr, int ccText, LPRECT lprect, UINT format);
+RECT *CreateTableCells(int rowsNum, int colsNum);
+void SetTableCellsProps(HWND hwnd, HDC hdc, RECT *tableCells, int rowsNum, int colsNum);
+void DrawTableCelss(HDC hdc, RECT *tableCells, COLORREF penCol, COLORREF brushCol, int rowsNum, int colsNum);
+void CheckTableCellsProps(RECT *tableCells, int rowsNum, int colsNum);
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR args, int nCmdShow)
 {
@@ -36,11 +40,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR args, int
         MessageBox(NULL, L"No parameters was passed\nDefault parameters will be used(5x5)", L"Tooltip", MB_OK);
     } else 
     {
-       TABLE_ROW_NUM = atoi((char*)argList[1]);
-       TABLE_COL_NUM = atoi((char*)argList[2]);
-       printf("%dx%d", TABLE_ROW_NUM, TABLE_COL_NUM);
+        TABLE_ROW_NUM = atoi((char*)argList[1]);
+        TABLE_COL_NUM = atoi((char*)argList[2]);
+        printf("%dx%d", TABLE_ROW_NUM, TABLE_COL_NUM);
     }
     LocalFree(argList);
+
+    CELLS_ARR = CreateTableCells(TABLE_ROW_NUM, TABLE_COL_NUM);
    
 
     // Initialize GDI+.
@@ -68,7 +74,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR args, int
     }
 
     GdiplusShutdown(gdiplusToken);
-
+    free(CELLS_ARR);
     return 0;
 }
 
@@ -95,9 +101,20 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
         case WM_PAINT:
         {
             PAINTSTRUCT ps;
+            RECT rcWindow;
+            RECT rc1 = rcWindow;
+            rc1.left = 0;
+            rc1.right = 200;
+            rc1.top = 0;
+            rc1.bottom = 200;
+            GetClientRect(hWnd, &rcWindow);
             HDC hdc = BeginPaint(hWnd, &ps);
                 FillRect(hdc, &ps.rcPaint, CreateSolidBrush(RGB(234, 12, 76)));
-                DrawTable(hWnd, hdc, TABLE_ROW_NUM, TABLE_COL_NUM);
+                // DrawTable(hWnd, hdc, TABLE_ROW_NUM, TABLE_COL_NUM);
+                SetTableCellsProps(hWnd, hdc, CELLS_ARR, TABLE_ROW_NUM, TABLE_COL_NUM);
+                DrawTableCelss(hdc, CELLS_ARR, RGB(0,255,0), RGB(0, 0, 255), TABLE_ROW_NUM, TABLE_COL_NUM);
+                CheckTableCellsProps(CELLS_ARR, TABLE_ROW_NUM, TABLE_COL_NUM);
+
             EndPaint(hWnd, &ps);
             return 0;
         }
@@ -134,5 +151,74 @@ void DrawTable(HWND hWnd, HDC hdc, int rowNum, int colNum)
     for (int i = 0; i < colNum; ++i)
     {
         graphics.DrawLine(&pen, i * colSize, 0, i * colSize, windHeight);
+    }
+}
+
+void ShowText(HDC hdc, LPCTSTR lpctstr, int ccText, LPRECT lprect, UINT format)
+{
+    DrawText(hdc, lpctstr, 5, lprect, format);
+}
+
+RECT *CreateTableCells(int rowsNum, int colsNum)
+{
+    int cellsNum = rowsNum * colsNum;
+    RECT *cellsArr;
+    cellsArr = (RECT *)malloc(sizeof(RECT) * cellsNum );
+    if (cellsArr == NULL) 
+    {
+        MessageBox(NULL, L"Array of cells was not created", L"Warning!!!", MB_ICONSTOP);
+    }
+    return cellsArr;
+}
+
+void DrawTableCelss(HDC hdc, RECT *tableCells, COLORREF penCol, COLORREF brushCol, int rowsNum, int colsNum)
+{
+    HPEN hpen = CreatePen(PS_SOLID, 2, penCol);
+    HBRUSH hBrush = CreateSolidBrush(brushCol);
+
+    SelectObject(hdc, hpen);
+    SelectObject(hdc, hBrush);
+
+    for (int row = 0; row < rowsNum; ++row) 
+    {
+        for (int col = 0; col < colsNum; ++col)
+        {
+            Rectangle(hdc, tableCells[row * rowsNum + col].left, tableCells[row * rowsNum + col].top, tableCells[row * rowsNum + col].right, tableCells[row * rowsNum + col].bottom);
+        }
+    }
+}
+
+void SetTableCellsProps(HWND hwnd, HDC hdc, RECT *tableCells, int rowsNum, int colsNum)
+{
+    RECT rcWindow;
+    GetClientRect(hwnd, &rcWindow);
+    int windowWidth;
+    int windowHeight;
+    int rowSize;
+    int colSize;
+
+    windowWidth = rcWindow.right - rcWindow.left;
+    windowHeight = rcWindow.bottom - rcWindow.top;
+
+    rowSize = windowWidth / colsNum;
+    colSize = windowHeight / rowsNum;
+
+    for (int row = 0; row < rowsNum; ++row)
+    {
+        for (int col = 0; col < colsNum; ++col)
+        {
+            tableCells[row * rowsNum + col].top = row * rowSize;
+            tableCells[row * rowsNum + col].left = col * colSize;
+            tableCells[row * rowsNum + col].bottom = row * rowSize + rowSize;
+            tableCells[row * rowsNum + col].right = col * colSize + colSize;
+        }
+    }
+}
+
+void CheckTableCellsProps(RECT *tableCells, int rowsNum, int colsNum)
+{
+    for (int i = 0; i < rowsNum * colsNum; ++i)
+    {
+        printf("left: %d, top: %d, right: %d, bottom: %d\n", tableCells[i].left, tableCells[i].top, tableCells[i].right, tableCells[i].bottom);
     }
 }
