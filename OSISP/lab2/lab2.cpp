@@ -17,7 +17,7 @@ RECT *CELLS_ARR;
 
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
 void DrawTable(HWND hWnd, HDC hdc, int rowsNum, int colNum);
-void ShowText(HDC hdc, LPCTSTR lpctstr, int ccText, LPRECT lprect, UINT format);
+void WriteTextToTable(HDC hdc, LPCTSTR lpctstr, int ccText, RECT *tableCells, UINT format, int rowsNum, int colsNums);
 RECT *CreateTableCells(int rowsNum, int colsNum);
 void SetTableCellsProps(HWND hwnd, HDC hdc, RECT *tableCells, int rowsNum, int colsNum);
 void DrawTableCelss(HDC hdc, RECT *tableCells, COLORREF penCol, COLORREF brushCol, int rowsNum, int colsNum);
@@ -112,7 +112,9 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
                 FillRect(hdc, &ps.rcPaint, CreateSolidBrush(RGB(234, 12, 76)));
                 // DrawTable(hWnd, hdc, TABLE_ROW_NUM, TABLE_COL_NUM);
                 SetTableCellsProps(hWnd, hdc, CELLS_ARR, TABLE_ROW_NUM, TABLE_COL_NUM);
+                
                 DrawTableCelss(hdc, CELLS_ARR, RGB(0,255,0), RGB(0, 0, 255), TABLE_ROW_NUM, TABLE_COL_NUM);
+                WriteTextToTable(hdc, L"Hello world!!!", -1, CELLS_ARR, DT_CENTER | DT_SINGLELINE | DT_VCENTER, TABLE_ROW_NUM, TABLE_COL_NUM);
                 CheckTableCellsProps(CELLS_ARR, TABLE_ROW_NUM, TABLE_COL_NUM);
 
             EndPaint(hWnd, &ps);
@@ -154,9 +156,14 @@ void DrawTable(HWND hWnd, HDC hdc, int rowNum, int colNum)
     }
 }
 
-void ShowText(HDC hdc, LPCTSTR lpctstr, int ccText, LPRECT lprect, UINT format)
+void WriteTextToTable(HDC hdc, LPCTSTR lpctstr, int ccText, RECT *tableCells, UINT format, int rowsNum, int colsNum)
 {
-    DrawText(hdc, lpctstr, 5, lprect, format);
+    SetBkMode(hdc, TRANSPARENT);
+    SetBkColor(hdc, RGB(0, 0, 0));
+    for (int i = 0; i < rowsNum * colsNum; ++i)
+    {
+        DrawText(hdc, lpctstr, ccText, &tableCells[i], format);
+    }
 }
 
 RECT *CreateTableCells(int rowsNum, int colsNum)
@@ -207,10 +214,10 @@ void SetTableCellsProps(HWND hwnd, HDC hdc, RECT *tableCells, int rowsNum, int c
     {
         for (int col = 0; col < colsNum; ++col)
         {
-            tableCells[row * rowsNum + col].top = row * rowSize;
-            tableCells[row * rowsNum + col].left = col * colSize;
-            tableCells[row * rowsNum + col].bottom = row * rowSize + rowSize;
-            tableCells[row * rowsNum + col].right = col * colSize + colSize;
+            tableCells[row * rowsNum + col].top = col * colSize;
+            tableCells[row * rowsNum + col].left = row * rowSize;
+            tableCells[row * rowsNum + col].bottom = col * colSize + colSize;
+            tableCells[row * rowsNum + col].right = row * rowSize + rowSize;
         }
     }
 }
