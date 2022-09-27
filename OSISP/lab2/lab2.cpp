@@ -8,20 +8,31 @@
 using namespace Gdiplus;
 #pragma comment (lib,"Gdiplus.lib")
 
+#include <sstream>
+#include <string>
+#include <fstream>
+#include <iostream>
+#include <vector>
 
 #include <stdio.h>
+
 
 int TABLE_ROW_NUM = 5;
 int TABLE_COL_NUM = 5;
 RECT *CELLS_ARR;
 
+std::stringstream FILE_TEXT;
+std::vector<std::string> CELLS_TEXT;
+
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
 void DrawTable(HWND hWnd, HDC hdc, int rowsNum, int colNum);
-void WriteTextToTable(HDC hdc, LPCTSTR lpctstr, int ccText, RECT *tableCells, UINT format, int rowsNum, int colsNums);
+void WriteTextToTable(HDC hdc, std::vector<std::string> cellsText, int ccText, RECT *tableCells, UINT format, int rowsNum, int colsNums);
 RECT *CreateTableCells(int rowsNum, int colsNum);
 void SetTableCellsProps(HWND hwnd, HDC hdc, RECT *tableCells, int rowsNum, int colsNum);
 void DrawTableCelss(HDC hdc, RECT *tableCells, COLORREF penCol, COLORREF brushCol, int rowsNum, int colsNum);
 void CheckTableCellsProps(RECT *tableCells, int rowsNum, int colsNum);
+void ReadFileText(std::string fileName);
+void GetTableCellsText(std::string text, int rowsNum, int colsNum);
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR args, int nCmdShow)
 {
@@ -47,7 +58,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR args, int
     LocalFree(argList);
 
     CELLS_ARR = CreateTableCells(TABLE_ROW_NUM, TABLE_COL_NUM);
-   
+    ReadFileText("textFile.txt");
+    GetTableCellsText(FILE_TEXT.str(), TABLE_ROW_NUM, TABLE_COL_NUM);
 
     // Initialize GDI+.
     GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
@@ -112,10 +124,9 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
                 FillRect(hdc, &ps.rcPaint, CreateSolidBrush(RGB(234, 12, 76)));
                 // DrawTable(hWnd, hdc, TABLE_ROW_NUM, TABLE_COL_NUM);
                 SetTableCellsProps(hWnd, hdc, CELLS_ARR, TABLE_ROW_NUM, TABLE_COL_NUM);
-                
                 DrawTableCelss(hdc, CELLS_ARR, RGB(0,255,0), RGB(0, 0, 255), TABLE_ROW_NUM, TABLE_COL_NUM);
-                WriteTextToTable(hdc, L"Hello world!!!", -1, CELLS_ARR, DT_CENTER | DT_SINGLELINE | DT_VCENTER, TABLE_ROW_NUM, TABLE_COL_NUM);
-                CheckTableCellsProps(CELLS_ARR, TABLE_ROW_NUM, TABLE_COL_NUM);
+                WriteTextToTable(hdc, CELLS_TEXT, -1, CELLS_ARR, DT_CENTER | DT_SINGLELINE | DT_VCENTER, TABLE_ROW_NUM, TABLE_COL_NUM);
+                // CheckTableCellsProps(CELLS_ARR, TABLE_ROW_NUM, TABLE_COL_NUM);
 
             EndPaint(hWnd, &ps);
             return 0;
@@ -156,13 +167,13 @@ void DrawTable(HWND hWnd, HDC hdc, int rowNum, int colNum)
     }
 }
 
-void WriteTextToTable(HDC hdc, LPCTSTR lpctstr, int ccText, RECT *tableCells, UINT format, int rowsNum, int colsNum)
+void WriteTextToTable(HDC hdc, std::vector<std::string> cellsText, int ccText, RECT *tableCells, UINT format, int rowsNum, int colsNum)
 {
     SetBkMode(hdc, TRANSPARENT);
     SetBkColor(hdc, RGB(0, 0, 0));
     for (int i = 0; i < rowsNum * colsNum; ++i)
     {
-        DrawText(hdc, lpctstr, ccText, &tableCells[i], format);
+        DrawTextA(hdc, cellsText[i].c_str(), ccText, &tableCells[i], format);
     }
 }
 
@@ -228,4 +239,30 @@ void CheckTableCellsProps(RECT *tableCells, int rowsNum, int colsNum)
     {
         printf("left: %d, top: %d, right: %d, bottom: %d\n", tableCells[i].left, tableCells[i].top, tableCells[i].right, tableCells[i].bottom);
     }
+}
+
+void ReadFileText(std::string fileName)
+{
+    std::ifstream inpFile(fileName);
+    FILE_TEXT << inpFile.rdbuf();
+}
+
+void GetTableCellsText(std::string text, int rowsNum, int colsNum)
+{
+    int cellsNum = rowsNum * colsNum;
+    int oneCellTextLength = text.length() / cellsNum;
+
+    int anchor = 0;
+    for (int i = 0; i < cellsNum; ++i) 
+    {
+        CELLS_TEXT.push_back(text.substr(anchor, oneCellTextLength));
+        anchor += oneCellTextLength;
+    }
+
+    std:: cout << "Vector val: \n";
+    for (std::string i: CELLS_TEXT)
+    {
+        std::cout << i << "\n";
+    }
+
 }
