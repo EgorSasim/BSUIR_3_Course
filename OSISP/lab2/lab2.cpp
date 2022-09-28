@@ -196,13 +196,9 @@ void DrawTableCelss(HDC hdc, RECT *tableCells, COLORREF penCol, COLORREF brushCo
     SelectObject(hdc, hpen);
     SelectObject(hdc, hBrush);
 
-    for (int row = 0; row < rowsNum; ++row) 
+    for (int i = 0; i < rowsNum * colsNum; ++i)
     {
-        for (int col = 0; col < colsNum; ++col)
-        {
-            Rectangle(hdc, tableCells[row * rowsNum + col].left, tableCells[row * rowsNum + col].top, tableCells[row * rowsNum + col].right, tableCells[row * rowsNum + col].bottom);
-            InflateRect(&tableCells[row * rowsNum + col], -5, -5);
-        }
+        Rectangle(hdc, tableCells[i].left, tableCells[i].top, tableCells[i].right, tableCells[i].bottom);
     }
 }
 
@@ -220,15 +216,17 @@ void SetTableCellsProps(HWND hwnd, HDC hdc, RECT *tableCells, int rowsNum, int c
 
     rowSize = windowWidth / colsNum;
     colSize = windowHeight / rowsNum;
-
+    
+    int i = 0;
     for (int row = 0; row < rowsNum; ++row)
     {
         for (int col = 0; col < colsNum; ++col)
         {
-            tableCells[row * rowsNum + col].top = col * colSize;
-            tableCells[row * rowsNum + col].left = row * rowSize;
-            tableCells[row * rowsNum + col].bottom = col * colSize + colSize;
-            tableCells[row * rowsNum + col].right = row * rowSize + rowSize;
+            tableCells[i].top = row * colSize;
+            tableCells[i].left = col * rowSize;
+            tableCells[i].bottom = row * colSize + colSize;
+            tableCells[i].right = col * rowSize + rowSize;
+            ++i;
         }
     }
 }
