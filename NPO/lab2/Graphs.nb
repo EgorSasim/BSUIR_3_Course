@@ -780,8 +780,8 @@ BaLvLay9BKLTBApug9UXqj1dBKQPnP8Ppk3Cf3wF0aYzpb6BaEPOQwyLgbSB
 5ixGEA0AxI/FAg==
   "],ExpressionUUID->"a96d707c-b513-45f2-ad42-b831f2ce2af1"]
 },
-WindowSize->{927, 1023},
-WindowMargins->{{Automatic, 0}, {0, Automatic}},
+WindowSize->{927, 1025},
+WindowMargins->{{0, Automatic}, {0, Automatic}},
 DockedCells->FEPrivate`FrontEndResource[
  "NotebookTemplatingExpressions", "AuthoringDockedCell"],
 TaggingRules->{"NotebookTemplateVersion" -> 1., "NotebookTemplate" -> True},

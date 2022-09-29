@@ -1,0 +1,101 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3283,         93]
+NotebookOptionsPosition[      2686,         74]
+NotebookOutlinePosition[      3238,         94]
+CellTagsIndexPosition[      3195,         91]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{"ab", " ", "=", " ", GridBox[{
+    {"0.5", "0.5"},
+    {"5", "1"},
+    {"1", "3"},
+    {"2", "2"},
+    {"2", "5"}
+   }]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"objectsAmount", " ", "=", " ", "5"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"randArr", " ", "=", " ", 
+  RowBox[{"RandomReal", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"0", ",", " ", "1"}], "}"}], ",", " ", "objectsAmount"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"randInvFuncValArr", " ", "=", " ", 
+   RowBox[{"Sort", "[", 
+    RowBox[{"InverseBetaRegularized", "[", 
+     RowBox[{"randArr", ",", " ", 
+      RowBox[{"Part", "[", 
+       RowBox[{"ab", ",", " ", "1", ",", " ", "1"}], "]"}], ",", " ", 
+      RowBox[{"Part", "[", 
+       RowBox[{"ab", ",", " ", "1", ",", "2"}], "]"}]}], "]"}], "]"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"h", " ", "=", " ", "0.5"}], "\[IndentingNewLine]", 
+ RowBox[{"Tmax", " ", "=", " ", 
+  RowBox[{"Round", "[", 
+   RowBox[{
+    RowBox[{"Max", "[", "randInvFuncValArr", "]"}], "/", " ", "h"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"\"\<Rand Func val: \>\"", ",", "randInvFuncValArr"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"\"\<Tmax: \>\"", ",", "Tmax"}], 
+  "]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.873371072036232*^9, 3.873371132153001*^9}, {
+  3.87337117022727*^9, 3.873371182727726*^9}, {3.873371334531262*^9, 
+  3.873371360725185*^9}, {3.873371434953162*^9, 3.8733715493404827`*^9}, {
+  3.8733718779597797`*^9, 3.873371909728681*^9}, {3.8733719478910513`*^9, 
+  3.8733720122071342`*^9}, {3.873372060140093*^9, 3.873372075323799*^9}, {
+  3.8733731080120564`*^9, 3.8733731213238497`*^9}, {3.873373219393841*^9, 
+  3.873373240112376*^9}, {3.873373306310473*^9, 3.873373308206622*^9}, {
+  3.873373524660768*^9, 
+  3.873373532724456*^9}},ExpressionUUID->"2b19b35a-c960-44f1-90d2-\
+9fee8dd1e8d5"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.8733711351607943`*^9, 
+  3.873371136420313*^9}},ExpressionUUID->"4da94ff7-d09a-4848-a51d-\
+6a232235f426"]
+},
+WindowSize->{927, 1025},
+WindowMargins->{{Automatic, 0}, {0, Automatic}},
+DockedCells->FEPrivate`FrontEndResource[
+ "NotebookTemplatingExpressions", "AuthoringDockedCell"],
+TaggingRules->{"NotebookTemplateVersion" -> 1., "NotebookTemplate" -> True},
+CellContext->Notebook,
+ShowCellTags->True,
+FrontEndVersion->"12.0 for Linux x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1967, 47, 316, "Input",ExpressionUUID->"2b19b35a-c960-44f1-90d2-9fee8dd1e8d5"],
+Cell[2528, 69, 154, 3, 31, "Input",ExpressionUUID->"4da94ff7-d09a-4848-a51d-6a232235f426"]
+}
+]
+*)
+
