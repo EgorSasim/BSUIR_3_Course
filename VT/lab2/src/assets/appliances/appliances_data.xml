@@ -10,12 +10,12 @@
         <width>75</width>
         <maxLoad>5</maxLoad>
     </WashingMachine>
-    <kettle>
+    <Kettle>
         <price>2</price>
         <electrical>no</electrical>
         <volume>1.5</volume>
         <thermostat>no</thermostat>
-    </kettle>
+    </Kettle>
     <Microwave>
         <price>4</price>
         <control>mechanical</control>
