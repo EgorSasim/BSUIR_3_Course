@@ -1,0 +1,25 @@
+<appliances>
+    <Iron>
+        <price>1</price>
+        <soleMaterial>teflon</soleMaterial>
+        <wireless>no</wireless>
+    </Iron>
+    <WashingMachine> 
+        <price>5</price>
+        <height>60</height>
+        <width>75</width>
+        <maxLoad>5</maxLoad>
+    </WashingMachine>
+    <kettle>
+        <price>2</price>
+        <electrical>no</electrical>
+        <volume>1.5</volume>
+        <thermostat>no</thermostat>
+    </kettle>
+    <Microwave>
+        <price>4</price>
+        <control>mechanical</control>
+        <volume>20<volume>
+        <power>700<power>
+    </Microwave>
+<appliances>
