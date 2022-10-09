@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     16316,        387]
-NotebookOptionsPosition[     15711,        368]
-NotebookOutlinePosition[     16263,        388]
-CellTagsIndexPosition[     16220,        385]
+NotebookDataLength[     27370,        622]
+NotebookOptionsPosition[     26765,        603]
+NotebookOutlinePosition[     27317,        623]
+CellTagsIndexPosition[     27274,        620]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -58,27 +58,6 @@ Cell[BoxData[{
       RowBox[{"x", ",", " ", "0", ",", " ", "t"}], "}"}]}], "]"}]}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"objectsAmount", " ", "=", " ", "1000"}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{"randArr", " ", "=", " ", 
-  RowBox[{"RandomReal", "[", 
-   RowBox[{
-    RowBox[{"{", 
-     RowBox[{"0", ",", " ", "1"}], "}"}], ",", " ", "objectsAmount"}], 
-   "]"}]}], "\[IndentingNewLine]", 
- RowBox[{"randInvFuncValArr", " ", "=", " ", 
-  RowBox[{"Sort", "[", 
-   RowBox[{"InverseBetaRegularized", "[", 
-    RowBox[{"randArr", ",", " ", 
-     RowBox[{"Part", "[", 
-      RowBox[{"ab", ",", " ", "1", ",", " ", "1"}], "]"}], ",", " ", 
-     RowBox[{"Part", "[", 
-      RowBox[{"ab", ",", " ", "1", ",", "2"}], "]"}]}], "]"}], 
-   "]"}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"step", " ", "=", " ", "0.5"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{
   RowBox[{
    RowBox[{"getRestElsAmount", "[", "t_", "]"}], ":=", 
    RowBox[{"(", 
@@ -100,113 +79,374 @@ Cell[BoxData[{
           RowBox[{"objectsAmount", " ", "-", " ", "lowElsAmount"}], "]"}]}], 
         "]"}]}], "\[IndentingNewLine]", "]"}], ";"}], "\[IndentingNewLine]", 
     ")"}]}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{"restElsAmountArr", " ", "=", " ", 
-  RowBox[{"Array", "[", 
-   RowBox[{"getRestElsAmount", ",", "objectsAmount", ",", " ", 
-    RowBox[{"{", 
-     RowBox[{"0", ",", " ", "1"}], "}"}]}], "]"}]}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"stepRestElsAmountArr", " ", "=", 
-   RowBox[{"Array", "[", 
-    RowBox[{"getRestElsAmount", ",", "objectsAmount", ",", " ", 
-     RowBox[{"{", 
-      RowBox[{
-       RowBox[{"0", " ", "+", " ", "step"}], ",", " ", 
-       RowBox[{"1", "  ", "+", " ", "step"}]}], "}"}]}], "]"}]}], " ", 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{"practicalReliabilityFunc", " ", "=", " ", 
-  RowBox[{"Transpose", "@", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"Range", "[", 
-      RowBox[{"0", ",", " ", 
-       RowBox[{"objectsAmount", " ", "-", " ", "1"}]}], "]"}], ",", " ", 
-     RowBox[{"restElsAmountArr", " ", "/", " ", "objectsAmount"}]}], 
-    "}"}]}]}], "\[IndentingNewLine]", 
- RowBox[{"practicalUnReliabilityFunc", " ", "=", " ", 
-  RowBox[{"Transpose", "@", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"Range", "[", 
-      RowBox[{"0", ",", " ", 
-       RowBox[{"objectsAmount", " ", "-", " ", "1"}]}], "]"}], ",", " ", 
-     RowBox[{
-      RowBox[{"(", 
-       RowBox[{"objectsAmount", " ", "-", "restElsAmountArr"}], ")"}], " ", 
-      "/", " ", "objectsAmount"}]}], "}"}]}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"frequencyFunc", " ", "=", " ", 
-   RowBox[{"Transpose", "@", 
+  RowBox[{"objectsAmount", " ", "=", " ", "1000"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"randArr", " ", "=", " ", 
+  RowBox[{"RandomReal", "[", 
+   RowBox[{
     RowBox[{"{", 
-     RowBox[{
-      RowBox[{"Range", "[", 
-       RowBox[{"0", ",", " ", 
-        RowBox[{"objectsAmount", " ", "-", " ", "1"}]}], "]"}], ",", " ", 
-      RowBox[{
-       RowBox[{"(", 
-        RowBox[{"restElsAmountArr", " ", "-", " ", "stepRestElsAmountArr"}], 
-        ")"}], " ", "/", " ", 
-       RowBox[{"(", 
-        RowBox[{"objectsAmount", " ", "*", " ", "step"}], ")"}]}]}], 
-     "}"}]}]}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{"halfRestElsAmountArr", " ", "=", 
-  RowBox[{"restElsAmountArr", "[", 
-   RowBox[{"[", 
-    RowBox[{"1", ";;", 
-     RowBox[{"objectsAmount", "  ", "/", " ", "2"}]}], "]"}], 
+     RowBox[{"0", ",", " ", "1"}], "}"}], ",", " ", "objectsAmount"}], 
    "]"}]}], "\[IndentingNewLine]", 
- RowBox[{"halfStepRestElsAmountArr", " ", "=", 
-  RowBox[{"stepRestElsAmountArr", "[", 
-   RowBox[{"[", 
-    RowBox[{"1", ";;", 
-     RowBox[{"objectsAmount", "  ", "/", " ", "2"}]}], "]"}], 
-   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"step", " ", "=", " ", "0.5"}], "\[IndentingNewLine]", 
+ RowBox[{"practicalReliabilityFunctionPList", "=", " ", 
+  RowBox[{"{", "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{"theoreticalReliabilityFunctionPList", "=", " ", 
+  RowBox[{"{", "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{"practicalUnReliabilityFunctionPList", "=", " ", 
+  RowBox[{"{", "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{"theoreticalUnReliabilityFunctionPList", "=", " ", 
+  RowBox[{"{", "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{"practicalFrequencyFuncPList", " ", "=", " ", 
+  RowBox[{"{", "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{"theoreticalFrequencyFuncPList", " ", "=", " ", 
+  RowBox[{"{", "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{"practicalIntensityFuncPList", " ", "=", " ", 
+  RowBox[{"{", "}"}]}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"intensityFunc", " ", "=", 
-   RowBox[{"Transpose", "@", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{"Range", "[", 
-       RowBox[{"0", ",", " ", 
+  RowBox[{"theoreticalIntensityFuncPList", " ", "=", " ", 
+   RowBox[{"{", "}"}]}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"For", "[", 
+   RowBox[{
+    RowBox[{"i", " ", "=", " ", "1"}], ",", " ", 
+    RowBox[{"i", " ", "<=", "5"}], ",", " ", 
+    RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"Print", "[", 
+      RowBox[{"\"\<a = \>\"", ",", " ", 
+       RowBox[{"Part", "[", 
+        RowBox[{"ab", ",", " ", "i", ",", " ", "1"}], "]"}], ",", " ", 
+       "\"\<; b = \>\"", ",", " ", 
+       RowBox[{"Part", "[", 
+        RowBox[{"ab", ",", " ", "i", ",", " ", "2"}], "]"}], ",", " ", 
+       "\"\<  \>\"", ",", " ", 
+       RowBox[{"FontColor", " ", "\[Rule]", " ", 
+        RowBox[{"RGBColor", "[", 
+         RowBox[{
+          RowBox[{"1", "/", 
+           RowBox[{"(", 
+            RowBox[{"i", "/", "2"}], ")"}]}], ",", 
+          RowBox[{"1", "-", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"1", "/", "i"}], "*", "2"}], ")"}]}], ",", " ", 
+          RowBox[{"1", "/", "i"}]}], " ", "]"}]}]}], " ", "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"randInvFuncValArr", " ", "=", " ", 
+      RowBox[{"Sort", "[", 
+       RowBox[{"InverseBetaRegularized", "[", 
+        RowBox[{"randArr", ",", " ", 
+         RowBox[{"Part", "[", 
+          RowBox[{"ab", ",", " ", "i", ",", " ", "1"}], "]"}], ",", " ", 
+         RowBox[{"Part", "[", 
+          RowBox[{"ab", ",", " ", "i", ",", "2"}], "]"}]}], "]"}], "]"}]}], 
+     ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"restElsAmountArr", " ", "=", " ", 
+      RowBox[{"Array", "[", 
+       RowBox[{"getRestElsAmount", ",", "objectsAmount", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", " ", "1"}], "}"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"stepRestElsAmountArr", " ", "=", 
+      RowBox[{"Array", "[", 
+       RowBox[{"getRestElsAmount", ",", "objectsAmount", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"0", " ", "+", " ", "step"}], ",", " ", 
+          RowBox[{"1", "  ", "+", " ", "step"}]}], "}"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"practicalReliabilityFunc", " ", "=", " ", 
+      RowBox[{"Transpose", "@", 
+       RowBox[{"{", 
         RowBox[{
-         RowBox[{"objectsAmount", " ", "/", " ", "2"}], " ", "-", "1"}]}], 
-       "]"}], ",", " ", 
-      RowBox[{
-       RowBox[{"(", 
+         RowBox[{"Range", "[", 
+          RowBox[{"0", ",", " ", 
+           RowBox[{"objectsAmount", " ", "-", " ", "1"}]}], "]"}], ",", " ", 
+         RowBox[{"restElsAmountArr", " ", "/", " ", "objectsAmount"}]}], 
+        "}"}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"practicalUnReliabilityFunc", " ", "=", " ", 
+      RowBox[{"Transpose", "@", 
+       RowBox[{"{", 
         RowBox[{
-        "halfRestElsAmountArr", " ", "-", " ", "halfStepRestElsAmountArr"}], 
-        ")"}], " ", "/", " ", 
-       RowBox[{"(", "halfRestElsAmountArr", ")"}]}]}], "}"}]}]}], 
+         RowBox[{"Range", "[", 
+          RowBox[{"0", ",", " ", 
+           RowBox[{"objectsAmount", " ", "-", " ", "1"}]}], "]"}], ",", " ", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"objectsAmount", " ", "-", "restElsAmountArr"}], ")"}], 
+          " ", "/", " ", "objectsAmount"}]}], "}"}]}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"frequencyFunc", " ", "=", " ", 
+      RowBox[{"Transpose", "@", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Range", "[", 
+          RowBox[{"0", ",", " ", 
+           RowBox[{"objectsAmount", " ", "-", " ", "1"}]}], "]"}], ",", " ", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+           "restElsAmountArr", " ", "-", " ", "stepRestElsAmountArr"}], ")"}],
+           " ", "/", " ", 
+          RowBox[{"(", "objectsAmount", " ", ")"}]}]}], "}"}]}]}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"halfRestElsAmountArr", " ", "=", 
+      RowBox[{"restElsAmountArr", "[", 
+       RowBox[{"[", 
+        RowBox[{"1", ";;", 
+         RowBox[{"objectsAmount", "  ", "/", " ", "2"}]}], "]"}], "]"}]}], 
+     ";", "\[IndentingNewLine]", 
+     RowBox[{"halfStepRestElsAmountArr", " ", "=", 
+      RowBox[{"stepRestElsAmountArr", "[", 
+       RowBox[{"[", 
+        RowBox[{"1", ";;", 
+         RowBox[{"objectsAmount", "  ", "/", " ", "2"}]}], "]"}], "]"}]}], 
+     ";", "\[IndentingNewLine]", 
+     RowBox[{"intensityFunc", " ", "=", 
+      RowBox[{"Transpose", "@", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Range", "[", 
+          RowBox[{"0", ",", " ", 
+           RowBox[{
+            RowBox[{"objectsAmount", " ", "/", " ", "2"}], " ", "-", "1"}]}], 
+          "]"}], ",", " ", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+           "halfRestElsAmountArr", " ", "-", " ", 
+            "halfStepRestElsAmountArr"}], ")"}], " ", "/", " ", 
+          RowBox[{"(", 
+           RowBox[{"halfRestElsAmountArr", " ", "*", " ", "step"}], ")"}]}]}],
+         "}"}]}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"p", " ", "=", " ", 
+      RowBox[{"Plot", "[", 
+       RowBox[{
+        RowBox[{"1", " ", "-", " ", 
+         RowBox[{"F", "[", 
+          RowBox[{"t", ",", " ", 
+           RowBox[{"Part", "[", 
+            RowBox[{"ab", ",", " ", "i", ",", " ", "1"}], "]"}], ",", " ", 
+           RowBox[{"Part", "[", 
+            RowBox[{"ab", ",", " ", "i", ",", " ", "2"}], "]"}]}], "]"}]}], 
+        ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"t", ",", " ", "0", ",", " ", "1"}], "}"}], ",", " ", 
+        RowBox[{"PlotStyle", "\[Rule]", 
+         RowBox[{"RGBColor", "[", 
+          RowBox[{
+           RowBox[{"1", "/", 
+            RowBox[{"(", 
+             RowBox[{"i", "/", "2"}], ")"}]}], ",", 
+           RowBox[{"1", "-", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"1", "/", "i"}], "*", "2"}], ")"}]}], ",", " ", 
+           RowBox[{"1", "/", "i"}]}], " ", "]"}]}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"AppendTo", "[", 
+      RowBox[{"theoreticalReliabilityFunctionPList", ",", " ", "p"}], "]"}], 
+     ";", "\[IndentingNewLine]", 
+     RowBox[{"p", " ", "=", " ", 
+      RowBox[{"ListPlot", "[", 
+       RowBox[{"practicalReliabilityFunc", ",", " ", 
+        RowBox[{"PlotStyle", "\[Rule]", 
+         RowBox[{"RGBColor", "[", 
+          RowBox[{
+           RowBox[{"1", "/", 
+            RowBox[{"(", 
+             RowBox[{"i", "/", "2"}], ")"}]}], ",", 
+           RowBox[{"1", "-", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"1", "/", "i"}], "*", "2"}], ")"}]}], ",", " ", 
+           RowBox[{"1", "/", "i"}]}], " ", "]"}]}]}], "]"}]}], ";", " ", 
+     "\[IndentingNewLine]", 
+     RowBox[{"AppendTo", "[", 
+      RowBox[{"practicalReliabilityFunctionPList", ",", " ", "p"}], "]"}], 
+     ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"p", " ", "=", " ", 
+      RowBox[{"Plot", "[", 
+       RowBox[{
+        RowBox[{"F", "[", 
+         RowBox[{"t", ",", " ", 
+          RowBox[{"Part", "[", 
+           RowBox[{"ab", ",", " ", "i", ",", " ", "1"}], "]"}], ",", " ", 
+          RowBox[{"Part", "[", 
+           RowBox[{"ab", ",", " ", "i", ",", " ", "2"}], "]"}]}], "]"}], ",", 
+        " ", 
+        RowBox[{"{", 
+         RowBox[{"t", ",", " ", "0", ",", " ", "1"}], "}"}], ",", " ", 
+        RowBox[{"PlotStyle", "\[Rule]", 
+         RowBox[{"RGBColor", "[", 
+          RowBox[{
+           RowBox[{"1", "/", 
+            RowBox[{"(", 
+             RowBox[{"i", "/", "2"}], ")"}]}], ",", 
+           RowBox[{"1", "-", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"1", "/", "i"}], "*", "2"}], ")"}]}], ",", " ", 
+           RowBox[{"1", "/", "i"}]}], " ", "]"}]}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"AppendTo", "[", 
+      RowBox[{"theoreticalUnReliabilityFunctionPList", ",", " ", "p"}], "]"}],
+      ";", "\[IndentingNewLine]", 
+     RowBox[{"p", " ", "=", " ", 
+      RowBox[{"ListPlot", "[", 
+       RowBox[{"practicalUnReliabilityFunc", ",", " ", 
+        RowBox[{"PlotStyle", "\[Rule]", 
+         RowBox[{"RGBColor", "[", 
+          RowBox[{
+           RowBox[{"1", "/", 
+            RowBox[{"(", 
+             RowBox[{"i", "/", "2"}], ")"}]}], ",", 
+           RowBox[{"1", "-", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"1", "/", "i"}], "*", "2"}], ")"}]}], ",", " ", 
+           RowBox[{"1", "/", "i"}]}], " ", "]"}]}]}], "]"}]}], ";", " ", 
+     "\[IndentingNewLine]", 
+     RowBox[{"AppendTo", "[", 
+      RowBox[{"practicalUnReliabilityFunctionPList", ",", " ", "p"}], "]"}], 
+     ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"p", " ", "=", " ", 
+      RowBox[{"Plot", "[", 
+       RowBox[{
+        RowBox[{"f", "[", 
+         RowBox[{"t", ",", " ", 
+          RowBox[{"Part", "[", 
+           RowBox[{"ab", ",", " ", "i", ",", " ", "1"}], "]"}], ",", " ", 
+          RowBox[{"Part", "[", 
+           RowBox[{"ab", ",", " ", "i", ",", " ", "2"}], "]"}]}], "]"}], ",", 
+        " ", 
+        RowBox[{"{", 
+         RowBox[{"t", ",", " ", "0", ",", " ", "1"}], "}"}], ",", 
+        RowBox[{"PlotRange", "\[Rule]", " ", 
+         RowBox[{"{", 
+          RowBox[{"0", ",", " ", "2.6"}], "}"}]}], ",", " ", 
+        RowBox[{"PlotStyle", "\[Rule]", 
+         RowBox[{"RGBColor", "[", 
+          RowBox[{
+           RowBox[{"1", "/", 
+            RowBox[{"(", 
+             RowBox[{"i", "/", "2"}], ")"}]}], ",", 
+           RowBox[{"1", "-", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"1", "/", "i"}], "*", "2"}], ")"}]}], ",", " ", 
+           RowBox[{"1", "/", "i"}]}], " ", "]"}]}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"AppendTo", "[", 
+      RowBox[{"theoreticalFrequencyFuncPList", ",", " ", "p"}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"p", " ", "=", " ", 
+      RowBox[{"ListPlot", "[", 
+       RowBox[{"frequencyFunc", ",", 
+        RowBox[{"PlotRange", "\[Rule]", " ", 
+         RowBox[{"{", 
+          RowBox[{"0", ",", " ", "1"}], "}"}]}], ",", " ", 
+        RowBox[{"PlotStyle", "\[Rule]", 
+         RowBox[{"RGBColor", "[", 
+          RowBox[{
+           RowBox[{"1", "/", 
+            RowBox[{"(", 
+             RowBox[{"i", "/", "2"}], ")"}]}], ",", 
+           RowBox[{"1", "-", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"1", "/", "i"}], "*", "2"}], ")"}]}], ",", " ", 
+           RowBox[{"1", "/", "i"}]}], " ", "]"}]}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"AppendTo", "[", 
+      RowBox[{"practicalFrequencyFuncPList", ",", " ", "p"}], "]"}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"p", " ", "=", " ", 
+      RowBox[{"Plot", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"f", "[", 
+           RowBox[{"t", ",", " ", 
+            RowBox[{"Part", "[", 
+             RowBox[{"ab", ",", " ", "i", ",", " ", "1"}], "]"}], ",", " ", 
+            RowBox[{"Part", "[", 
+             RowBox[{"ab", ",", " ", "i", ",", " ", "2"}], "]"}]}], "]"}], 
+          ")"}], " ", "/", " ", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"1", " ", "-", " ", 
+             RowBox[{"F", "[", 
+              RowBox[{"t", ",", " ", 
+               RowBox[{"Part", "[", 
+                RowBox[{"ab", ",", " ", "i", ",", " ", "1"}], "]"}], ",", " ", 
+               RowBox[{"Part", "[", 
+                RowBox[{"ab", ",", " ", "i", ",", " ", "2"}], "]"}]}], 
+              "]"}]}], ")"}], " ", "*", " ", "step"}], " ", ")"}]}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"t", ",", " ", "0.5", ",", " ", "1"}], "}"}], ",", 
+        RowBox[{"PlotStyle", "\[Rule]", 
+         RowBox[{"RGBColor", "[", 
+          RowBox[{
+           RowBox[{"1", "/", 
+            RowBox[{"(", 
+             RowBox[{"i", "/", "2"}], ")"}]}], ",", 
+           RowBox[{"1", "-", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"1", "/", "i"}], "*", "2"}], ")"}]}], ",", " ", 
+           RowBox[{"1", "/", "i"}]}], " ", "]"}]}], ",", 
+        RowBox[{"PlotRange", "\[Rule]", " ", 
+         RowBox[{"{", 
+          RowBox[{"0", ",", " ", "Automatic"}], "}"}]}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"AppendTo", "[", 
+      RowBox[{"theoreticalIntensityFuncPList", ",", " ", "p"}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"p", " ", "=", " ", 
+      RowBox[{"ListPlot", "[", 
+       RowBox[{"intensityFunc", ",", " ", 
+        RowBox[{"PlotStyle", "\[Rule]", 
+         RowBox[{"RGBColor", "[", 
+          RowBox[{
+           RowBox[{"1", "/", 
+            RowBox[{"(", 
+             RowBox[{"i", "/", "2"}], ")"}]}], ",", 
+           RowBox[{"1", "-", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"1", "/", "i"}], "*", "2"}], ")"}]}], ",", " ", 
+           RowBox[{"1", "/", "i"}]}], " ", "]"}]}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"AppendTo", "[", 
+      RowBox[{"practicalIntensityFuncPList", ",", " ", "p"}], "]"}], ";"}]}], 
+   "\[IndentingNewLine]", "]"}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"Print", "[", 
-   RowBox[{"\"\<Half: \>\"", ",", " ", "halfRestElsAmountArr"}], "]"}], 
-  " "}], "\[IndentingNewLine]", 
- RowBox[{"Print", "[", 
-  "\"\<\:0424\:0443\:043d\:043a\:0446\:0438\:044f \:043d\:0430\:0434\:0451\
-\:0436\:043d\:043e\:0441\:0442\:0438: \>\"", "]"}], "\[IndentingNewLine]", 
- RowBox[{"Print", "[", 
-  "\"\<\:0422\:0435\:043e\:0440\:0435\:0442\:0438\:0447\:0435\:0441\:043a\
-\:0438\:0439 \:0432\:0438\:0434: \>\"", "]"}], "\[IndentingNewLine]", 
- RowBox[{"Plot", "[", 
   RowBox[{
-   RowBox[{"1", " ", "-", " ", 
-    RowBox[{"F", "[", 
-     RowBox[{"t", ",", " ", 
-      RowBox[{"Part", "[", 
-       RowBox[{"ab", ",", " ", "1", ",", " ", "1"}], "]"}], ",", " ", 
-      RowBox[{"Part", "[", 
-       RowBox[{"ab", ",", " ", "1", ",", " ", "2"}], "]"}]}], "]"}]}], ",", 
-   " ", 
-   RowBox[{"{", 
-    RowBox[{"t", ",", " ", "0", ",", " ", "1"}], "}"}]}], 
-  "]"}], "\[IndentingNewLine]", 
- RowBox[{"Print", "[", 
-  "\"\<\:0421\:0442\:0430\:0442\:0438\:0441\:0442\:0438\:0447\:0435\:0441\
-\:043a\:0438\:0439 \:0432\:0438\:0434: \>\"", "]"}], "\[IndentingNewLine]", 
+  "Print", "[", 
+   "\"\<\:0424\:0443\:043d\:043a\:0446\:0438\:044f \:043d\:0430\:0434\:0451\
+\:0436\:043d\:043e\:0441\:0442\:0438: \>\"", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"ListPlot", "[", "practicalReliabilityFunc", "]"}], " "}]}], "Input",\
-
+  RowBox[{
+  "Print", "[", 
+   "\"\<\:0422\:0435\:043e\:0440\:0435\:0442\:0438\:0447\:0435\:0441\:043a\
+\:0438\:0439 \:0432\:0438\:0434: \>\"", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{"Sequence", " ", "@@", " ", "theoreticalReliabilityFunctionPList"}],
+   "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+  "Print", "[", 
+   "\"\<\:0421\:0442\:0430\:0442\:0438\:0441\:0442\:0438\:0447\:0435\:0441\
+\:043a\:0438\:0439 \:0432\:0438\:0434: \>\"", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{"Sequence", " ", "@@", " ", "practicalReliabilityFunctionPList"}], 
+  "]"}], "\[IndentingNewLine]"}], "Input",
  CellChangeTimes->{{3.873371072036232*^9, 3.873371132153001*^9}, {
    3.87337117022727*^9, 3.873371182727726*^9}, {3.873371334531262*^9, 
    3.873371360725185*^9}, {3.873371434953162*^9, 3.8733715493404827`*^9}, {
@@ -249,7 +489,31 @@ Cell[BoxData[{
    3.8737000687837887`*^9}, 3.873700103537278*^9, {3.873700167748392*^9, 
    3.873700176236144*^9}, {3.873700233198057*^9, 3.873700252010437*^9}, {
    3.873700299518055*^9, 3.873700303015934*^9}, {3.8737006480182734`*^9, 
-   3.873700655787169*^9}},ExpressionUUID->"2b19b35a-c960-44f1-90d2-\
+   3.873700655787169*^9}, {3.874291765291551*^9, 3.874291769514591*^9}, {
+   3.8743083938690233`*^9, 3.874308397348145*^9}, {3.874308430408003*^9, 
+   3.874308431216742*^9}, {3.8743084904569883`*^9, 3.8743087549963703`*^9}, {
+   3.874308860182681*^9, 3.874308884444255*^9}, {3.8743089677022963`*^9, 
+   3.874308985213182*^9}, {3.874309042304345*^9, 3.874309068943976*^9}, {
+   3.8743091035772057`*^9, 3.874309212554132*^9}, {3.8743093226720247`*^9, 
+   3.874309327259904*^9}, {3.8743093681886806`*^9, 3.874309378959566*^9}, {
+   3.874309422793221*^9, 3.874309426249955*^9}, {3.874309849386204*^9, 
+   3.874309872356201*^9}, {3.874309925299814*^9, 3.8743099588609533`*^9}, {
+   3.874309990550577*^9, 3.87431003145434*^9}, {3.87431009173625*^9, 
+   3.874310233881682*^9}, {3.8743104658927603`*^9, 3.874310471484775*^9}, {
+   3.874310507377496*^9, 3.874310514518736*^9}, {3.874310571385084*^9, 
+   3.874310574540884*^9}, {3.874310785934085*^9, 3.874310987422003*^9}, {
+   3.8743110446035233`*^9, 3.8743110482744093`*^9}, {3.874311126087759*^9, 
+   3.874311137294231*^9}, {3.8743112255880203`*^9, 3.874311225770788*^9}, 
+   3.874311629083569*^9, {3.874311720209022*^9, 3.874311723773245*^9}, {
+   3.874311765610951*^9, 3.874311776193241*^9}, 3.874311855116673*^9, {
+   3.8743123297132177`*^9, 3.874312331477271*^9}, {3.874312591693762*^9, 
+   3.8743126129170732`*^9}, {3.874312644640051*^9, 3.874312758044909*^9}, {
+   3.874312796348312*^9, 3.8743127964246817`*^9}, {3.8743128290663643`*^9, 
+   3.874312839445801*^9}, {3.874313003284635*^9, 3.8743130067454033`*^9}, {
+   3.874313051696808*^9, 3.8743130669412107`*^9}, {3.874313207841117*^9, 
+   3.8743132163150578`*^9}, {3.8743132738570023`*^9, 3.874313273944853*^9}, {
+   3.8743137877535973`*^9, 
+   3.8743137878371267`*^9}},ExpressionUUID->"2b19b35a-c960-44f1-90d2-\
 9fee8dd1e8d5"],
 
 Cell[BoxData[
@@ -264,24 +528,18 @@ Cell[BoxData[
    "Print", "[", 
     "\"\<\:0422\:0435\:043e\:0440\:0435\:0442\:0438\:0447\:0435\:0441\:043a\
 \:0438\:0439 \:0432\:0438\:0434: \>\"", "]"}], "\[IndentingNewLine]", 
-   RowBox[{"Plot", "[", 
+   RowBox[{"Show", "[", 
     RowBox[{
-     RowBox[{"F", "[", 
-      RowBox[{"t", ",", " ", 
-       RowBox[{"Part", "[", 
-        RowBox[{"ab", ",", " ", "1", ",", " ", "1"}], "]"}], ",", " ", 
-       RowBox[{"Part", "[", 
-        RowBox[{"ab", ",", " ", "1", ",", " ", "2"}], "]"}]}], "]"}], ",", 
-     " ", 
-     RowBox[{"{", 
-      RowBox[{"t", ",", " ", "0", ",", " ", "1"}], "}"}]}], "]"}], 
-   "\[IndentingNewLine]", 
+    "Sequence", " ", "@@", " ", "theoreticalUnReliabilityFunctionPList"}], 
+    "]"}], "\[IndentingNewLine]", 
    RowBox[{
    "Print", "[", 
     "\"\<\:0421\:0442\:0430\:0442\:0438\:0441\:0442\:0438\:0447\:0435\:0441\
 \:043a\:0438\:0439 \:0432\:0438\:0434: \>\"", "]"}], "\[IndentingNewLine]", 
-   RowBox[{"ListPlot", "[", "practicalUnReliabilityFunc", "]"}], 
-   "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"Show", "[", 
+    RowBox[{
+    "Sequence", " ", "@@", " ", "practicalUnReliabilityFunctionPList"}], 
+    "]"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
    RowBox[{
    "Print", "[", 
     "\"\<\:0424\:0443\:043d\:043a\:0446\:0438\:044f \:0447\:0430\:0441\:0442\
@@ -290,28 +548,16 @@ Cell[BoxData[
    "Print", "[", 
     "\"\<\:0422\:0435\:043e\:0440\:0435\:0442\:0438\:0447\:0435\:0441\:043a\
 \:0438\:0439 \:0432\:0438\:0434: \>\"", "]"}], "\[IndentingNewLine]", 
-   RowBox[{"Plot", "[", 
-    RowBox[{
-     RowBox[{"f", "[", 
-      RowBox[{"t", ",", " ", 
-       RowBox[{"Part", "[", 
-        RowBox[{"ab", ",", " ", "1", ",", " ", "1"}], "]"}], ",", " ", 
-       RowBox[{"Part", "[", 
-        RowBox[{"ab", ",", " ", "1", ",", " ", "2"}], "]"}]}], "]"}], ",", 
-     " ", 
-     RowBox[{"{", 
-      RowBox[{"t", ",", " ", "0", ",", " ", "1"}], "}"}]}], "]"}], 
-   "\[IndentingNewLine]", 
+   RowBox[{"Show", "[", 
+    RowBox[{"Sequence", " ", "@@", " ", "theoreticalFrequencyFuncPList"}], 
+    "]"}], "\[IndentingNewLine]", 
    RowBox[{
    "Print", "[", 
     "\"\<\:0421\:0442\:0430\:0442\:0438\:0441\:0442\:0438\:0447\:0435\:0441\
 \:043a\:0438\:0439 \:0432\:0438\:0434: \>\"", "]"}], "\[IndentingNewLine]", 
-   RowBox[{"ListPlot", "[", 
-    RowBox[{"frequencyFunc", ",", " ", 
-     RowBox[{"PlotRange", "\[Rule]", 
-      RowBox[{"{", 
-       RowBox[{"0.6", ",", " ", "1"}], "}"}]}]}], "]"}], 
-   "\[IndentingNewLine]", " ", "\[IndentingNewLine]", 
+   RowBox[{"Show", "[", 
+    RowBox[{"Sequence", " ", "@@", " ", "practicalFrequencyFuncPList"}], 
+    "]"}], "\[IndentingNewLine]", " ", "\[IndentingNewLine]", 
    RowBox[{
    "Print", "[", 
     "\"\<\:0424\:0443\:043d\:043a\:0446\:0438\:044f \:0438\:043d\:0442\:0435\
@@ -321,34 +567,16 @@ Cell[BoxData[
    "Print", "[", 
     "\"\<\:0422\:0435\:043e\:0440\:0435\:0442\:0438\:0447\:0435\:0441\:043a\
 \:0438\:0439 \:0432\:0438\:0434: \>\"", "]"}], "\[IndentingNewLine]", 
-   RowBox[{"Plot", "[", 
-    RowBox[{
-     RowBox[{
-      RowBox[{"(", 
-       RowBox[{"f", "[", 
-        RowBox[{"t", ",", " ", 
-         RowBox[{"Part", "[", 
-          RowBox[{"ab", ",", " ", "1", ",", " ", "1"}], "]"}], ",", " ", 
-         RowBox[{"Part", "[", 
-          RowBox[{"ab", ",", " ", "1", ",", " ", "2"}], "]"}]}], "]"}], ")"}],
-       " ", "/", " ", 
-      RowBox[{"(", 
-       RowBox[{"1", " ", "-", " ", 
-        RowBox[{"F", "[", 
-         RowBox[{"t", ",", " ", 
-          RowBox[{"Part", "[", 
-           RowBox[{"ab", ",", " ", "1", ",", " ", "1"}], "]"}], ",", " ", 
-          RowBox[{"Part", "[", 
-           RowBox[{"ab", ",", " ", "1", ",", " ", "2"}], "]"}]}], "]"}]}], 
-       " ", ")"}]}], ",", " ", 
-     RowBox[{"{", 
-      RowBox[{"t", ",", " ", "0", ",", " ", "1"}], "}"}]}], "]"}], 
-   "\[IndentingNewLine]", 
+   RowBox[{"Show", "[", 
+    RowBox[{"Sequence", " ", "@@", " ", "theoreticalIntensityFuncPList"}], 
+    "]"}], "\[IndentingNewLine]", 
    RowBox[{
    "Print", "[", 
     "\"\<\:0421\:0442\:0430\:0442\:0438\:0441\:0442\:0438\:0447\:0435\:0441\
 \:043a\:0438\:0439 \:0432\:0438\:0434: \>\"", "]"}], "\[IndentingNewLine]", 
-   RowBox[{"ListPlot", "[", "intensityFunc", "]"}], "\[IndentingNewLine]", 
+   RowBox[{"Show", "[", 
+    RowBox[{"Sequence", " ", "@@", " ", "practicalIntensityFuncPList"}], 
+    "]"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
    "\[IndentingNewLine]"}]}]], "Input",
  CellChangeTimes->{{3.8733711351607943`*^9, 3.873371136420313*^9}, {
    3.8734311864935217`*^9, 3.873431241651112*^9}, {3.873431299237845*^9, 
@@ -363,7 +591,14 @@ Cell[BoxData[
    3.8737006170272293`*^9, 3.873700626945793*^9}, {3.8737008238900623`*^9, 
    3.8737008276528187`*^9}, {3.873700978354562*^9, 3.873700987136153*^9}, {
    3.873701047346877*^9, 3.873701053648307*^9}, {3.8737011278365927`*^9, 
-   3.873701161839488*^9}},ExpressionUUID->"4da94ff7-d09a-4848-a51d-\
+   3.873701161839488*^9}, {3.87429199321288*^9, 3.8742920271943493`*^9}, {
+   3.874292057784544*^9, 3.874292063582711*^9}, {3.87429210999115*^9, 
+   3.8742921156772213`*^9}, {3.8742921584675198`*^9, 3.874292160506838*^9}, {
+   3.874310244694379*^9, 3.874310264408401*^9}, {3.874310363919609*^9, 
+   3.874310364093525*^9}, {3.874310477504537*^9, 3.8743104825575867`*^9}, 
+   3.874310520361166*^9, {3.8743107136849327`*^9, 3.874310718930087*^9}, {
+   3.874310941207356*^9, 3.874310999335964*^9}, {3.874312767832769*^9, 
+   3.874312789200285*^9}},ExpressionUUID->"4da94ff7-d09a-4848-a51d-\
 6a232235f426"]
 },
 WindowSize->{927, 1023},
@@ -387,8 +622,8 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 10202, 232, 960, "Input",ExpressionUUID->"2b19b35a-c960-44f1-90d2-9fee8dd1e8d5"],
-Cell[10763, 254, 4944, 112, 515, "Input",ExpressionUUID->"4da94ff7-d09a-4848-a51d-6a232235f426"]
+Cell[558, 20, 21974, 496, 1857, "Input",ExpressionUUID->"2b19b35a-c960-44f1-90d2-9fee8dd1e8d5"],
+Cell[22535, 518, 4226, 83, 492, "Input",ExpressionUUID->"4da94ff7-d09a-4848-a51d-6a232235f426"]
 }
 ]
 *)
