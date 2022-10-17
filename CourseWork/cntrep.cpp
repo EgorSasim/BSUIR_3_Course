@@ -5,7 +5,7 @@
 int *REPETITION_COUNTING_ARRAY;
 int REPETITION_COUNTING_ARRAY_LENGTH;
 int REPETITION_AMOUNT;
-int UNIQUE_RANDOM_VALUES_ARRAY;
+int *UNIQUE_RANDOM_VALUES_ARRAY;
 int UNIQUE_RANDOM_VALUES_ARRAY_LENGTH;
 
 
@@ -13,6 +13,7 @@ int* initRepetitionCountingArray(int arrayLength);
 int fillRepetitionCountingArray(int* repetitionCountingArray, int arrayLength);
 int showRepetitionCountingArray(int* repetitionCountingArray, int arrayLength);
 bool isNumber(char number[]);
+int* initUniqueRandomValuesArray(int arrayLength);
 
 int main(int argc, char *argv[])
 {
@@ -42,6 +43,8 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 
+	UNIQUE_RANDOM_VALUES_ARRAY_LENGTH = REPETITION_COUNTING_ARRAY_LENGTH / REPETITION_AMOUNT;
+	UNIQUE_RANDOM_VALUES_ARRAY = initUniqueRandomValuesArray(UNIQUE_RANDOM_VALUES_ARRAY_LENGTH);
 
 	REPETITION_COUNTING_ARRAY = initRepetitionCountingArray(REPETITION_COUNTING_ARRAY_LENGTH);
 	fillRepetitionCountingArray(REPETITION_COUNTING_ARRAY, REPETITION_COUNTING_ARRAY_LENGTH);
@@ -87,4 +90,10 @@ bool isNumber(char number[])
 	}
 	return 1;
 }
+
+int* initUniqueRandomValuesArray(int arrayLength)
+{
+	return (int *)calloc(arrayLength, sizeof (int));
+}
+
 
