@@ -5,8 +5,8 @@ extern "C" __declspec(dllimport) void Replace(const char* data, const char* repl
 
 int main()
 {
-	std::string localString = "local string";
+	std::string localString = "Makarena";
 	std::cout << "Current local string: " << localString << std::endl;
-	Replace(localString.c_str(), "new string");
+	Replace(localString.c_str(), "Do it!!!");
 	std::cout << "Local string after call Replace function: " << localString << std::endl;
 }

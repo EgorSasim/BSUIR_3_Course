@@ -11,7 +11,7 @@ int main()
 	{
 		return -1;
 	}
-	const char* dllPath = "D:\\User Files\\University\\OsaSp\\lab3\\x64\\Debug\\StringReplaceDLL.dll";
+	const char* dllPath = "D:\\BSUIR_3_Course\\OSISP\\lab3\\x64\\Debug\\StringReplaceDLL.dll";
 	HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, processId);
 	if (hProcess == NULL)
 	{
