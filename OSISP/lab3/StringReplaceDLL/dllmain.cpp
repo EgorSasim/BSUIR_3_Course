@@ -14,7 +14,7 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     {
     case DLL_PROCESS_ATTACH:
     case DLL_THREAD_ATTACH:
-        Replace("local string", "new string");
+        Replace("shrek2", "shrek3");
         break;
     case DLL_THREAD_DETACH:
     case DLL_PROCESS_DETACH:
