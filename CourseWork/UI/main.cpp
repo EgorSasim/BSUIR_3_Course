@@ -4,6 +4,15 @@
 
 #include <windows.h>
 
+#define IDC_TEXTBOX 1000
+#define IDC_BUTTON  1001
+#define IDC_STATIC  1002
+
+HWND hMainWindow;
+HWND hArrayLengthInput;
+HWND hGenerateArrayBtn;
+
+
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow)
@@ -19,7 +28,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine,
     RegisterClass(&wc);
 
 
-    HWND hwnd = CreateWindowEx(
+    HWND hMainWindow = CreateWindowEx(
         0,
         CLASS_NAME,
         L"Repetition counting",
@@ -33,12 +42,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine,
         NULL
         );
 
-    if (hwnd == NULL)
+    if (hMainWindow == NULL)
     {
         return 0;
     }
 
-    ShowWindow(hwnd, nCmdShow);
+    ShowWindow(hMainWindow, nCmdShow);
 
     MSG msg = { };
     while (GetMessage(&msg, NULL, 0, 0) > 0)
