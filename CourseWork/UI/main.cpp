@@ -10,13 +10,18 @@
 
 using namespace std;
 
-#define IDC_TEXTBOX 1000
-#define IDC_BUTTON  1001
-#define IDC_STATIC  1002
+#define IDC_ARRAY_LENGTH        1000
+#define IDC_REPETITIONS_AMOUNT  1001
+#define IDC_VALUES_RANGE_MIN    1002
+#define IDC_VALUES_RANGE_MAX    1003
+#define IDC_SLOW_GEN_SPEED      1004
+#define IDC_GEN_ARRAY           1005
+#define IDC_BUTTON  1010
+#define IDC_STATIC  1011
 
-#define MAIN_WINDOW_BACKGOUND_COLOR 1
 
 NAMINGS MY_NAMINGS;
+GENERATION_PARAMS_STRUCT GENERATION_PARAMS;
 
 HWND hMainWindow;
 HINSTANCE hMainWindowInstance;
@@ -26,6 +31,11 @@ HWND hButton;
 HWND hLabelOutput;
 
 HWND hArrayLengthInput;
+HWND hRepetitionsAmountInput;
+HWND hValuesRangeInputMin;
+HWND hValuesRangeInputMax;
+HWND hSlowGenSpeedInput;
+
 HWND hGenerateArrayBtn;
 
 RECT arrayLengthLb;
@@ -36,8 +46,11 @@ RECT generateArrayLb;
 RECT writeToFileLb;
 RECT valuesTableLb;
 
+
 void drawLabels(HDC hdc);
 void setRectCoords(RECT *rect, LONG top, LONG left, LONG right, LONG bottom);
+void generateInputs(HWND hWnd, HINSTANCE wndInstance);
+void generateButtons(HWND hWnd, HINSTANCE wndInstance);
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow)
@@ -97,7 +110,8 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     {
     case WM_CREATE: 
         hMainWindow = hWnd;
-        // hTextInput = CreateWindowEx(WS_EX_CLIENTEDGE, L"EDIT", L"Type whatever U want here, dude...", WS_VISIBLE | WS_CHILD | ES_LEFT, 50, 50, 380, 25, hWnd, (HMENU)IDC_TEXTBOX, hMainWindowInstance, NULL);
+        generateInputs(hWnd, hMainWindowInstance);
+        generateButtons(hWnd, hMainWindowInstance);
         // hButton = CreateWindowEx(WS_EX_CLIENTEDGE, L"BUTTON", L"Generate an array!!!", WS_VISIBLE | WS_CHILD | ES_LEFT, 200, 100, 100, 60, hWnd, HMENU(IDC_BUTTON), hMainWindowInstance, NULL);
         // hLabelOutput = CreateWindowEx(WS_EX_CLIENTEDGE, L"STATIC", L"Some output...", WS_VISIBLE | WS_CHILD | ES_LEFT, 50, 200, 380, 25, hWnd, HMENU(IDC_STATIC), hMainWindowInstance, NULL);
         break; 
@@ -137,20 +151,34 @@ void setRectCoords(RECT* rect, LONG top, LONG left, LONG right, LONG bottom)
 void drawLabels(HDC hdc) 
 {  
     HFONT labelsFont, originalFont;
-    labelsFont = CreateFontW(48,0,0,0,FW_DONTCARE,FALSE,TRUE,FALSE,DEFAULT_CHARSET,OUT_OUTLINE_PRECIS,
+    labelsFont = CreateFontW(40,0,0,0,FW_DONTCARE,FALSE,TRUE,FALSE,DEFAULT_CHARSET,OUT_OUTLINE_PRECIS,
                 CLIP_DEFAULT_PRECIS,CLEARTYPE_QUALITY, VARIABLE_PITCH,TEXT("Impact"));
     originalFont = (HFONT)SelectObject(hdc, labelsFont);
     SetTextColor(hdc, RGB(255, 0, 0));
 
     setRectCoords(&arrayLengthLb, 30, 30, 300, 80);
-    // setRectCoords(&repetitionsAmountLb, 70, 10, 100, 80);
-    // setRectCoords(&valuesRangeLb, 90, 10, 100, 110);
-    // setRectCoords(&slowGenerationSpeedLb, 130, 10, 100, 150);
+    setRectCoords(&repetitionsAmountLb, 150, 30, 300, 200);
+    setRectCoords(&valuesRangeLb, 270, 30, 300, 355);
+    setRectCoords(&slowGenerationSpeedLb, 390, 30, 350, 480);
     DrawTextW(hdc, (LPWSTR)MY_NAMINGS.ARRAY_LENGTH, -1, &arrayLengthLb, DT_BOTTOM);
-    // DrawTextW(hdc, (LPWSTR)MY_NAMINGS.REPETITIONS_AMOUNT, -1, &repetitionsAmountLb, DT_BOTTOM);
-    // DrawTextW(hdc, (LPWSTR)MY_NAMINGS.VALUES_RANGE, -1, &valuesRangeLb, DT_BOTTOM);
-    // DrawTextW(hdc, (LPWSTR)MY_NAMINGS.SLOW_GENERATION_SPEED, -1, &slowGenerationSpeedLb, DT_BOTTOM);
+    DrawTextW(hdc, (LPWSTR)MY_NAMINGS.REPETITIONS_AMOUNT, -1, &repetitionsAmountLb, DT_BOTTOM);
+    DrawTextW(hdc, (LPWSTR)MY_NAMINGS.VALUES_RANGE, -1, &valuesRangeLb, DT_BOTTOM);
+    DrawTextW(hdc, (LPWSTR)MY_NAMINGS.SLOW_GENERATION_SPEED, -1, &slowGenerationSpeedLb, DT_BOTTOM | DT_WORDBREAK);
 
     SelectObject(hdc, originalFont);
     DeleteObject(labelsFont);
+}
+
+void generateInputs(HWND hWnd, HINSTANCE wndInstance)
+{
+    hArrayLengthInput = CreateWindowEx(WS_EX_CLIENTEDGE, L"EDIT", L"5", WS_VISIBLE | WS_CHILD | ES_LEFT, 355, 35, 200, 25, hWnd, (HMENU)IDC_ARRAY_LENGTH, wndInstance, NULL);
+    hRepetitionsAmountInput = CreateWindowEx(WS_EX_CLIENTEDGE, L"EDIT", L"5", WS_VISIBLE | WS_CHILD | ES_LEFT, 355, 155, 200, 25, hWnd, (HMENU)IDC_REPETITIONS_AMOUNT, wndInstance, NULL);
+    hValuesRangeInputMin = CreateWindowEx(WS_EX_CLIENTEDGE, L"EDIT", L"5", WS_VISIBLE | WS_CHILD | ES_LEFT, 355, 275, 200, 25, hWnd, (HMENU)IDC_VALUES_RANGE_MIN, wndInstance, NULL);
+    hValuesRangeInputMax = CreateWindowEx(WS_EX_CLIENTEDGE, L"EDIT", L"5", WS_VISIBLE | WS_CHILD | ES_LEFT, 560, 275, 200, 25, hWnd, (HMENU)IDC_VALUES_RANGE_MAX, wndInstance, NULL);
+    hSlowGenSpeedInput = CreateWindowEx(WS_EX_CLIENTEDGE, L"EDIT", L"5", WS_VISIBLE | WS_CHILD | ES_LEFT, 355, 395, 200, 25, hWnd, (HMENU)IDC_SLOW_GEN_SPEED, wndInstance, NULL);
+}
+
+void generateButtons(HWND hWnd, HINSTANCE wndInstance)
+{
+    hGenerateArrayBtn = CreateWindowEx(WS_EX_CLIENTEDGE, L"BUTTON", L"Generate an array!!!", WS_VISIBLE | WS_CHILD | ES_LEFT, 70, 500, 170, 60, hWnd, HMENU(IDC_GEN_ARRAY), wndInstance, NULL);
 }

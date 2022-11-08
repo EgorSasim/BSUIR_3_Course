@@ -12,6 +12,15 @@ struct NAMINGS {
     wchar_t* VALUES_TABLE;
 };
 
+typedef struct  {
+    int ARRAY_LENGTH;
+    int REPETITIONS_AMOUNT;
+    int VALUES_RANGE_MIN;
+    int VALUES_RANGE_MAX;
+    int SLOW_GEN_SPEED;
+} GENERATION_PARAMS_STRUCT;
+
+
 void fillNamingsUS(NAMINGS *namings);
 
 void fillNamingsUS(NAMINGS *namings) 
