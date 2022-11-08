@@ -4,6 +4,7 @@
 
 #include <windows.h>
 #include <string>
+#include <wingdi.h>
 
 #include "typings.cpp"
 
@@ -24,14 +25,6 @@ HWND hTextInput;
 HWND hButton;
 HWND hLabelOutput;
 
- char* ARRAY_LENGTH = "Array length: ";
-    char* REPETITIONS_AMOUNT = "Repetitions count: ";
-    char* VALUES_RANGE = "Values range: ";
-    char* SLOW_GENERATION_SPEED = "Slow generation speed by \'n\' times: ";
-    char* GENERATE_ARRAY = "Generate array";
-    char* WRITE_TO_FILE = "Write to file";
-    char* VALUES_TABLE = "Values table";
-
 HWND hArrayLengthInput;
 HWND hGenerateArrayBtn;
 
@@ -43,13 +36,15 @@ RECT generateArrayLb;
 RECT writeToFileLb;
 RECT valuesTableLb;
 
-int drawLabels(HDC hdc);
+void drawLabels(HDC hdc);
 void setRectCoords(RECT *rect, LONG top, LONG left, LONG right, LONG bottom);
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow)
 {
     fillNamingsUS(&MY_NAMINGS);
+    HBRUSH mainWindowBackgroundColor;
+    mainWindowBackgroundColor = CreateSolidBrush(RGB(23, 45, 78));
     const wchar_t MAIN_WINDOW_CLASS_NAME[]  = L"Main Class";
     
     WNDCLASS wc = { };
@@ -57,7 +52,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine,
     wc.lpfnWndProc   = WindowProc;
     wc.hInstance     = hInstance;
     wc.lpszClassName = MAIN_WINDOW_CLASS_NAME;
-    wc.hbrBackground = (HBRUSH)MAIN_WINDOW_BACKGOUND_COLOR;
+    wc.hbrBackground = (HBRUSH)mainWindowBackgroundColor;
 
     if (!RegisterClass(&wc))
         return -1;
@@ -139,14 +134,23 @@ void setRectCoords(RECT* rect, LONG top, LONG left, LONG right, LONG bottom)
     rect->bottom = bottom;
 }
 
-int drawLabels(HDC hdc) 
+void drawLabels(HDC hdc) 
 {  
-    setRectCoords(&arrayLengthLb, 10, 10, 100, 50);
-    setRectCoords(&repetitionsAmountLb, 70, 10, 100, 80);
-    setRectCoords(&valuesRangeLb, 90, 10, 100, 110);
-    setRectCoords(&slowGenerationSpeedLb, 130, 10, 100, 150);
-    DrawTextA(hdc, (LPCSTR)MY_NAMINGS.ARRAY_LENGTH, -1, &arrayLengthLb, DT_BOTTOM);
-    DrawTextA(hdc, (LPCSTR)MY_NAMINGS.REPETITIONS_AMOUNT, -1, &repetitionsAmountLb, DT_BOTTOM);
-    DrawTextA(hdc, (LPCSTR)MY_NAMINGS.VALUES_RANGE, -1, &valuesRangeLb, DT_BOTTOM);
-    DrawTextA(hdc, (LPCSTR)MY_NAMINGS.SLOW_GENERATION_SPEED, -1, &slowGenerationSpeedLb, DT_BOTTOM);
+    HFONT labelsFont, originalFont;
+    labelsFont = CreateFontW(48,0,0,0,FW_DONTCARE,FALSE,TRUE,FALSE,DEFAULT_CHARSET,OUT_OUTLINE_PRECIS,
+                CLIP_DEFAULT_PRECIS,CLEARTYPE_QUALITY, VARIABLE_PITCH,TEXT("Impact"));
+    originalFont = (HFONT)SelectObject(hdc, labelsFont);
+    SetTextColor(hdc, RGB(255, 0, 0));
+
+    setRectCoords(&arrayLengthLb, 30, 30, 300, 80);
+    // setRectCoords(&repetitionsAmountLb, 70, 10, 100, 80);
+    // setRectCoords(&valuesRangeLb, 90, 10, 100, 110);
+    // setRectCoords(&slowGenerationSpeedLb, 130, 10, 100, 150);
+    DrawTextW(hdc, (LPWSTR)MY_NAMINGS.ARRAY_LENGTH, -1, &arrayLengthLb, DT_BOTTOM);
+    // DrawTextW(hdc, (LPWSTR)MY_NAMINGS.REPETITIONS_AMOUNT, -1, &repetitionsAmountLb, DT_BOTTOM);
+    // DrawTextW(hdc, (LPWSTR)MY_NAMINGS.VALUES_RANGE, -1, &valuesRangeLb, DT_BOTTOM);
+    // DrawTextW(hdc, (LPWSTR)MY_NAMINGS.SLOW_GENERATION_SPEED, -1, &slowGenerationSpeedLb, DT_BOTTOM);
+
+    SelectObject(hdc, originalFont);
+    DeleteObject(labelsFont);
 }
