@@ -20,6 +20,13 @@ typedef struct  {
     int SLOW_GEN_SPEED;
 } GENERATION_PARAMS_STRUCT;
 
+typedef enum {
+    INVALID_VALUE,
+    INVALID_ARRAY_LENGTH,
+    INCOMPATIBLE_VALUES_RANGE,
+    INVALID_VALUES_RANGE_LENGTH,
+    VALID,
+} ERRORS_ENUM;
 
 void fillNamingsUS(NAMINGS *namings);
 
