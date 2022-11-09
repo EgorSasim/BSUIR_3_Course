@@ -3,13 +3,13 @@
 using namespace std;
 
 struct NAMINGS {
-    wchar_t* ARRAY_LENGTH;
-    wchar_t* REPETITIONS_AMOUNT;
-    wchar_t* VALUES_RANGE;
-    wchar_t* SLOW_GENERATION_SPEED;
-    wchar_t* GENERATE_ARRAY;
-    wchar_t* WRITE_TO_FILE;
-    wchar_t* VALUES_TABLE;
+    const wchar_t* ARRAY_LENGTH;
+    const wchar_t* REPETITIONS_AMOUNT;
+    const wchar_t* VALUES_RANGE;
+    const wchar_t* SLOW_GENERATION_SPEED;
+    const wchar_t* GENERATE_ARRAY;
+    const wchar_t* WRITE_TO_FILE;
+    const wchar_t* VALUES_TABLE;
 };
 
 typedef struct  {
