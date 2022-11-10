@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root signature="{B9D9273E-7266-43E0-BF02-97F168593604}" version="15.0">
+	<TestData Description="" Key="{CC43ACB4-4A08-46C8-9D08-2535C05AF8AC}" Type="{79147B28-EE20-4294-B773-1D3787FBF37B}">
+		<Data>
+			<Extenders>
+				<NodeBitmaps>
+					<Bitmap Name="Aliases.PDDTests" Data="61717A6970000000010000007606000078019D927F4C136718C7DFDE7B7730C75C346E0989244CAAA02159046370226385E18CEDBA49AD4C134A4B7B6D0F84E01F669A109725D36501DCA6CBE67ED88E523A23730D501B8CA29B4614199B1B21845F2E30817A9223648BFB41FCEEA5B0C09639532FF9BCF75C9E7B3EF7BCEF733AC37E9144AF8D6C4D63AC98474392594448EE7C3EFAF0F722C42790B457AB69CA1B0374E51185AE7C2B468E28DC9AEA1EA27DD145A810A749DD7548887F7F46A41E88D41B3B820FA2E005FFF87BF748DA76275D7D7C985674833B1D01178891867188494188BC9F397DE09E3DD6CB277954AE6E106410207D8C81FB0F6051AE9FC5BD8C1F6720A634CFFBFCE0577B153EC9AB72B5CC370068DAA641CBBF032DFB0FA41E50F9FBB95C752F73FD097273B1AF11545BBFE063FD693E65FD0BF510358BF1216E891F827B27E2123F60391F843541E6FAEDE13E0FF3898D0B082C5ECABEFBAE0E649403F565427CB201426A4BEC3E21C06AFDA0B5F920C31C3B5F023244C1EFDF09616D18E487DF63E88FB99E68045FC7FABAC55CC3145C501BF5914101C29E03D09C9B06E9F9FFF3239F8D8317FD48581640E20923B4235AA48FAC4346ED3E6464B522BDD58855A3C978BA7B151E2B3C0972F91EB8E46608D1FF656E1E94CD57AC19C053C34066CB244CA66FE068AD813CE540D95D19155F7850E9BA89CA8A2E545675A2BCEF20DC93126CDD7B61A8EB417AC1452C5F768ACDB1111C9B6F4A56935AF8E518EC0AE0BE320DD9FB39A4292B24C50E77E063C8AE2EC872E71CAE1B900F87E09C90204D9642BEF436CACBBA2149D7A0DF7E11899B4E2BB6BD9754A9ED0EEC7700C79529B89C9D70866BE00C7C049774032ED7F57F62EF82F3443DEC113BAB2985D37332FA9EECBE0ECBBE76E53547BB6A0945501C012C5FABB0955C85CDCA98BD3F086B07AC2D87517C77372CB74B607BF30C6C960E14C917941DC5E7D55DCD13308F03E66F7F45515DFF024759FC6F66F39FFC84A20F6FA1E85C15CC1113CC7D56EC96DAF04AE905659B39AC1ACE8C413F06E87F66B07D3F14B617FD04607CA70386FE1DD047B6E1E5CB0EBC541252720D2135AF6104BAA13FA0EB8F8DBCABBFA0E0750F74B77391DF69428EB54979CE181CCDCE3B8FCD05EDC87E14B2596DD551E4E43723CB141C4CDD7AF0F8E68DA1FB99196791B1FED1D89019C6964DE199670ACAAA85A5CB57ACDB7AE0584EE15723CF1BCFAA39C6504CCCD66C31350D695F701FE2E39724FC05763C884D" />
+					<Bitmap Name="Aliases.PDDTests.HwndSource_MainWindow" Data="61717A697000000001000000760600007801CD955B48146114C7B7971E5373D65C448B82542A08BA80F4123D840461D6430F26D14362A12582D905D4DC884A31B31B66ABA8A1E23545234CC35557B7D076D75BBABBB3ED2C5ADEB6BDEB5EE7DFCCE47A5784EDA181F37DF3CDFCCF6FCE39DF779853676F6DE771D771668C608C58B06DBC3DCC1D8F7772E13DB758180ACE05CE145FE4E35FD8F35842CF7248491DF4DA219F4CD3DBB818D3AC460E5F2F361E6F8EFF3B6F7A548C9E9CA368B91D05D3B0684DEA86EF4DA05AAE41517C0372D14D484BD261374D82A228188D464EBF3CDF19753F646F63507E89802227004EFD523D9D965FD096EC43C375020D897CB4A61010C505A1A720166693092E976B0D8FAD9FAE330FE5F104BE08FD61960B1763340E574155148ACA2B7C7C7D2880B6E6023EA412684E0DC3EFB1B645DDF2F858DEDC7807EA128220BEBB03339FCE2FE9A499E8CF0D4163121FAA377B61D37540F62A8A610AA0AEBBBAA45BB5BF6EDB04BA1F1C42737200266BC301DAC369F5E2CB90640B20CE08C678D501781C26FC6C4F41574608065F9FC0BC5EF557B78A079A06591387A6A4008C1446C0652219A403B3AD6720B9CF87223F0C86F668CED732F894A9F32E289E1D8471A4727D1EF3D432568DB63402E2CC50589465705BB5F851710C3D4202CAA270D806EE70BE3675255485027C7B1C82E9EE4CEEBBABEBC70AD95CE4058719A61F54D5D1B0AACBD0FB68373EA61350971E8173BC9EE3D927DAA17B1706F91301A8F7F1F058355CAFAED71F860111BAEEF9419245A0EF45246A93997392128489A618786C14C773CF4D31B5DC8FA1BC9D182B8A82635AB2218FA6DDCCD94D80343B1043A5A75191188ACF599198232B389677302B7230FAD21F83B9C1B092F59825FB36ED5FDAED00EDB633360F8FCBEEC5AC989D0625AC54279C661DF41AD9A6BC158E5B58ACB71F5B70DB50B29CA7EEAA01DB23BE1829A9E7F2CD8F099CF2EEB3AF33FBEFF803EEFF008F" />
+					<Bitmap Name="Aliases.PDDTests.HwndSource_MainWindow.MainWindow" Data="61717A697000000001000000760600007801CD955B48146114C7B7971E5373D65C448B82542A08BA80F4123D840461D6430F26D14362A12582D905D4DC884A31B31B66ABA8A1E23545234CC35557B7D076D75BBABBB3ED2C5ADEB6BDEB5EE7DFCCE47A5784EDA181F37DF3CDFCCF6FCE39DF779853676F6DE771D771668C608C58B06DBC3DCC1D8F7772E13DB758180ACE05CE145FE4E35FD8F35842CF7248491DF4DA219F4CD3DBB818D3AC460E5F2F361E6F8EFF3B6F7A548C9E9CA368B91D05D3B0684DEA86EF4DA05AAE41517C0372D14D484BD261374D82A228188D464EBF3CDF19753F646F63507E89802227004EFD523D9D965FD096EC43C375020D897CB4A61010C505A1A720166693092E976B0D8FAD9FAE330FE5F104BE08FD61960B1763340E574155148ACA2B7C7C7D2880B6E6023EA412684E0DC3EFB1B645DDF2F858DEDC7807EA128220BEBB03339FCE2FE9A499E8CF0D4163121FAA377B61D37540F62A8A610AA0AEBBBAA45BB5BF6EDB04BA1F1C42737200266BC301DAC369F5E2CB90640B20CE08C678D501781C26FC6C4F41574608065F9FC0BC5EF557B78A079A06591387A6A4008C1446C0652219A403B3AD6720B9CF87223F0C86F668CED732F894A9F32E289E1D8471A4727D1EF3D432568DB63402E2CC50589465705BB5F851710C3D4202CAA270D806EE70BE3675255485027C7B1C82E9EE4CEEBBABEBC70AD95CE4058719A61F54D5D1B0AACBD0FB68373EA61350971E8173BC9EE3D927DAA17B1706F91301A8F7F1F058355CAFAED71F860111BAEEF9419245A0EF45246A93997392128489A618786C14C773CF4D31B5DC8FA1BC9D182B8A82635AB2218FA6DDCCD94D80343B1043A5A75191188ACF599198232B389677302B7230FAD21F83B9C1B092F59825FB36ED5FDAED00EDB633360F8FCBEEC5AC989D0625AC54279C661DF41AD9A6BC158E5B58ACB71F5B70DB50B29CA7EEAA01DB23BE1829A9E7F2CD8F099CF2EEB3AF33FBEFF803EEFF008F" />
+					<Bitmap Name="Aliases.PDDTests.HwndSource_MainWindow.MainWindow.ItemsControl" Data="61717A697000000001000000760600007801CD955B48146114C7B7971E5373D65C448B82542A08BA80F4123D840461D6430F26D14362A12582D905D4DC884A31B31B66ABA8A1E23545234CC35557B7D076D75BBABBB3ED2C5ADEB6BDEB5EE7DFCCE47A5784EDA181F37DF3CDFCCF6FCE39DF779853676F6DE771D771668C608C58B06DBC3DCC1D8F7772E13DB758180ACE05CE145FE4E35FD8F35842CF7248491DF4DA219F4CD3DBB818D3AC460E5F2F361E6F8EFF3B6F7A548C9E9CA368B91D05D3B0684DEA86EF4DA05AAE41517C0372D14D484BD261374D82A228188D464EBF3CDF19753F646F63507E89802227004EFD523D9D965FD096EC43C375020D897CB4A61010C505A1A720166693092E976B0D8FAD9FAE330FE5F104BE08FD61960B1763340E574155148ACA2B7C7C7D2880B6E6023EA412684E0DC3EFB1B645DDF2F858DEDC7807EA128220BEBB03339FCE2FE9A499E8CF0D4163121FAA377B61D37540F62A8A610AA0AEBBBAA45BB5BF6EDB04BA1F1C42737200266BC301DAC369F5E2CB90640B20CE08C678D501781C26FC6C4F41574608065F9FC0BC5EF557B78A079A06591387A6A4008C1446C0652219A403B3AD6720B9CF87223F0C86F668CED732F894A9F32E289E1D8471A4727D1EF3D432568DB63402E2CC50589465705BB5F851710C3D4202CAA270D806EE70BE3675255485027C7B1C82E9EE4CEEBBABEBC70AD95CE4058719A61F54D5D1B0AACBD0FB68373EA61350971E8173BC9EE3D927DAA17B1706F91301A8F7F1F058355CAFAED71F860111BAEEF9419245A0EF45246A93997392128489A618786C14C773CF4D31B5DC8FA1BC9D182B8A82635AB2218FA6DDCCD94D80343B1043A5A75191188ACF599198232B389677302B7230FAD21F83B9C1B092F59825FB36ED5FDAED00EDB633360F8FCBEEC5AC989D0625AC54279C661DF41AD9A6BC158E5B58ACB71F5B70DB50B29CA7EEAA01DB23BE1829A9E7F2CD8F099CF2EEB3AF33FBEFF803EEFF008F" />
+				</NodeBitmaps>
+			</Extenders>
+		</Data>
+		<Children>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; object." Action="Click" InvokeKind="-1" Initialized="True">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Param1" DefVarType="0" VarType="3" ValueType="1" ValueValue="53" />
+						<Parameter Name="Param2" DefVarType="0" VarType="3" ValueType="1" ValueValue="26" />
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.PDDTests.HwndSource_MainWindow.MainWindow.AmButton3;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; object." Action="Click" InvokeKind="-1" Initialized="True">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Param1" DefVarType="0" VarType="3" ValueType="1" ValueValue="89" />
+						<Parameter Name="Param2" DefVarType="0" VarType="3" ValueType="1" ValueValue="22" />
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.PDDTests.HwndSource_MainWindow.MainWindow.AmButton;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; button." Action="ClickButton" InvokeKind="-1" Initialized="True">
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.PDDTests.HwndSource_MainWindow.MainWindow.ItemsControl.Button3;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; object." Action="Click" InvokeKind="-1" Initialized="True">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Param1" DefVarType="0" VarType="3" ValueType="1" ValueValue="104" />
+						<Parameter Name="Param2" DefVarType="0" VarType="3" ValueType="1" ValueValue="4" />
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.PDDTests.HwndSource_MainWindow.MainWindow.AmButton2;" />
+				</Data>
+			</Operation>
+			<Operation Type="{94838C49-976F-4128-8B05-4E7C3E9C579D}">
+				<Data VariableType="4" VariableName="LoopVar">
+					<Records FromBegin="True" ToEnd="True" StartRecord="1" StopIndex="1" />
+				</Data>
+				<Children>
+					<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+						<Data Description="Enters %p1 in the &apos;%n&apos; object." Action="Keys" InvokeKind="-1">
+							<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+								<Parameter Name="Param1" DefVarType="0" ParamType="{874735FC-322E-4380-A0DD-AB0206EE8AA0}" VariableType="4" VariableName="LoopVar" ColumnName="1" />
+							</Parameters>
+							<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.PDDTests.HwndSource_MainWindow.MainWindow;" />
+						</Data>
+					</Operation>
+					<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+						<Data Description="Enters %p1 in the &apos;%n&apos; object." Action="Keys" InvokeKind="-1" Initialized="True">
+							<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+								<Parameter Name="Param1" DefVarType="0" ParamType="{874735FC-322E-4380-A0DD-AB0206EE8AA0}" VariableType="4" VariableName="LoopVar" ColumnName="2" />
+							</Parameters>
+							<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.PDDTests.HwndSource_MainWindow.MainWindow;" />
+						</Data>
+					</Operation>
+					<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+						<Data Description="Enters %p1 in the &apos;%n&apos; object." Action="Keys" InvokeKind="-1" Initialized="True">
+							<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+								<Parameter Name="Param1" DefVarType="0" ParamType="{874735FC-322E-4380-A0DD-AB0206EE8AA0}" VariableType="4" VariableName="LoopVar" ColumnName="3" />
+							</Parameters>
+							<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.PDDTests.HwndSource_MainWindow.MainWindow;" />
+						</Data>
+					</Operation>
+					<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+						<Data Description="Enters %p1 in the &apos;%n&apos; object." Action="Keys" InvokeKind="-1">
+							<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+								<Parameter Name="Param1" DefVarType="0" ParamType="{874735FC-322E-4380-A0DD-AB0206EE8AA0}" VariableType="4" VariableName="LoopVar" ColumnName="4" />
+							</Parameters>
+							<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.PDDTests.HwndSource_MainWindow.MainWindow;" />
+						</Data>
+					</Operation>
+					<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+						<Data Description="Enters %p1 in the &apos;%n&apos; object." Action="Keys" InvokeKind="-1" Initialized="True">
+							<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+								<Parameter Name="Param1" DefVarType="0" ParamType="{874735FC-322E-4380-A0DD-AB0206EE8AA0}" VariableType="4" VariableName="LoopVar" ColumnName="5" />
+							</Parameters>
+							<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.PDDTests.HwndSource_MainWindow.MainWindow;" />
+						</Data>
+					</Operation>
+					<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+						<Data Description="Enters %p1 in the &apos;%n&apos; object." Action="Keys" InvokeKind="-1" Initialized="True">
+							<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+								<Parameter Name="Param1" DefVarType="0" ParamType="{874735FC-322E-4380-A0DD-AB0206EE8AA0}" VariableType="4" VariableName="LoopVar" ColumnName="6" />
+							</Parameters>
+							<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.PDDTests.HwndSource_MainWindow.MainWindow;" />
+						</Data>
+					</Operation>
+					<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+						<Data Description="Enters %p1 in the &apos;%n&apos; object." Action="Keys" InvokeKind="-1" Initialized="True">
+							<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+								<Parameter Name="Param1" DefVarType="0" ParamType="{874735FC-322E-4380-A0DD-AB0206EE8AA0}" VariableType="4" VariableName="LoopVar" ColumnName="7" />
+							</Parameters>
+							<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.PDDTests.HwndSource_MainWindow.MainWindow;" />
+						</Data>
+					</Operation>
+					<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+						<Data Description="Enters %p1 in the &apos;%n&apos; object." Action="Keys" InvokeKind="-1" Initialized="True">
+							<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+								<Parameter Name="Param1" DefVarType="0" ParamType="{874735FC-322E-4380-A0DD-AB0206EE8AA0}" VariableType="4" VariableName="LoopVar" ColumnName="8" />
+							</Parameters>
+							<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.PDDTests.HwndSource_MainWindow.MainWindow;" />
+						</Data>
+					</Operation>
+					<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+						<Data Description="Enters %p1 in the &apos;%n&apos; object." Action="Keys" InvokeKind="-1" Initialized="True">
+							<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+								<Parameter Name="Param1" DefVarType="0" ParamType="{874735FC-322E-4380-A0DD-AB0206EE8AA0}" VariableType="4" VariableName="LoopVar" ColumnName="9" />
+							</Parameters>
+							<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.PDDTests.HwndSource_MainWindow.MainWindow;" />
+						</Data>
+					</Operation>
+					<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+						<Data Description="Enters %p1 in the &apos;%n&apos; object." Action="Keys" InvokeKind="-1" Initialized="True">
+							<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+								<Parameter Name="Param1" DefVarType="0" ParamType="{874735FC-322E-4380-A0DD-AB0206EE8AA0}" VariableType="4" VariableName="LoopVar" ColumnName="10" />
+							</Parameters>
+							<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.PDDTests.HwndSource_MainWindow.MainWindow;" />
+						</Data>
+					</Operation>
+					<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+						<Data Description="Enters %p1 in the &apos;%n&apos; object." Action="Keys" InvokeKind="-1" Initialized="True">
+							<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+								<Parameter Name="Param1" DefVarType="0" ParamType="{874735FC-322E-4380-A0DD-AB0206EE8AA0}" VariableType="4" VariableName="LoopVar" ColumnName="11" />
+							</Parameters>
+							<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.PDDTests.HwndSource_MainWindow.MainWindow;" />
+						</Data>
+					</Operation>
+					<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+						<Data Description="Enters %p1 in the &apos;%n&apos; object." Action="Keys" InvokeKind="-1" Initialized="True">
+							<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+								<Parameter Name="Param1" DefVarType="0" ParamType="{874735FC-322E-4380-A0DD-AB0206EE8AA0}" VariableType="4" VariableName="LoopVar" ColumnName="12" />
+							</Parameters>
+							<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.PDDTests.HwndSource_MainWindow.MainWindow;" />
+						</Data>
+					</Operation>
+					<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+						<Data Description="Enters %p1 in the &apos;%n&apos; object." Action="Keys" InvokeKind="-1" Initialized="True">
+							<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+								<Parameter Name="Param1" DefVarType="0" ParamType="{874735FC-322E-4380-A0DD-AB0206EE8AA0}" VariableType="4" VariableName="LoopVar" ColumnName="13" />
+							</Parameters>
+							<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.PDDTests.HwndSource_MainWindow.MainWindow;" />
+						</Data>
+					</Operation>
+					<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+						<Data Description="Enters %p1 in the &apos;%n&apos; object." Action="Keys" InvokeKind="-1" Initialized="True">
+							<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+								<Parameter Name="Param1" DefVarType="0" ParamType="{874735FC-322E-4380-A0DD-AB0206EE8AA0}" VariableType="4" VariableName="LoopVar" ColumnName="14" />
+							</Parameters>
+							<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.PDDTests.HwndSource_MainWindow.MainWindow;" />
+						</Data>
+					</Operation>
+					<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+						<Data Description="Enters %p1 in the &apos;%n&apos; object." Action="Keys" InvokeKind="-1" Initialized="True">
+							<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+								<Parameter Name="Param1" DefVarType="0" ParamType="{874735FC-322E-4380-A0DD-AB0206EE8AA0}" VariableType="4" VariableName="LoopVar" ColumnName="15" />
+							</Parameters>
+							<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.PDDTests.HwndSource_MainWindow.MainWindow;" />
+						</Data>
+					</Operation>
+					<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+						<Data Description="Enters %p1 in the &apos;%n&apos; object." Action="Keys" InvokeKind="-1" Initialized="True">
+							<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+								<Parameter Name="Param1" DefVarType="0" ParamType="{874735FC-322E-4380-A0DD-AB0206EE8AA0}" VariableType="4" VariableName="LoopVar" ColumnName="16" />
+							</Parameters>
+							<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.PDDTests.HwndSource_MainWindow.MainWindow;" />
+						</Data>
+					</Operation>
+					<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+						<Data Description="Enters %p1 in the &apos;%n&apos; object." Action="Keys" InvokeKind="-1" Initialized="True">
+							<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+								<Parameter Name="Param1" DefVarType="0" ParamType="{874735FC-322E-4380-A0DD-AB0206EE8AA0}" VariableType="4" VariableName="LoopVar" ColumnName="17" />
+							</Parameters>
+							<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.PDDTests.HwndSource_MainWindow.MainWindow;" />
+						</Data>
+					</Operation>
+					<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+						<Data Description="Enters %p1 in the &apos;%n&apos; object." Action="Keys" InvokeKind="-1" Initialized="True">
+							<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+								<Parameter Name="Param1" DefVarType="0" ParamType="{874735FC-322E-4380-A0DD-AB0206EE8AA0}" VariableType="4" VariableName="LoopVar" ColumnName="18" />
+							</Parameters>
+							<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.PDDTests.HwndSource_MainWindow.MainWindow;" />
+						</Data>
+					</Operation>
+					<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+						<Data Description="Enters %p1 in the &apos;%n&apos; object." Action="Keys" InvokeKind="-1" Initialized="True">
+							<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+								<Parameter Name="Param1" DefVarType="0" ParamType="{874735FC-322E-4380-A0DD-AB0206EE8AA0}" VariableType="4" VariableName="LoopVar" ColumnName="19" />
+							</Parameters>
+							<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.PDDTests.HwndSource_MainWindow.MainWindow;" />
+						</Data>
+					</Operation>
+					<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+						<Data Description="Enters %p1 in the &apos;%n&apos; object." Action="Keys" InvokeKind="-1" Initialized="True">
+							<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+								<Parameter Name="Param1" DefVarType="0" ParamType="{874735FC-322E-4380-A0DD-AB0206EE8AA0}" VariableType="4" VariableName="LoopVar" ColumnName="20" />
+							</Parameters>
+							<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.PDDTests.HwndSource_MainWindow.MainWindow;" />
+						</Data>
+					</Operation>
+					<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+						<Data Description="Enters %p1 in the &apos;%n&apos; object." Action="Keys" InvokeKind="-1" Initialized="True">
+							<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+								<Parameter Name="Param1" DefVarType="0" ParamType="{874735FC-322E-4380-A0DD-AB0206EE8AA0}" VariableType="4" VariableName="LoopVar" ColumnName="21" />
+							</Parameters>
+							<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.PDDTests.HwndSource_MainWindow.MainWindow;" />
+						</Data>
+					</Operation>
+				</Children>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; object." Action="Click" InvokeKind="-1" Initialized="True">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Param1" DefVarType="0" VarType="3" ValueType="1" ValueValue="66" />
+						<Parameter Name="Param2" DefVarType="0" VarType="3" ValueType="1" ValueValue="10" />
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.PDDTests.HwndSource_MainWindow.MainWindow.AmButton3;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; object." Action="Click" InvokeKind="-1" Initialized="True">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Param1" DefVarType="0" VarType="3" ValueType="1" ValueValue="55" />
+						<Parameter Name="Param2" DefVarType="0" VarType="3" ValueType="1" ValueValue="21" />
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.PDDTests.HwndSource_MainWindow.MainWindow.AmButton3;" />
+				</Data>
+			</Operation>
+		</Children>
+	</TestData>
+	<Variables Version="4" Key="{E197123D-3542-41EC-ACA3-39A0783270F4}">
+		<Items>
+			<Variable Name="LoopVar" Type="DB Table" Local="False">
+				<DefValue Kind="{94ACFE87-8AC5-4220-8268-52323FBEB9FB}">
+					<ConnectionInfo FileName="..\..\..\Data.xlsx" Table="Sheet1$" HasColumnNames="True" />
+				</DefValue>
+			</Variable>
+		</Items>
+	</Variables>
+	<Parameters Key="{F067C77E-7AAE-45A9-B81E-D11F0C772D4C}" />
+</Root>

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root Signature="{5DCBAC3B-D39C-497C-9BE8-744CBADD37AA}" NameMappingVersion="7" SaveImages="0">
+	<Storages Current="0">
+		<Child Name="Default Configuration" />
+	</Storages>
+	<Nodes Name="NameMapping" Key="{BE401E45-B2D6-4FBA-931A-C2117D5C51AD}">
+		<Children>
+			<Child Name="Sys" Key="{07A7E1E6-9DD8-4A1B-9DB4-0AF9D5E96D20}">
+				<Properties>
+					<Property Name="Name">
+						<Value Value="Sys" />
+					</Property>
+				</Properties>
+				<Children>
+					<Child Name="PDDTests" Key="{78ACEAD1-07FB-45D8-A25A-98E7B4F200DA}">
+						<Properties>
+							<Property Name="ProcessName">
+								<Value Value="PDDTests" />
+							</Property>
+						</Properties>
+						<Children>
+							<Child Name="HwndSource_MainWindow" Key="{8BFBCC25-EFE8-41D4-B597-24A9B1C21AFD}">
+								<Image FileName="303543750" Left="0" Top="0" Right="1280" Bottom="960" />
+								<Properties>
+									<Property Name="RootVisual.ClrClassName">
+										<Value Value="MainWindow" />
+									</Property>
+									<Property Name="WndCaption">
+										<Value Value="ADrive Тесты 2022 по Правилам дорожного движения" />
+									</Property>
+								</Properties>
+								<Children>
+									<Child Name="MainWindow" Key="{05D496D5-08F4-4936-8E09-A9808B5A8753}">
+										<Image FileName="303543750" Left="9" Top="38" Right="1290" Bottom="999" />
+										<Properties>
+											<Property Name="ClrFullClassName">
+												<Value Value="TestingComponent.MainWindow" />
+											</Property>
+										</Properties>
+										<Children>
+											<Child Name="SubjectMenuView" Key="{DC1F110C-136D-41CD-8FC4-4FD35FECB0DF}" ExtendedFind="True">
+												<Image FileName="303543750" Left="24" Top="103" Right="1257" Bottom="920" />
+												<Properties>
+													<Property Name="ClrFullClassName">
+														<Value Value="TestingComponent.Views.SubjectMenuView" />
+													</Property>
+													<Property Name="WPFControlText">
+														<Value Value="" />
+													</Property>
+												</Properties>
+												<Children>
+													<Child Name="StackPanel" Key="{BDFCC320-A57F-4EB7-8B20-D4C83C356470}" ExtendedFind="True">
+														<Image FileName="303543750" Left="24" Top="103" Right="525" Bottom="669" />
+														<Properties>
+															<Property Name="ClrFullClassName">
+																<Value Value="System.Windows.Controls.StackPanel" />
+															</Property>
+															<Property Name="WPFControlOrdinalNo">
+																<Value Value="1" Type="0" />
+															</Property>
+														</Properties>
+														<Children>
+															<Child Name="Border" Key="{FAE29F18-17D3-432D-8E21-2962A0E9DE6E}" ExtendedFind="True">
+																<Image FileName="303543750" Left="193" Top="118" Right="344" Bottom="163" />
+																<Properties>
+																	<Property Name="ClrFullClassName">
+																		<Value Value="System.Windows.Controls.Border" />
+																	</Property>
+																	<Property Name="WPFControlOrdinalNo">
+																		<Value Value="2" Type="0" />
+																	</Property>
+																</Properties>
+																<Children>
+																	<Child Name="AmButton" Key="{991816B0-1BA0-4B15-8525-8CDFCAC4EBDD}" ExtendedFind="True">
+																		<Image FileName="303543750" Left="194" Top="119" Right="343" Bottom="162" />
+																		<TypeInfo Item0="{5C25AE5F-CA08-4F38-B398-F6885AFC6D79}" />
+																		<Properties>
+																			<Property Name="ClrFullClassName">
+																				<Value Value="CustomWpfControls.AmButton" />
+																			</Property>
+																			<Property Name="WPFControlText">
+																				<Value Value="" />
+																			</Property>
+																		</Properties>
+																	</Child>
+																</Children>
+															</Child>
+															<Child Name="AmButton" Key="{CF453050-7079-4011-84EF-A2AFECF9E7EE}" ExtendedFind="True">
+																<Image FileName="-526860145" Left="1122" Top="113" Right="1236" Bottom="141" />
+																<TypeInfo Item0="{5C25AE5F-CA08-4F38-B398-F6885AFC6D79}" />
+																<Properties>
+																	<Property Name="ClrFullClassName">
+																		<Value Value="CustomWpfControls.AmButton" />
+																	</Property>
+																	<Property Name="WPFControlText">
+																		<Value Value="" />
+																	</Property>
+																</Properties>
+															</Child>
+														</Children>
+													</Child>
+													<Child Name="ItemsControl" Key="{9FBA3216-6B0E-44CE-81CB-F62A05ADEEB7}" ExtendedFind="True">
+														<Image FileName="-1223245646" Left="534" Top="196" Right="1263" Bottom="897" />
+														<Properties>
+															<Property Name="ClrFullClassName">
+																<Value Value="System.Windows.Controls.ItemsControl" />
+															</Property>
+															<Property Name="WPFControlOrdinalNo">
+																<Value Value="3" Type="0" />
+															</Property>
+														</Properties>
+														<Children>
+															<Child Name="ContentPresenter" Key="{EEBD204E-8CB7-4800-8819-55C54B0F9AEE}" ExtendedFind="True">
+																<Image FileName="-1223245646" Left="534" Top="196" Right="605" Bottom="267" />
+																<Properties>
+																	<Property Name="ClrFullClassName">
+																		<Value Value="System.Windows.Controls.ContentPresenter" />
+																	</Property>
+																	<Property Name="WPFControlOrdinalNo">
+																		<Value Value="1" Type="0" />
+																	</Property>
+																</Properties>
+																<Children>
+																	<Child Name="Button" Key="{AE63EE28-BE79-454E-9A8E-0733A82E45A9}" ExtendedFind="True">
+																		<Image FileName="-1223245646" Left="538" Top="200" Right="601" Bottom="263" />
+																		<TypeInfo Item0="{10374742-F395-44A1-ABE6-CE1E16000A64}" />
+																		<Properties>
+																			<Property Name="ClrFullClassName">
+																				<Value Value="System.Windows.Controls.Button" />
+																			</Property>
+																			<Property Name="WPFControlText">
+																				<Value Value="" />
+																			</Property>
+																		</Properties>
+																	</Child>
+																</Children>
+															</Child>
+															<Child Name="ContentPresenter2" Key="{C54C8EE8-0D0D-49C6-A907-7597C9E75222}" ExtendedFind="True">
+																<Image FileName="-1060272318" Left="674" Top="196" Right="745" Bottom="267" />
+																<Properties>
+																	<Property Name="ClrFullClassName">
+																		<Value Value="System.Windows.Controls.ContentPresenter" />
+																	</Property>
+																	<Property Name="WPFControlOrdinalNo">
+																		<Value Value="3" Type="0" />
+																	</Property>
+																</Properties>
+																<Children>
+																	<Child Name="Button" Key="{6A115291-AB40-4D61-81F8-0F23C5652424}" ExtendedFind="True">
+																		<Image FileName="-1060272318" Left="678" Top="200" Right="741" Bottom="263" />
+																		<TypeInfo Item0="{10374742-F395-44A1-ABE6-CE1E16000A64}" />
+																		<Properties>
+																			<Property Name="ClrFullClassName">
+																				<Value Value="System.Windows.Controls.Button" />
+																			</Property>
+																			<Property Name="WPFControlText">
+																				<Value Value="" />
+																			</Property>
+																		</Properties>
+																	</Child>
+																</Children>
+															</Child>
+															<Child Name="ContentPresenter3" Key="{1B948E07-231E-437C-B9ED-0AFF902899C9}" ExtendedFind="True">
+																<Image FileName="-1579037941" Left="744" Top="196" Right="815" Bottom="267" />
+																<Properties>
+																	<Property Name="ClrFullClassName">
+																		<Value Value="System.Windows.Controls.ContentPresenter" />
+																	</Property>
+																	<Property Name="WPFControlOrdinalNo">
+																		<Value Value="4" Type="0" />
+																	</Property>
+																</Properties>
+																<Children>
+																	<Child Name="Button" Key="{36C5ECFB-DE72-4520-80F7-A9F699818228}" ExtendedFind="True">
+																		<Image FileName="-1579037941" Left="748" Top="200" Right="811" Bottom="263" />
+																		<TypeInfo Item0="{10374742-F395-44A1-ABE6-CE1E16000A64}" />
+																		<Properties>
+																			<Property Name="ClrFullClassName">
+																				<Value Value="System.Windows.Controls.Button" />
+																			</Property>
+																			<Property Name="WPFControlText">
+																				<Value Value="" />
+																			</Property>
+																		</Properties>
+																	</Child>
+																</Children>
+															</Child>
+														</Children>
+													</Child>
+													<Child Name="HyperlinkAdriveSmart27102022" Key="{5048988B-521A-4284-8652-EE9FF925015E}" ExtendedFind="True">
+														<Image FileName="769855054" Left="722" Top="898" Right="1257" Bottom="920" />
+														<TypeInfo Item0="{5C25AE5F-CA08-4F38-B398-F6885AFC6D79}" />
+														<Properties>
+															<Property Name="ClrFullClassName">
+																<Value Value="System.Windows.Documents.Hyperlink" />
+															</Property>
+															<Property Name="WPFControlText">
+																<Value Value="«ADrive ПДД-Smart»: Онлайн-курс на изменения ПДД с 27.10.2022" />
+															</Property>
+														</Properties>
+													</Child>
+													<Child Name="StackPanel2" Key="{9BB8D259-5DE5-46BA-9652-AE7CD80A9D5C}" ExtendedFind="True">
+														<Image FileName="1873202245" Left="370" Top="889" Right="509" Bottom="917" />
+														<Properties>
+															<Property Name="ClrFullClassName">
+																<Value Value="System.Windows.Controls.StackPanel" />
+															</Property>
+															<Property Name="WPFControlOrdinalNo">
+																<Value Value="6" Type="0" />
+															</Property>
+														</Properties>
+														<Children>
+															<Child Name="AmButton" Key="{890A1E92-7A0D-461A-A524-41E412F162B5}" ExtendedFind="True">
+																<Image FileName="1873202245" Left="371" Top="889" Right="508" Bottom="916" />
+																<TypeInfo Item0="{5C25AE5F-CA08-4F38-B398-F6885AFC6D79}" />
+																<Properties>
+																	<Property Name="ClrFullClassName">
+																		<Value Value="CustomWpfControls.AmButton" />
+																	</Property>
+																	<Property Name="WPFControlText">
+																		<Value Value="" />
+																	</Property>
+																</Properties>
+															</Child>
+														</Children>
+													</Child>
+												</Children>
+											</Child>
+											<Child Name="AmButton" Key="{0EF6921C-ADA1-452A-A06C-FB58F0DEE9DC}" ExtendedFind="True">
+												<Image FileName="1570845930" Left="565" Top="553" Right="716" Bottom="594" />
+												<TypeInfo Item0="{5C25AE5F-CA08-4F38-B398-F6885AFC6D79}" />
+												<Properties>
+													<Property Name="ClrFullClassName">
+														<Value Value="CustomWpfControls.AmButton" />
+													</Property>
+													<Property Name="WPFControlText">
+														<Value Value="" />
+													</Property>
+													<Property Name="WPFControlOrdinalNo">
+														<Value Value="2" Type="0" />
+													</Property>
+												</Properties>
+											</Child>
+											<Child Name="Textbutton" Key="{B01CFECA-F903-4591-8E13-22580F53BB8A}" ExtendedFind="True">
+												<Image FileName="149420163" Left="564" Top="729" Right="716" Bottom="769" />
+												<TypeInfo Item0="{5C25AE5F-CA08-4F38-B398-F6885AFC6D79}" />
+												<Properties>
+													<Property Name="ClrFullClassName">
+														<Value Value="CustomWpfControls.Classes.TextButton" />
+													</Property>
+													<Property Name="WPFControlText">
+														<Value Value="Просмотр" />
+													</Property>
+												</Properties>
+											</Child>
+										</Children>
+									</Child>
+								</Children>
+							</Child>
+						</Children>
+					</Child>
+					<Child Name="explorer" Key="{B4911BB3-28D5-462C-9C19-890C805E8FAB}">
+						<Properties>
+							<Property Name="ProcessName">
+								<Value Value="explorer" />
+							</Property>
+						</Properties>
+						<Children>
+							<Child Name="wndShell_TrayWnd" Key="{15FF5304-140F-4A2F-BD67-36C2FD5D6376}">
+								<Properties>
+									<Property Name="WndClass">
+										<Value Value="Shell_TrayWnd" />
+									</Property>
+								</Properties>
+								<Children>
+									<Child Name="DesktopWindowXamlSource" Key="{71610855-4266-4DBA-941F-EE557758FA68}">
+										<TypeInfo Item0="{47C2CB5C-C54A-46AE-B8E2-34828637CA52}" />
+										<Properties>
+											<Property Name="WndClass">
+												<Value Value="Windows.UI.Composition.DesktopWindowContentBridge" />
+											</Property>
+											<Property Name="WndCaption">
+												<Value Value="DesktopWindowXamlSource" />
+											</Property>
+										</Properties>
+									</Child>
+								</Children>
+							</Child>
+						</Children>
+					</Child>
+				</Children>
+			</Child>
+		</Children>
+	</Nodes>
+	<LogicalNodes Name="Aliases" Owner="{BE401E45-B2D6-4FBA-931A-C2117D5C51AD}">
+		<Child Name="PDDTests" Owner="{78ACEAD1-07FB-45D8-A25A-98E7B4F200DA}">
+			<Child Name="HwndSource_MainWindow" Owner="{8BFBCC25-EFE8-41D4-B597-24A9B1C21AFD}">
+				<Child Name="MainWindow" Owner="{05D496D5-08F4-4936-8E09-A9808B5A8753}">
+					<Child Name="AmButton" Owner="{991816B0-1BA0-4B15-8525-8CDFCAC4EBDD}" />
+					<Child Name="ItemsControl" Owner="{9FBA3216-6B0E-44CE-81CB-F62A05ADEEB7}">
+						<Child Name="Button" Owner="{AE63EE28-BE79-454E-9A8E-0733A82E45A9}" />
+						<Child Name="Button2" Owner="{6A115291-AB40-4D61-81F8-0F23C5652424}" />
+						<Child Name="Button3" Owner="{36C5ECFB-DE72-4520-80F7-A9F699818228}" />
+					</Child>
+					<Child Name="AmButton2" Owner="{0EF6921C-ADA1-452A-A06C-FB58F0DEE9DC}" />
+					<Child Name="AmButton3" Owner="{CF453050-7079-4011-84EF-A2AFECF9E7EE}" />
+					<Child Name="Textbutton" Owner="{B01CFECA-F903-4591-8E13-22580F53BB8A}" />
+					<Child Name="HyperlinkAdriveSmart27102022" Owner="{5048988B-521A-4284-8652-EE9FF925015E}" />
+					<Child Name="AmButton4" Owner="{890A1E92-7A0D-461A-A524-41E412F162B5}" />
+				</Child>
+			</Child>
+		</Child>
+		<Child Name="explorer" Owner="{B4911BB3-28D5-462C-9C19-890C805E8FAB}">
+			<Child Name="wndShell_TrayWnd" Owner="{15FF5304-140F-4A2F-BD67-36C2FD5D6376}">
+				<Child Name="DesktopWindowXamlSource" Owner="{71610855-4266-4DBA-941F-EE557758FA68}" />
+			</Child>
+		</Child>
+	</LogicalNodes>
+</Root>
