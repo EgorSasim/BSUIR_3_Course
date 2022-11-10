@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root signature="{24B6FA0B-0143-461A-9758-AEB9E9A9428B}" version="15.0" key="{661927FB-B4D2-46BA-80B3-0F78789FC7E3}">
+	<children>
+		<child name="AdriveTest" key="{889029F6-6CFD-4AF9-956C-49CAEE5DCA5A}" path="AdriveTest.mds" />
+		<child name="CounterStrikeTest" key="{8CDBEBDE-E323-41F7-874E-408373840F9E}" path="..\..\Новая папка\CounterStrikeTest\CounterStrikeTest.mds" />
+	</children>
+	<testItems key="{67198D4E-E768-4B1B-9F94-6FFCEE9D5257}">
+		<children>
+			<testItem key="{889029F6-6CFD-4AF9-956C-49CAEE5DCA5A}" enabled="True" timeout="0" stopOnError="True" description="" />
+			<testItem key="{8CDBEBDE-E323-41F7-874E-408373840F9E}" enabled="True" timeout="0" stopOnError="True" description="" />
+		</children>
+	</testItems>
+	<variables key="{6FBFB422-47E7-4F40-9EB7-3B8D17FA98F1}" />
+	<analysis key="{FFF9CB14-67F0-4F8A-9C69-09D52726D7F3}" />
+	<scc key="{00000000-0000-0000-0000-000000000000}" name="">
+		<data />
+	</scc>
+</Root>

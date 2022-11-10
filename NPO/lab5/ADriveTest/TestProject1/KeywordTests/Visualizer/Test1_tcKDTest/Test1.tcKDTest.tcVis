@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root signature="{42D2222C-ACA2-405F-8E67-05D5C42EB839}" version="2">
+	<data key="{32A5177E-8AAB-49E1-A83D-4FD936D0AFAE}">
+		<item typeId="{87B03792-E854-4F5D-9F33-165F1F874209}" version="2" lineNo="1" kind="0" dateTime="44874.4001851852" objectName="Aliases.PDDTests.HwndSource_MainWindow.MainWindow.AmButton" objectLeft="194" objectTop="119" objectRight="343" objectBottom="162" clickPointX="272" clickPointY="137" imageFileName="tcvi54871853800.png" storageFileName="" needUpdate="False" rectColor="255" />
+		<item typeId="{87B03792-E854-4F5D-9F33-165F1F874209}" version="2" lineNo="2" kind="0" dateTime="44874.4002083333" objectName="Aliases.PDDTests.HwndSource_MainWindow.MainWindow.AmButton3" objectLeft="1122" objectTop="113" objectRight="1236" objectBottom="141" clickPointX="1179" clickPointY="116" imageFileName="tcvi55082853803.png" storageFileName="" needUpdate="False" rectColor="255" />
+		<item typeId="{87B03792-E854-4F5D-9F33-165F1F874209}" version="2" lineNo="3" kind="0" dateTime="44874.4002314815" objectName="Aliases.PDDTests.HwndSource_MainWindow.MainWindow.ItemsControl.Button2" objectLeft="678" objectTop="200" objectRight="741" objectBottom="263" clickPointX="704" clickPointY="218" imageFileName="tcvi55287553806.png" storageFileName="" needUpdate="False" rectColor="255" />
+		<item typeId="{87B03792-E854-4F5D-9F33-165F1F874209}" version="2" lineNo="4" kind="0" dateTime="44874.4002546296" objectName="Aliases.PDDTests.HwndSource_MainWindow.MainWindow.AmButton2" objectLeft="565" objectTop="553" objectRight="716" objectBottom="594" clickPointX="610" clickPointY="583" imageFileName="tcvi55409353807.png" storageFileName="" needUpdate="False" rectColor="255" />
+	</data>
+</Root>
