@@ -7,13 +7,13 @@ namespace TestsGenerator.Tests.Tests
     public class ClassForTestsTestClass
     {
         [Test]
-        public void MethodName_int()
+        public void FirstMethod_int()
         {
             throw new NotImplementedException();
         }
 
         [Test]
-        public void MethodName_int_int()
+        public void SecondMethod_int_int()
         {
             throw new NotImplementedException();
         }

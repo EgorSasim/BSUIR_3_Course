@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading.Tasks.Dataflow;
+﻿using System.Threading.Tasks.Dataflow;
 
 namespace TestsGenerator.Core
 {
@@ -30,7 +25,7 @@ namespace TestsGenerator.Core
             var InputBuffer = new BufferBlock<string>();
             var ReadFiles = new TransformBlock<string, string>(ReadFile, new ExecutionDataflowBlockOptions() { MaxDegreeOfParallelism = _parallelRead });
 
-            var ParseBlock = new TransformManyBlock<string, ParsedClass>(CodeGenerator.GetAllClassesFromFile, new ExecutionDataflowBlockOptions() { MaxDegreeOfParallelism = _parallelProcess});
+            var ParseBlock = new TransformManyBlock<string, ParsedClass>(CodeGenerator.GetAllClassesFromFile, new ExecutionDataflowBlockOptions() { MaxDegreeOfParallelism = _parallelProcess });
             var Buffer = new BufferBlock<ParsedClass>();
 
             var GenerationBlock = new TransformBlock<ParsedClass, (string, string)>(CodeGenerator.BuildTextFile, new ExecutionDataflowBlockOptions() { MaxDegreeOfParallelism = _parallelProcess });

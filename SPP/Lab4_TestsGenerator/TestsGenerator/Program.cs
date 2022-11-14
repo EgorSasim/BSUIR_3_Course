@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks.Dataflow;
-using TestsGenerator.Core;
+﻿using TestsGenerator.Core;
 
 namespace TestsGenerator
 {
@@ -11,7 +10,7 @@ namespace TestsGenerator
 
             generator.Generate(
                 @"D:\Учеба\5 сем\СПП\lab4\TestsGenerator\TestsGenerator.Tests\ClassForTests.cs",
-                @"D:\Учеба\5 сем\СПП\lab4\TestsGenerator\TestsGenerator.Core\CodeGenerator.cs"                
+                @"D:\Учеба\5 сем\СПП\lab4\TestsGenerator\TestsGenerator.Core\CodeGenerator.cs"
             ).GetAwaiter().GetResult();
         }
     }

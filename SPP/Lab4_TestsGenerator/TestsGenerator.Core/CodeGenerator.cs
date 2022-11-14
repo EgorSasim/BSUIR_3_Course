@@ -1,11 +1,6 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
@@ -22,10 +17,10 @@ namespace TestsGenerator.Core
             .DescendantNodes()
             .OfType<ClassDeclarationSyntax>().ToList();
 
-            foreach (var classDeclaration in classDeclarations) 
+            foreach (var classDeclaration in classDeclarations)
             {
                 var Parent = classDeclaration.Parent;
-                Stack<string> NamespaceStack = new Stack<string>();
+                Stack<string> NamespaceStack = new();
                 while (Parent is not CompilationUnitSyntax)
                 {
                     switch (Parent)
@@ -45,8 +40,9 @@ namespace TestsGenerator.Core
                 var methods = classDeclaration.Members.OfType<MethodDeclarationSyntax>().Where(x => x.ToString().Contains("public"));
                 foreach (var method in methods)
                 {
-                    newClass.methods.Add(new ParsedMethod() {
-                        paramsStr = string.Join("_",method.ParameterList.Parameters.Select(x => x.Type.ToString())),
+                    newClass.methods.Add(new ParsedMethod()
+                    {
+                        paramsStr = string.Join("_", method.ParameterList.Parameters.Select(x => x.Type.ToString())),
                         methodName = method.Identifier.Text
                     });
                 }
