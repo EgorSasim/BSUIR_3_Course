@@ -6,11 +6,11 @@ namespace TestsGenerator
     {
         static void Main(string[] args)
         {
-            TestsGenerator1 generator = new(@"D:\Учеба\5 сем\СПП\lab4\TestsGenerator\Generated");
+            TestsGenerator1 generator = new(@"D:\BSUIR_3_Course\SPP\Lab4_TestsGenerator\TestsGenerator\Generated");
 
             generator.Generate(
-                @"D:\Учеба\5 сем\СПП\lab4\TestsGenerator\TestsGenerator.Tests\ClassForTests.cs",
-                @"D:\Учеба\5 сем\СПП\lab4\TestsGenerator\TestsGenerator.Core\CodeGenerator.cs"
+                @"D:\BSUIR_3_Course\SPP\Lab4_TestsGenerator\TestsGenerator\TestsGenerator.Tests\ClassForTests.cs",
+                @"D:\BSUIR_3_Course\SPP\Lab4_TestsGenerator\TestsGenerator\TestsGenerator.Core\CodeGenerator.cs"
             ).GetAwaiter().GetResult();
         }
     }
