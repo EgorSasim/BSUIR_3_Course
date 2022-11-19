@@ -30,34 +30,40 @@ HWND hTextInput;
 HWND hButton;
 HWND hLabelOutput;
 
+
+// Label controls
+HWND hArrayLengthLb;
+HWND hRepetitionsAmountLb;
+HWND hValuesRangeLb;
+HWND hSlowGenerationSpeedLb;
+HWND hGenerateArrayLb;
+HWND hWriteToFileLb;
+HWND hValuesTableLb;
+
+// Input controls
 HWND hArrayLengthInput;
 HWND hRepetitionsAmountInput;
 HWND hValuesRangeInputMin;
 HWND hValuesRangeInputMax;
 HWND hSlowGenSpeedInput;
 
+//Buton controls
 HWND hGenerateArrayBtn;
-
-RECT arrayLengthLb;
-RECT repetitionsAmountLb;
-RECT valuesRangeLb;
-RECT slowGenerationSpeedLb;
-RECT generateArrayLb;
-RECT writeToFileLb;
-RECT valuesTableLb;
+HWND hWriteToFileBtn;
 
 
-void drawLabels(HDC hdc);
 void setRectCoords(RECT *rect, LONG top, LONG left, LONG right, LONG bottom);
-void generateInputs(HWND hWnd, HINSTANCE wndInstance);
-void generateButtons(HWND hWnd, HINSTANCE wndInstance);
+void createControls(HWND hWnd, HINSTANCE wndInstance);
+void createLabels(HWND hWnd, HINSTANCE wndInstance, HDC hdc) ;
+void createInputs(HWND hWnd, HINSTANCE wndInstance);
+void createButtons(HWND hWnd, HINSTANCE wndInstance);
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow)
 {
     fillNamingsUS(&MY_NAMINGS);
     HBRUSH mainWindowBackgroundColor;
-    mainWindowBackgroundColor = CreateSolidBrush(RGB(23, 45, 78));
+    mainWindowBackgroundColor = CreateSolidBrush(RGB(255, 255, 255));
     const wchar_t MAIN_WINDOW_CLASS_NAME[]  = L"Main Class";
     
     WNDCLASS wc = { };
@@ -110,19 +116,20 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     {
     case WM_CREATE: 
         hMainWindow = hWnd;
-        generateInputs(hWnd, hMainWindowInstance);
-        generateButtons(hWnd, hMainWindowInstance);
+        createControls(hWnd, hMainWindowInstance);
+        createInputs(hWnd, hMainWindowInstance);
+        createButtons(hWnd, hMainWindowInstance);
         // hButton = CreateWindowEx(WS_EX_CLIENTEDGE, L"BUTTON", L"Generate an array!!!", WS_VISIBLE | WS_CHILD | ES_LEFT, 200, 100, 100, 60, hWnd, HMENU(IDC_BUTTON), hMainWindowInstance, NULL);
         // hLabelOutput = CreateWindowEx(WS_EX_CLIENTEDGE, L"STATIC", L"Some output...", WS_VISIBLE | WS_CHILD | ES_LEFT, 50, 200, 380, 25, hWnd, HMENU(IDC_STATIC), hMainWindowInstance, NULL);
         break; 
-    case WM_COMMAND: 
-        if (LOWORD(wParam) == IDC_BUTTON) {
-           int textLen = GetWindowTextLength(hTextInput);
-           LPSTR pszMem = (LPSTR) VirtualAlloc((LPVOID) NULL, (DWORD)(textLen + 1), MEM_COMMIT, PAGE_READWRITE);
-           GetWindowTextA(hTextInput, pszMem, textLen + 1); 
-           SetWindowTextA(hLabelOutput, pszMem);
-        }
-        break;
+    // case WM_COMMAND: 
+    //     if (LOWORD(wParam) == IDC_BUTTON) {
+    //        int textLen = GetWindowTextLength(hTextInput);
+    //        LPSTR pszMem = (LPSTR) VirtualAlloc((LPVOID) NULL, (DWORD)(textLen + 1), MEM_COMMIT, PAGE_READWRITE);
+    //        GetWindowTextA(hTextInput, pszMem, textLen + 1); 
+    //        SetWindowTextA(hLabelOutput, pszMem);
+    //     }
+    //     break;
     case WM_DESTROY:
         PostQuitMessage(0);
         return 0;
@@ -131,7 +138,7 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
-                drawLabels(hdc);
+                createLabels(hWnd, hMainWindowInstance, hdc);
             EndPaint(hWnd, &ps);
         }
         return 0;
@@ -148,37 +155,35 @@ void setRectCoords(RECT* rect, LONG top, LONG left, LONG right, LONG bottom)
     rect->bottom = bottom;
 }
 
-void drawLabels(HDC hdc) 
+void createControls(HWND hWnd, HINSTANCE wndInstance) 
+{
+    return;
+}
+
+void createLabels(HWND hWnd, HINSTANCE wndInstance, HDC hdc) 
 {  
-    HFONT labelsFont, originalFont;
-    labelsFont = CreateFontW(40,0,0,0,FW_DONTCARE,FALSE,TRUE,FALSE,DEFAULT_CHARSET,OUT_OUTLINE_PRECIS,
-                CLIP_DEFAULT_PRECIS,CLEARTYPE_QUALITY, VARIABLE_PITCH,TEXT("Impact"));
-    originalFont = (HFONT)SelectObject(hdc, labelsFont);
-    SetTextColor(hdc, RGB(255, 0, 0));
-
-    setRectCoords(&arrayLengthLb, 30, 30, 300, 80);
-    setRectCoords(&repetitionsAmountLb, 150, 30, 300, 200);
-    setRectCoords(&valuesRangeLb, 270, 30, 300, 355);
-    setRectCoords(&slowGenerationSpeedLb, 390, 30, 350, 480);
-    DrawTextW(hdc, (LPWSTR)MY_NAMINGS.ARRAY_LENGTH, -1, &arrayLengthLb, DT_BOTTOM);
-    DrawTextW(hdc, (LPWSTR)MY_NAMINGS.REPETITIONS_AMOUNT, -1, &repetitionsAmountLb, DT_BOTTOM);
-    DrawTextW(hdc, (LPWSTR)MY_NAMINGS.VALUES_RANGE, -1, &valuesRangeLb, DT_BOTTOM);
-    DrawTextW(hdc, (LPWSTR)MY_NAMINGS.SLOW_GENERATION_SPEED, -1, &slowGenerationSpeedLb, DT_BOTTOM | DT_WORDBREAK);
-
-    SelectObject(hdc, originalFont);
-    DeleteObject(labelsFont);
+    SIZE labelSize;
+    GetTextExtentPoint(hdc, MY_NAMINGS.ARRAY_LENGTH, wcslen(MY_NAMINGS.ARRAY_LENGTH), &labelSize);
+    CreateWindow(L"static", MY_NAMINGS.ARRAY_LENGTH, WS_CHILD | WS_VISIBLE | WS_TABSTOP, 30, 30, labelSize.cx, labelSize.cy, hWnd, NULL, wndInstance, NULL); 
+    GetTextExtentPoint(hdc, MY_NAMINGS.REPETITIONS_AMOUNT, wcslen(MY_NAMINGS.REPETITIONS_AMOUNT), &labelSize);
+    CreateWindow(L"static", MY_NAMINGS.REPETITIONS_AMOUNT, WS_CHILD | WS_VISIBLE | WS_TABSTOP, 30, 100, labelSize.cx, labelSize.cy, hWnd, NULL, wndInstance, NULL);
+    GetTextExtentPoint(hdc, MY_NAMINGS.VALUES_RANGE, wcslen(MY_NAMINGS.VALUES_RANGE), &labelSize);
+    CreateWindow(L"static", MY_NAMINGS.VALUES_RANGE, WS_CHILD | WS_VISIBLE | WS_TABSTOP, 30, 170, labelSize.cx, labelSize.cy, hWnd, NULL, wndInstance, NULL);
+    GetTextExtentPoint(hdc, MY_NAMINGS.SLOW_GENERATION_SPEED, wcslen(MY_NAMINGS.SLOW_GENERATION_SPEED), &labelSize);
+    CreateWindow(L"static", MY_NAMINGS.SLOW_GENERATION_SPEED, WS_CHILD | WS_VISIBLE | WS_TABSTOP, 30, 250, labelSize.cx, labelSize.cy, hWnd, NULL, wndInstance, NULL);
 }
 
-void generateInputs(HWND hWnd, HINSTANCE wndInstance)
+void createInputs(HWND hWnd, HINSTANCE wndInstance)
 {
-    hArrayLengthInput = CreateWindowEx(WS_EX_CLIENTEDGE, L"EDIT", L"5", WS_VISIBLE | WS_CHILD | ES_LEFT, 355, 35, 200, 25, hWnd, (HMENU)IDC_ARRAY_LENGTH, wndInstance, NULL);
-    hRepetitionsAmountInput = CreateWindowEx(WS_EX_CLIENTEDGE, L"EDIT", L"5", WS_VISIBLE | WS_CHILD | ES_LEFT, 355, 155, 200, 25, hWnd, (HMENU)IDC_REPETITIONS_AMOUNT, wndInstance, NULL);
-    hValuesRangeInputMin = CreateWindowEx(WS_EX_CLIENTEDGE, L"EDIT", L"5", WS_VISIBLE | WS_CHILD | ES_LEFT, 355, 275, 200, 25, hWnd, (HMENU)IDC_VALUES_RANGE_MIN, wndInstance, NULL);
-    hValuesRangeInputMax = CreateWindowEx(WS_EX_CLIENTEDGE, L"EDIT", L"5", WS_VISIBLE | WS_CHILD | ES_LEFT, 560, 275, 200, 25, hWnd, (HMENU)IDC_VALUES_RANGE_MAX, wndInstance, NULL);
-    hSlowGenSpeedInput = CreateWindowEx(WS_EX_CLIENTEDGE, L"EDIT", L"5", WS_VISIBLE | WS_CHILD | ES_LEFT, 355, 395, 200, 25, hWnd, (HMENU)IDC_SLOW_GEN_SPEED, wndInstance, NULL);
+    hArrayLengthInput = CreateWindowEx(WS_EX_CLIENTEDGE, L"EDIT", L"5", WS_VISIBLE | WS_CHILD | ES_LEFT, 30, 50, 200, 25, hWnd, (HMENU)IDC_ARRAY_LENGTH, wndInstance, NULL);
+    hRepetitionsAmountInput = CreateWindowEx(WS_EX_CLIENTEDGE, L"EDIT", L"5", WS_VISIBLE | WS_CHILD | ES_LEFT, 30, 120, 200, 25, hWnd, (HMENU)IDC_REPETITIONS_AMOUNT, wndInstance, NULL);
+    hValuesRangeInputMin = CreateWindowEx(WS_EX_CLIENTEDGE, L"EDIT", L"5", WS_VISIBLE | WS_CHILD | ES_LEFT, 30, 190, 200, 25, hWnd, (HMENU)IDC_VALUES_RANGE_MIN, wndInstance, NULL);
+    hValuesRangeInputMax = CreateWindowEx(WS_EX_CLIENTEDGE, L"EDIT", L"5", WS_VISIBLE | WS_CHILD | ES_LEFT, 250, 190, 200, 25, hWnd, (HMENU)IDC_VALUES_RANGE_MAX, wndInstance, NULL);
+    hSlowGenSpeedInput = CreateWindowEx(WS_EX_CLIENTEDGE, L"EDIT", L"5", WS_VISIBLE | WS_CHILD | ES_LEFT, 30, 270, 200, 25, hWnd, (HMENU)IDC_SLOW_GEN_SPEED, wndInstance, NULL);
 }
 
-void generateButtons(HWND hWnd, HINSTANCE wndInstance)
+void createButtons(HWND hWnd, HINSTANCE wndInstance)
 {
-    hGenerateArrayBtn = CreateWindowEx(WS_EX_CLIENTEDGE, L"BUTTON", L"Generate an array!!!", WS_VISIBLE | WS_CHILD | ES_LEFT, 70, 500, 170, 60, hWnd, HMENU(IDC_GEN_ARRAY), wndInstance, NULL);
+    hGenerateArrayBtn = CreateWindowEx(WS_EX_CLIENTEDGE, L"BUTTON", MY_NAMINGS.GENERATE_ARRAY, WS_VISIBLE | WS_CHILD | ES_LEFT, 30, 350, 500, 60, hWnd, HMENU(IDC_GEN_ARRAY), wndInstance, NULL);
+    hWriteToFileBtn = CreateWindowEx(WS_EX_CLIENTEDGE, L"BUTTON", MY_NAMINGS.WRITE_TO_FILE, WS_VISIBLE | WS_CHILD | ES_LEFT, 30, 450, 500, 60, hWnd, HMENU(IDC_GEN_ARRAY), wndInstance, NULL);
 }
