@@ -1,0 +1,220 @@
+{
+  "id": "17460642-9930-4630-952c-2d225c80b56d",
+  "version": "2.0",
+  "name": "SchoolSiteCheck",
+  "url": "http://gymn6.minsk.edu.by",
+  "tests": [{
+    "id": "53bc8d0c-472a-4184-ad22-cb5334f45fff",
+    "name": "FirstDemoTest",
+    "commands": [{
+      "id": "4766f1c9-079e-401d-b8b2-d1473c3b526f",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b6edf15e-3dd8-4d70-88b8-b337bae04aeb",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1853x1053",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2b222d5c-87a1-445f-b402-9bdb5084157f",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=О гимназии",
+      "targets": [
+        ["linkText=О гимназии", "linkText"],
+        ["css=.parent:nth-child(2) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'О гимназии')]", "xpath:link"],
+        ["xpath=//div[@id='h_menu']/ul/li[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/ru/main.aspx?guid=1041')]", "xpath:href"],
+        ["xpath=//div[2]/ul/li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'О гимназии')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "73d8a097-174f-4384-84be-2cd90cbff591",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "linkText=История краткая",
+      "targets": [
+        ["linkText=История краткая", "linkText"],
+        ["css=.level_0:nth-child(2) > .active li:nth-child(2) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'История краткая')]", "xpath:link"],
+        ["xpath=//div[@id='h_menu']/ul/li[2]/ul/li[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/ru/main.aspx?guid=1211')]", "xpath:href"],
+        ["xpath=//li[2]/ul/li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'История краткая')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3f0802ba-b148-477b-81ca-00dedbf84f4a",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "linkText=История краткая",
+      "targets": [
+        ["linkText=История краткая", "linkText"],
+        ["css=.level_0:nth-child(2) > .active li:nth-child(2) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'История краткая')]", "xpath:link"],
+        ["xpath=//div[@id='h_menu']/ul/li[2]/ul/li[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/ru/main.aspx?guid=1211')]", "xpath:href"],
+        ["xpath=//li[2]/ul/li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'История краткая')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9fb5f7bc-8365-493e-9f45-74c40add7ca4",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Педагогический коллектив",
+      "targets": [
+        ["linkText=Педагогический коллектив", "linkText"],
+        ["css=.level_0:nth-child(2) > .active li:nth-child(3) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Педагогический коллектив')]", "xpath:link"],
+        ["xpath=//div[@id='h_menu']/ul/li[2]/ul/li[3]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/ru/main.aspx?guid=3361')]", "xpath:href"],
+        ["xpath=//li[2]/ul/li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Педагогический коллектив')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2a6c4fc1-14ef-48b7-9f32-119346e44da9",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Учительская",
+      "targets": [
+        ["linkText=Учительская", "linkText"],
+        ["css=.level_0:nth-child(2) > .parent:nth-child(6) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Учительская')]", "xpath:link"],
+        ["xpath=//div[@id='h_menu']/ul/li[6]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/ru/main.aspx?guid=1051')]", "xpath:href"],
+        ["xpath=//div[2]/ul/li[6]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Учительская')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "75e002bd-045c-4fc7-93b0-635a306dfa73",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=УМО учителей физической культуры и здоровья, трудового обучения",
+      "targets": [
+        ["linkText=УМО учителей физической культуры и здоровья, трудового обучения", "linkText"],
+        ["css=.level_0:nth-child(2) > .parent:nth-child(6) li:nth-child(6) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'УМО учителей физической культуры и здоровья, трудового обучения')]", "xpath:link"],
+        ["xpath=//div[@id='h_menu']/ul/li[6]/ul/li[6]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/ru/main.aspx?guid=1881')]", "xpath:href"],
+        ["xpath=//li[6]/ul/li[6]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'УМО учителей физической культуры и здоровья, трудового обучения')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f4e10665-2dff-45ea-8c2e-a5d6c8b6ac12",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Оплата услуг",
+      "targets": [
+        ["linkText=Оплата услуг", "linkText"],
+        ["css=.level_0:nth-child(2) > .parent:nth-child(5) li:nth-child(5) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Оплата услуг')]", "xpath:link"],
+        ["xpath=//div[@id='h_menu']/ul/li[5]/ul/li[5]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/ru/main.aspx?guid=3751')]", "xpath:href"],
+        ["xpath=//li[5]/ul/li[5]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Оплата услуг')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "bfc1cd6f-2585-443f-a973-de1f4d7c34f6",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "linkText=Электронные обращения",
+      "targets": [
+        ["linkText=Электронные обращения", "linkText"],
+        ["css=.level_0:nth-child(2) > li:nth-child(8) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Электронные обращения')]", "xpath:link"],
+        ["xpath=//div[@id='h_menu']/ul/li[8]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/ru/main.aspx?guid=67821')]", "xpath:href"],
+        ["xpath=//div[2]/ul/li[8]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Электронные обращения')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c9c1231e-2635-4746-9cbe-95ea03267d6b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.level_0:nth-child(1) > .parent:nth-child(1) > a",
+      "targets": [
+        ["css=.level_0:nth-child(1) > .parent:nth-child(1) > a", "css:finder"],
+        ["xpath=(//a[contains(text(),'Одно окно')])[2]", "xpath:link"],
+        ["xpath=//div[@id='REGION_1_DEFAULT']/div/div/div/ul/li/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '/ru/main.aspx?guid=1071')])[2]", "xpath:href"],
+        ["xpath=//div[2]/div/div/div/ul/li/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0a2a90da-1eac-4372-a405-5c03d25246a6",
+      "comment": "",
+      "command": "click",
+      "target": "name=text",
+      "targets": [
+        ["name=text", "name"],
+        ["css=.ya-site-form__input-text", "css:finder"],
+        ["xpath=//input[@name='text']", "xpath:attributes"],
+        ["xpath=//div[@id='ya-site-form0']/div/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/div/input", "xpath:idRelative"],
+        ["xpath=//td/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "207f2b78-d7d9-4d5c-b20b-baac886d08d6",
+      "comment": "",
+      "command": "type",
+      "target": "name=text",
+      "targets": [
+        ["name=text", "name"],
+        ["css=.ya-site-form__input-text", "css:finder"],
+        ["xpath=//input[@name='text']", "xpath:attributes"],
+        ["xpath=//div[@id='ya-site-form0']/div/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/div/input", "xpath:idRelative"],
+        ["xpath=//td/div/input", "xpath:position"]
+      ],
+      "value": "меню раздела"
+    }, {
+      "id": "a71d030a-7ad8-4efe-88b3-329f67d3c097",
+      "comment": "",
+      "command": "click",
+      "target": "css=.ya-site-suggest-elem_state_hover > .ya-site-suggest__content",
+      "targets": [
+        ["css=.ya-site-suggest-elem_state_hover > .ya-site-suggest__content", "css:finder"],
+        ["xpath=//div[@id='ya-site-form0']/div/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/div/div/div/div/ul/li/span/span", "xpath:idRelative"],
+        ["xpath=//li/span/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "94274a78-5bba-444c-9e97-6d9531628ef0",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Одно окно",
+      "targets": [
+        ["linkText=Одно окно", "linkText"],
+        ["css=.level_0:nth-child(2) > .parent:nth-child(1) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Одно окно')]", "xpath:link"],
+        ["xpath=//div[@id='h_menu']/ul/li/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/ru/main.aspx?guid=1071')]", "xpath:href"],
+        ["xpath=//li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Одно окно')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "d0f36058-39e8-429c-9620-cd349be2cee7",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["53bc8d0c-472a-4184-ad22-cb5334f45fff"]
+  }],
+  "urls": ["http://gymn6.minsk.edu.by/"],
+  "plugins": []
+}
