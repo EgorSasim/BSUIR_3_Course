@@ -6,7 +6,8 @@
 #include <string>
 #include <wingdi.h>
 
-#include "typings.cpp"
+#include "../Typings/typings.cpp"
+// #include "../Core/cntrep.cpp"
 
 using namespace std;
 
@@ -20,6 +21,8 @@ using namespace std;
 #define IDC_STATIC  1011
 
 
+#define INPUT_MAX_LENGTH 25
+
 NAMINGS MY_NAMINGS;
 GENERATION_PARAMS_STRUCT GENERATION_PARAMS;
 
@@ -29,6 +32,7 @@ HINSTANCE hMainWindowInstance;
 HWND hTextInput;
 HWND hButton;
 HWND hLabelOutput;
+
 
 
 // Label controls
@@ -115,6 +119,7 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     switch (uMsg)
     {
     case WM_CREATE: 
+    {
         hMainWindow = hWnd;
         createControls(hWnd, hMainWindowInstance);
         createInputs(hWnd, hMainWindowInstance);
@@ -122,14 +127,34 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         // hButton = CreateWindowEx(WS_EX_CLIENTEDGE, L"BUTTON", L"Generate an array!!!", WS_VISIBLE | WS_CHILD | ES_LEFT, 200, 100, 100, 60, hWnd, HMENU(IDC_BUTTON), hMainWindowInstance, NULL);
         // hLabelOutput = CreateWindowEx(WS_EX_CLIENTEDGE, L"STATIC", L"Some output...", WS_VISIBLE | WS_CHILD | ES_LEFT, 50, 200, 380, 25, hWnd, HMENU(IDC_STATIC), hMainWindowInstance, NULL);
         break; 
-    // case WM_COMMAND: 
-    //     if (LOWORD(wParam) == IDC_BUTTON) {
-    //        int textLen = GetWindowTextLength(hTextInput);
-    //        LPSTR pszMem = (LPSTR) VirtualAlloc((LPVOID) NULL, (DWORD)(textLen + 1), MEM_COMMIT, PAGE_READWRITE);
-    //        GetWindowTextA(hTextInput, pszMem, textLen + 1); 
-    //        SetWindowTextA(hLabelOutput, pszMem);
-    //     }
-    //     break;
+    }  
+    case WM_COMMAND: 
+        if (LOWORD(wParam) == IDC_GEN_ARRAY) {
+            wchar_t* arrayLength;
+            wchar_t* repetitionsAmount;
+            wchar_t* valueRangeMin;
+            wchar_t* valueRangeMax;
+            wchar_t* slowGenSpeed;
+            GetWindowText(hArrayLengthInput, arrayLength, INPUT_MAX_LENGTH);
+            GetWindowText(hRepetitionsAmountInput, repetitionsAmount, INPUT_MAX_LENGTH);
+            GetWindowText(hValuesRangeInputMin, valueRangeMin, INPUT_MAX_LENGTH);
+            GetWindowText(hValuesRangeInputMax, valueRangeMax, INPUT_MAX_LENGTH);
+            GetWindowText(hArrayLengthInput, slowGenSpeed, INPUT_MAX_LENGTH);
+
+            ERRORS_ENUM errs = checkErrors(arrayLength, repetitionsAmount, valueRangeMin, valueRangeMax, slowGenSpeed);
+
+            if (errs == VALID) 
+            {
+                printf("AMAZING!!!");
+            }
+
+        // printf("Array length: %s %d", &arrayLength, _wtoi(&arrayLength));
+        //    int textLen = GetWindowTextLength(hTextInput);
+        //    LPSTR pszMem = (LPSTR) VirtualAlloc((LPVOID) NULL, (DWORD)(textLen + 1), MEM_COMMIT, PAGE_READWRITE);
+        //    GetWindowTextA(hTextInput, pszMem, textLen + 1); 
+        //    SetWindowTextA(hLabelOutput, pszMem);
+        }
+        break;
     case WM_DESTROY:
         PostQuitMessage(0);
         return 0;
@@ -157,7 +182,7 @@ void setRectCoords(RECT* rect, LONG top, LONG left, LONG right, LONG bottom)
 
 void createControls(HWND hWnd, HINSTANCE wndInstance) 
 {
-    return;
+        return;
 }
 
 void createLabels(HWND hWnd, HINSTANCE wndInstance, HDC hdc) 
