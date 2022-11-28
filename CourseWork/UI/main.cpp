@@ -6,8 +6,8 @@
 #include <string>
 #include <wingdi.h>
 
-#include "../Typings/typings.cpp"
-// #include "../Core/cntrep.cpp"
+#include "../Typings/typings.h"
+#include "../Core/cntrep.h"
 
 using namespace std;
 
@@ -120,6 +120,9 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     {
     case WM_CREATE: 
     {
+        HDC createDC = GetDC(hWnd);
+        createLabels(hWnd, hMainWindowInstance, createDC);
+        ReleaseDC(hWnd, createDC);
         hMainWindow = hWnd;
         createControls(hWnd, hMainWindowInstance);
         createInputs(hWnd, hMainWindowInstance);
@@ -141,12 +144,12 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
             GetWindowText(hValuesRangeInputMax, valueRangeMax, INPUT_MAX_LENGTH);
             GetWindowText(hArrayLengthInput, slowGenSpeed, INPUT_MAX_LENGTH);
 
-            ERRORS_ENUM errs = checkErrors(arrayLength, repetitionsAmount, valueRangeMin, valueRangeMax, slowGenSpeed);
+            // ERRORS_ENUM errs = checkErrors(arrayLength, repetitionsAmount, valueRangeMin, valueRangeMax, slowGenSpeed);
 
-            if (errs == VALID) 
-            {
-                printf("AMAZING!!!");
-            }
+            // if (errs == VALID) 
+            // {
+            //     printf("AMAZING!!!");
+            // }
 
         // printf("Array length: %s %d", &arrayLength, _wtoi(&arrayLength));
         //    int textLen = GetWindowTextLength(hTextInput);
@@ -163,7 +166,7 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
-                createLabels(hWnd, hMainWindowInstance, hdc);
+              createLabels(hWnd, hMainWindowInstance, hdc);
             EndPaint(hWnd, &ps);
         }
         return 0;

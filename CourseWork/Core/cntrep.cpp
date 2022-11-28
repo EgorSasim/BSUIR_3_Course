@@ -2,13 +2,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#include "../Typings/typings.cpp"
-
-typedef struct 
-{
-	int Low;
-	int High;
-} NumRange;
+#include "cntrep.h"
 
 NumRange randNumRange;
 
@@ -21,83 +15,68 @@ int *UNIQUE_RANDOM_VALUES_REPETITIONS_AMOUNT_ARRAY;
 int UNIQUE_RANDOM_VALUES_REPETITIONS_AMOUNT_ARRAY_LENGTH;
 
 
-int* initArray(int arrayLength);
-
-int fillRepetitionCountingArray(int* repetitionCountingArray, int arrayLength, 
-								int* uniqueRandomValuesArray, int uniqueRandomValuesArrayLength,
-								int* uniqueRadomValuesRepetitionAmountArray, int uniqueRadomValuesRepetitionAmountArrayLength,
-								int repetitionAmount);
-int showArray(int* repetitionCountingArray, int arrayLength);
-void generateUniqueRandomValues(int* uniqueRandomValuesArray, int uniqueRandomValuesArrayLength, NumRange randNumRange);
-int isUniqueNumber(int* uniqueValuesArray, int uniqueValuesArrayLength, int number);
-void shiftArrayLeft(int* array, int arrayLength, int pos);
-bool isNumber(char number[]);
-ERRORS_ENUM checkErrors(wchar_t* arrayLength, wchar_t* repetitionsAmount, wchar_t* valueRangeMin, wchar_t* valueRangeMax, wchar_t* slowGenSpeed);
-
-
-
-// int main(int argc, char *argv[])
-// {
-// 	checkErrors(L"5", L"1", L"2", L"6", L"3");
-// 	return 0;
-// 	srand(time(NULL));
-// 	if (argc < 3)
-// 	{	
-// 		printf("Not enough parameters. Should be at least 2:\n1. Array size\n2. Repetition amount\n");
-// 		return -1;
-// 	}
-// 	if (!isNumber(argv[1]) || !isNumber(argv[2]))
-// 	{
-// 		printf("Incorrect parameters values(you should pass two numbers)\n");
-// 		return -1;
-// 	}
+int main(int argc, char *argv[])
+{
+	checkErrors(L"5", L"1", L"2", L"6", L"3");
+	return 0;
+	srand(time(NULL));
+	if (argc < 3)
+	{	
+		printf("Not enough parameters. Should be at least 2:\n1. Array size\n2. Repetition amount\n");
+		return -1;
+	}
+	if (!isNumber(argv[1]) || !isNumber(argv[2]))
+	{
+		printf("Incorrect parameters values(you should pass two numbers)\n");
+		return -1;
+	}
 	
-// 	REPETITION_COUNTING_ARRAY_LENGTH = atoi(argv[1]);
-// 	REPETITION_AMOUNT = atoi(argv[2]);
+	REPETITION_COUNTING_ARRAY_LENGTH = atoi(argv[1]);
+	REPETITION_AMOUNT = atoi(argv[2]);
 
-// 	if (argv[3] && argv[4] && isNumber(argv[3]) && isNumber(argv[4]))
-// 	{
-// 		randNumRange.Low = atoi(argv[3]);
-// 		randNumRange.High = atoi(argv[4]);
-// 	}
+	if (argv[3] && argv[4] && isNumber(argv[3]) && isNumber(argv[4]))
+	{
+		randNumRange.Low = atoi(argv[3]);
+		randNumRange.High = atoi(argv[4]);
+	}
 
-// 	// REPETITION_COUNTING_ARRAY_LENGTH = 10;
-// 	// REPETITION_AMOUNT = 2;
+	// REPETITION_COUNTING_ARRAY_LENGTH = 10;
+	// REPETITION_AMOUNT = 2;
 
-// 	if (REPETITION_COUNTING_ARRAY_LENGTH <= 0 || REPETITION_AMOUNT <= 0)
-// 	{
-// 		printf("Arguments values should be more than zero\n");
-// 		return -1;
-// 	}
-// 	if (REPETITION_COUNTING_ARRAY_LENGTH % REPETITION_AMOUNT != 0) 
-// 	{
-// 		printf("Array length should be divided by repetitions amount without rest\n");
-// 		return -1;
-// 	}
+	if (REPETITION_COUNTING_ARRAY_LENGTH <= 0 || REPETITION_AMOUNT <= 0)
+	{
+		printf("Arguments values should be more than zero\n");
+		return -1;
+	}
+	if (REPETITION_COUNTING_ARRAY_LENGTH % REPETITION_AMOUNT != 0) 
+	{
+		printf("Array length should be divided by repetitions amount without rest\n");
+		return -1;
+	}
 	
 
-// 	UNIQUE_RANDOM_VALUES_REPETITIONS_AMOUNT_ARRAY_LENGTH = 
-// 	UNIQUE_RANDOM_VALUES_ARRAY_LENGTH = REPETITION_COUNTING_ARRAY_LENGTH / REPETITION_AMOUNT;
+	UNIQUE_RANDOM_VALUES_REPETITIONS_AMOUNT_ARRAY_LENGTH = 
+	UNIQUE_RANDOM_VALUES_ARRAY_LENGTH = REPETITION_COUNTING_ARRAY_LENGTH / REPETITION_AMOUNT;
 	
-// 	UNIQUE_RANDOM_VALUES_ARRAY = initArray(UNIQUE_RANDOM_VALUES_ARRAY_LENGTH);
-// 	UNIQUE_RANDOM_VALUES_REPETITIONS_AMOUNT_ARRAY = initArray(UNIQUE_RANDOM_VALUES_REPETITIONS_AMOUNT_ARRAY_LENGTH);
-// 	REPETITION_COUNTING_ARRAY = initArray(REPETITION_COUNTING_ARRAY_LENGTH);
+	UNIQUE_RANDOM_VALUES_ARRAY = initArray(UNIQUE_RANDOM_VALUES_ARRAY_LENGTH);
+	UNIQUE_RANDOM_VALUES_REPETITIONS_AMOUNT_ARRAY = initArray(UNIQUE_RANDOM_VALUES_REPETITIONS_AMOUNT_ARRAY_LENGTH);
+	REPETITION_COUNTING_ARRAY = initArray(REPETITION_COUNTING_ARRAY_LENGTH);
 	
-// 	generateUniqueRandomValues(UNIQUE_RANDOM_VALUES_ARRAY, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH, randNumRange);
-// 	printf("Array of random values: \n");
-// 	showArray(UNIQUE_RANDOM_VALUES_ARRAY, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH);
-// 	fillRepetitionCountingArray(REPETITION_COUNTING_ARRAY, REPETITION_COUNTING_ARRAY_LENGTH,
-// 								UNIQUE_RANDOM_VALUES_ARRAY, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH,
-// 								UNIQUE_RANDOM_VALUES_REPETITIONS_AMOUNT_ARRAY, UNIQUE_RANDOM_VALUES_REPETITIONS_AMOUNT_ARRAY_LENGTH,
-// 								REPETITION_AMOUNT);
-// 	printf("Array of repetition counting:\n\n");
-// 	showArray(REPETITION_COUNTING_ARRAY, REPETITION_COUNTING_ARRAY_LENGTH);
+	generateUniqueRandomValues(UNIQUE_RANDOM_VALUES_ARRAY, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH, randNumRange);
+	printf("Array of random values: \n");
+	showArray(UNIQUE_RANDOM_VALUES_ARRAY, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH);
+	fillRepetitionCountingArray(REPETITION_COUNTING_ARRAY, REPETITION_COUNTING_ARRAY_LENGTH,
+								UNIQUE_RANDOM_VALUES_ARRAY, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH,
+								UNIQUE_RANDOM_VALUES_REPETITIONS_AMOUNT_ARRAY, UNIQUE_RANDOM_VALUES_REPETITIONS_AMOUNT_ARRAY_LENGTH,
+								REPETITION_AMOUNT);
+	printf("Array of repetition counting:\n\n");
+	showArray(REPETITION_COUNTING_ARRAY, REPETITION_COUNTING_ARRAY_LENGTH);
 	
-// 	free(UNIQUE_RANDOM_VALUES_ARRAY);
-// 	free(UNIQUE_RANDOM_VALUES_REPETITIONS_AMOUNT_ARRAY);
-// 	free(REPETITION_COUNTING_ARRAY);
-// 	return 0;
-// }
+	free(UNIQUE_RANDOM_VALUES_ARRAY);
+	free(UNIQUE_RANDOM_VALUES_REPETITIONS_AMOUNT_ARRAY);
+	free(REPETITION_COUNTING_ARRAY);
+	return 0;
+}
 
 ERRORS_ENUM checkErrors(wchar_t* arrayLength, wchar_t* repetitionsAmount, wchar_t* valueRangeMin, wchar_t* valueRangeMax, wchar_t* slowGenSpeed) 
 {
