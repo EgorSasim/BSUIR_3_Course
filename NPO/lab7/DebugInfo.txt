@@ -1,0 +1,27 @@
+11-30 13:41:50.773 I/AfterimageCompensationService( 4778): XRGB _i = 3, xRGB = 0, average - 24.774032310258093
+11-30 13:41:50.773 I/AfterimageCompensationService( 4778): XRGB _i = 4, xRGB = 0, average - 43.567163683734236
+11-30 13:41:50.773 I/AfterimageCompensationService( 4778): XRGB _i = 5, xRGB = 2, average - 55.41231507065284
+11-30 13:41:50.773 I/AfterimageCompensationService( 4778): XRGB _i = 6, xRGB = 0, average - 31.6563097934766
+11-30 13:41:50.773 I/AfterimageCompensationService( 4778): XRGB _i = 7, xRGB = 0, average - 45.517040466648666
+11-30 13:41:50.773 I/AfterimageCompensationService( 4778): XRGB _i = 8, xRGB = 0, average - 50.46355678357733
+11-30 13:41:50.773 I/AfterimageCompensationService( 4778): XRGB _i = 9, xRGB = 0, average - 19.825386868460647
+11-30 13:41:50.773 I/AfterimageCompensationService( 4778): XRGB _i = 10, xRGB = 0, average - 39.606279507795634
+11-30 13:41:50.773 I/AfterimageCompensationService( 4778): XRGB _i = 11, xRGB = 1, average - 51.45346210970882
+11-30 13:41:50.773 I/AfterimageCompensationService( 4778): Average XRGB - i = 0, value = 2.980519286553493
+11-30 13:41:50.773 I/AfterimageCompensationService( 4778): Average XRGB - i = 1, value = 8.921154471652684
+11-30 13:41:50.773 I/AfterimageCompensationService( 4778): Average XRGB - i = 2, value = 16.84978990899365
+11-30 13:41:50.773 I/AfterimageCompensationService( 4778): Average XRGB - i = 3, value = 24.77399119808292
+11-30 13:41:50.773 I/AfterimageCompensationService( 4778): Average XRGB - i = 4, value = 43.56709138460898
+11-30 13:41:50.773 I/AfterimageCompensationService( 4778): Average XRGB - i = 5, value = 55.41222643363057
+11-30 13:41:50.773 I/AfterimageCompensationService( 4778): Average XRGB - i = 6, value = 31.656257260254016
+11-30 13:41:50.773 I/AfterimageCompensationService( 4778): Average XRGB - i = 7, value = 45.51696493172897
+11-30 13:41:50.773 I/AfterimageCompensationService( 4778): Average XRGB - i = 8, value = 50.463473039979995
+11-30 13:41:50.773 I/AfterimageCompensationService( 4778): Average XRGB - i = 9, value = 19.82535396849638
+11-30 13:41:50.773 I/AfterimageCompensationService( 4778): Average XRGB - i = 10, value = 39.606213781704675
+11-30 13:41:50.773 I/AfterimageCompensationService( 4778): Average XRGB - i = 11, value = 51.453378382863455
+11-30 13:41:50.773 I/AfterimageCompensationService( 4778): Average interpolationLuminance = 2.0013524815962738
+11-30 13:41:50.774 D/AccessibilityInputFilter( 4778): mSamsungMagnifierWindow : null
+11-30 13:41:50.816 I/chatty ( 4778): uid=1000 system_server identical 2 lines
+11-30 13:41:50.833 D/AccessibilityInputFilter( 4778): mSamsungMagnifierWindow : null
+11-30 13:41:50.833 D/PowerManagerService( 4778): [api] userActivityFromNative : 1030 (event: 2 flags: 0) eventTime = 96938797
+11-30 13:41:50.841 D/AccessibilityInputFilter( 4778): mSamsungMagnifierWindow : null
