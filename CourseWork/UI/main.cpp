@@ -17,6 +17,7 @@ using namespace std;
 #define IDC_SLOW_GEN_SPEED      1004
 #define IDC_GEN_ARRAY           1005
 #define IDC_WRITE_TO_FILE       1006
+#define IDC_ARRAY_OUTPUT        1007
 #define IDC_BUTTON  1010
 #define IDC_STATIC  1011
 
@@ -29,21 +30,6 @@ GENERATION_PARAMS_STRUCT GENERATION_PARAMS;
 HWND hMainWindow;
 HINSTANCE hMainWindowInstance;
 
-HWND hTextInput;
-HWND hButton;
-HWND hLabelOutput;
-
-
-
-// Label controls
-HWND hArrayLengthLb;
-HWND hRepetitionsAmountLb;
-HWND hValuesRangeLb;
-HWND hSlowGenerationSpeedLb;
-HWND hGenerateArrayLb;
-HWND hWriteToFileLb;
-HWND hValuesTableLb;
-
 // Input controls
 HWND hArrayLengthInput;
 HWND hRepetitionsAmountInput;
@@ -55,11 +41,15 @@ HWND hSlowGenSpeedInput;
 HWND hGenerateArrayBtn;
 HWND hWriteToFileBtn;
 
+//Output 
+HWND hArrayOutputEdit;
+
 
 void setRectCoords(RECT *rect, LONG top, LONG left, LONG right, LONG bottom);
 void createLabels(HWND hWnd, HINSTANCE wndInstance, HDC hdc) ;
 void createInputs(HWND hWnd, HINSTANCE wndInstance);
 void createButtons(HWND hWnd, HINSTANCE wndInstance);
+void createArrayOutput(HWND hWnd, HINSTANCE wndInstance);
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow)
@@ -86,7 +76,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine,
         L"Repetition counting",
         WS_OVERLAPPEDWINDOW,
 
-        CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
+        200, 50, 1200, 950,
 
         NULL, 
         NULL,
@@ -125,8 +115,7 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         hMainWindow = hWnd;
         createInputs(hWnd, hMainWindowInstance);
         createButtons(hWnd, hMainWindowInstance);
-        // hButton = CreateWindowEx(WS_EX_CLIENTEDGE, L"BUTTON", L"Generate an array!!!", WS_VISIBLE | WS_CHILD | ES_LEFT, 200, 100, 100, 60, hWnd, HMENU(IDC_BUTTON), hMainWindowInstance, NULL);
-        // hLabelOutput = CreateWindowEx(WS_EX_CLIENTEDGE, L"STATIC", L"Some output...", WS_VISIBLE | WS_CHILD | ES_LEFT, 50, 200, 380, 25, hWnd, HMENU(IDC_STATIC), hMainWindowInstance, NULL);
+        createArrayOutput(hWnd, hMainWindowInstance);
         break; 
     }  
     case WM_COMMAND: 
@@ -163,16 +152,7 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
                     calcArray(arrayLength, repetitionsAmount, valueRangeMin, valueRangeMax, slowGenSpeed);
                     break;
             }
-            // if (errs == VALID) 
-            // {
-            //     printf("AMAZING!!!");
-            // }
-
-        // printf("Array length: %s %d", &arrayLength, _wtoi(&arrayLength));
-        //    int textLen = GetWindowTextLength(hTextInput);
-        //    LPSTR pszMem = (LPSTR) VirtualAlloc((LPVOID) NULL, (DWORD)(textLen + 1), MEM_COMMIT, PAGE_READWRITE);
-        //    GetWindowTextA(hTextInput, pszMem, textLen + 1); 
-        //    SetWindowTextA(hLabelOutput, pszMem);
+          
             free(arrayLength);
             free(repetitionsAmount);
             free(valueRangeMin);
@@ -216,6 +196,8 @@ void createLabels(HWND hWnd, HINSTANCE wndInstance, HDC hdc)
     CreateWindow(L"static", MY_NAMINGS.VALUES_RANGE, WS_CHILD | WS_VISIBLE | WS_TABSTOP, 30, 170, labelSize.cx, labelSize.cy, hWnd, NULL, wndInstance, NULL);
     GetTextExtentPoint(hdc, MY_NAMINGS.SLOW_GENERATION_SPEED, wcslen(MY_NAMINGS.SLOW_GENERATION_SPEED), &labelSize);
     CreateWindow(L"static", MY_NAMINGS.SLOW_GENERATION_SPEED, WS_CHILD | WS_VISIBLE | WS_TABSTOP, 30, 250, labelSize.cx, labelSize.cy, hWnd, NULL, wndInstance, NULL);
+    GetTextExtentPoint(hdc, MY_NAMINGS.ARRAY_OUTPUT, wcslen(MY_NAMINGS.ARRAY_OUTPUT), &labelSize);
+    CreateWindow(L"static", MY_NAMINGS.ARRAY_OUTPUT, WS_CHILD | WS_VISIBLE | WS_TABSTOP, 30, 550, labelSize.cx, labelSize.cy, hWnd, NULL, wndInstance, NULL);
 }
 
 void createInputs(HWND hWnd, HINSTANCE wndInstance)
@@ -231,4 +213,10 @@ void createButtons(HWND hWnd, HINSTANCE wndInstance)
 {
     hGenerateArrayBtn = CreateWindowEx(WS_EX_CLIENTEDGE, L"BUTTON", MY_NAMINGS.GENERATE_ARRAY, WS_VISIBLE | WS_CHILD | ES_LEFT, 30, 350, 500, 60, hWnd, HMENU(IDC_GEN_ARRAY), wndInstance, NULL);
     hWriteToFileBtn = CreateWindowEx(WS_EX_CLIENTEDGE, L"BUTTON", MY_NAMINGS.WRITE_TO_FILE, WS_VISIBLE | WS_CHILD | ES_LEFT, 30, 450, 500, 60, hWnd, HMENU(IDC_WRITE_TO_FILE), wndInstance, NULL);
+}
+
+void createArrayOutput(HWND hWnd, HINSTANCE wndInstance) 
+{
+    hArrayOutputEdit = CreateWindow(L"EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_VSCROLL | ES_LEFT | ES_MULTILINE | ES_AUTOHSCROLL, 30, 
+                600, 500, 200, hWnd, (HMENU) IDC_ARRAY_OUTPUT, wndInstance, NULL);
 }

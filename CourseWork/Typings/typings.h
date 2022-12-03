@@ -11,6 +11,7 @@ struct NAMINGS {
     const wchar_t* GENERATE_ARRAY;
     const wchar_t* WRITE_TO_FILE;
     const wchar_t* VALUES_TABLE;
+    const wchar_t* ARRAY_OUTPUT;
 };
 
 typedef struct  {
@@ -39,7 +40,8 @@ void fillNamingsUS(NAMINGS *namings)
     namings->SLOW_GENERATION_SPEED = L"Slow generation speed by \'n\' times: ";
     namings->GENERATE_ARRAY = L"Generate array";
     namings->WRITE_TO_FILE = L"Write to file";
-    namings->VALUES_TABLE = L"Values table";
+    namings->VALUES_TABLE = L"Values table: ";
+    namings->ARRAY_OUTPUT = L"Output: ";
 }
 
 
