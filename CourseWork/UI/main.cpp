@@ -116,6 +116,7 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         createInputs(hWnd, hMainWindowInstance);
         createButtons(hWnd, hMainWindowInstance);
         createArrayOutput(hWnd, hMainWindowInstance);
+        EnableWindow(hWriteToFileBtn, false);
         break; 
     }  
     case WM_COMMAND: 
@@ -150,6 +151,9 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
                     break;
                 case VALID:
                     calcArray(arrayLength, repetitionsAmount, valueRangeMin, valueRangeMax, slowGenSpeed);
+                    writeArrayToOutput(hArrayOutputEdit, UNIQUE_RANDOM_VALUES_ARRAY_COPY, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH_COPY, L"Array of random values:");
+                    appendArrayToOutput(hArrayOutputEdit, REPETITION_COUNTING_ARRAY, REPETITION_COUNTING_ARRAY_LENGTH, L"Repetition counting array:");
+                    EnableWindow(hWriteToFileBtn, true);
                     break;
             }
           
@@ -161,6 +165,7 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         }
         break;
     case WM_DESTROY:
+        clearData();
         PostQuitMessage(0);
         return 0;
 

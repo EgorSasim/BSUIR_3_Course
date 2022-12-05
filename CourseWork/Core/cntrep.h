@@ -4,6 +4,8 @@
 
 #include "../Typings/typings.h"
 
+using namespace std;
+
 typedef struct 
 {
 	int Low;
@@ -17,6 +19,8 @@ int REPETITION_COUNTING_ARRAY_LENGTH;
 int REPETITION_AMOUNT;
 int *UNIQUE_RANDOM_VALUES_ARRAY;
 int UNIQUE_RANDOM_VALUES_ARRAY_LENGTH;
+int *UNIQUE_RANDOM_VALUES_ARRAY_COPY;
+int UNIQUE_RANDOM_VALUES_ARRAY_LENGTH_COPY;
 int *UNIQUE_RANDOM_VALUES_REPETITIONS_AMOUNT_ARRAY;
 int UNIQUE_RANDOM_VALUES_REPETITIONS_AMOUNT_ARRAY_LENGTH;
 
@@ -35,6 +39,10 @@ void shiftArrayLeft(int* array, int arrayLength, int pos);
 bool isNumber(char number[]);
 ERRORS_ENUM checkErrors(wchar_t* arrayLength, wchar_t* repetitionsAmount, wchar_t* valueRangeMin, wchar_t* valueRangeMax, wchar_t* slowGenSpeed);
 void calcArray(wchar_t* arrayLength, wchar_t* repetitionsAmount, wchar_t* valueRangeMin, wchar_t* valueRangeMax, wchar_t* slowGenSpeed);
+void writeArrayToOutput(HWND hWnd, int* array, int arrayLength, wstring title);
+void appendArrayToOutput(HWND hWnd, int* array, int arrayLength, wstring title);
+void copyArr(int *sourceArr, int *destArr, int arrLength);
+void clearData();
 
 
 int* initArray(int arrayLength)
@@ -66,12 +74,6 @@ void fillRepetitionCountingArray(int* repetitionCountingArray, int arrayLength,
 			}
 		} 
 	}
-	
-	// for (int i = 0; i < arrayLength; ++i)
-	// {
-	// 	repetitionCountingArray[i] = rand() % 100;
-	// }
-	// return 0;
 }
 
 int showArray(int* repetitionCountingArray, int arrayLength)
@@ -172,6 +174,10 @@ ERRORS_ENUM checkErrors(wchar_t* arrayLength, wchar_t* repetitionsAmount, wchar_
 
 void calcArray(wchar_t* arrayLength, wchar_t* repetitionsAmount, wchar_t* valueRangeMin, wchar_t* valueRangeMax, wchar_t* slowGenSpeed)
 {
+	if (REPETITION_COUNTING_ARRAY) 
+	{
+		clearData();
+	}
 	srand(time(NULL));
 
 	int _arrayLength = _wtoi(arrayLength);
@@ -180,32 +186,79 @@ void calcArray(wchar_t* arrayLength, wchar_t* repetitionsAmount, wchar_t* valueR
 	int _valueRangeMax = _wtoi(valueRangeMax);
 	int _slowGenSpeed = _wtoi(slowGenSpeed);
 	
-	printf("Define variables...\n");
 	REPETITION_COUNTING_ARRAY_LENGTH = _arrayLength;
 	REPETITION_AMOUNT = _repetitionsAmount;
 	randNumRange.Low = _valueRangeMin;
 	randNumRange.High = _valueRangeMax;
 
 	UNIQUE_RANDOM_VALUES_REPETITIONS_AMOUNT_ARRAY_LENGTH = 
-	UNIQUE_RANDOM_VALUES_ARRAY_LENGTH = REPETITION_COUNTING_ARRAY_LENGTH / REPETITION_AMOUNT;
+	UNIQUE_RANDOM_VALUES_ARRAY_LENGTH_COPY = UNIQUE_RANDOM_VALUES_ARRAY_LENGTH = REPETITION_COUNTING_ARRAY_LENGTH / REPETITION_AMOUNT;
 	
 	UNIQUE_RANDOM_VALUES_ARRAY = initArray(UNIQUE_RANDOM_VALUES_ARRAY_LENGTH);
+	UNIQUE_RANDOM_VALUES_ARRAY_COPY = initArray(UNIQUE_RANDOM_VALUES_ARRAY_LENGTH_COPY);
 	UNIQUE_RANDOM_VALUES_REPETITIONS_AMOUNT_ARRAY = initArray(UNIQUE_RANDOM_VALUES_REPETITIONS_AMOUNT_ARRAY_LENGTH);
 	REPETITION_COUNTING_ARRAY = initArray(REPETITION_COUNTING_ARRAY_LENGTH);
-	printf("Init arrays...\n");
 	
 	generateUniqueRandomValues(UNIQUE_RANDOM_VALUES_ARRAY, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH, randNumRange);
-	printf("Array of random values: \n");
+	copyArr(UNIQUE_RANDOM_VALUES_ARRAY, UNIQUE_RANDOM_VALUES_ARRAY_COPY, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH);
+	printf("Random values: \n");
 	showArray(UNIQUE_RANDOM_VALUES_ARRAY, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH);
 	fillRepetitionCountingArray(REPETITION_COUNTING_ARRAY, REPETITION_COUNTING_ARRAY_LENGTH,
 								UNIQUE_RANDOM_VALUES_ARRAY, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH,
 								UNIQUE_RANDOM_VALUES_REPETITIONS_AMOUNT_ARRAY, UNIQUE_RANDOM_VALUES_REPETITIONS_AMOUNT_ARRAY_LENGTH,
 								REPETITION_AMOUNT);
-	printf("Array of repetition counting:\n\n");
+	printf("Repetition counting array:\n\n");
 	showArray(REPETITION_COUNTING_ARRAY, REPETITION_COUNTING_ARRAY_LENGTH);
 	
-	free(UNIQUE_RANDOM_VALUES_ARRAY);
-	free(UNIQUE_RANDOM_VALUES_REPETITIONS_AMOUNT_ARRAY);
-	free(REPETITION_COUNTING_ARRAY);
 	return;
+}
+
+void writeArrayToOutput(HWND hWnd, int* array, int arrayLength, wstring title)
+{
+	wstring output = L"";
+
+	output += title + L"\r\n";
+
+	for (int i = 0; i < arrayLength; ++i) 
+	{
+		output += to_wstring(array[i]);
+		output += L"\r\n";
+	}
+	SetWindowText(hWnd, output.c_str());
+}
+
+void appendArrayToOutput(HWND hWnd, int* array, int arrayLength, wstring title)
+{
+	wstring output = L"";
+	output += title + L"\r\n";
+
+	for (int i = 0; i < arrayLength; ++i) 
+	{
+		output += to_wstring(array[i]);
+		output += L"\r\n";
+	}
+    int TextLen = SendMessageW(hWnd, WM_GETTEXTLENGTH, 0, 0);
+    SendMessageW(hWnd, EM_SETSEL, (WPARAM)TextLen, (LPARAM)TextLen);
+    SendMessageW(hWnd, EM_REPLACESEL, FALSE, (LPARAM)output.c_str());
+}
+
+void copyArr(int *sourceArr, int *destArr, int arrLength)
+{
+	for (int i = 0; i < arrLength; ++i) 
+	{
+		*(destArr + i) = *(sourceArr + i);
+	}
+}
+
+void clearData() 
+{
+	free(REPETITION_COUNTING_ARRAY);
+	free(UNIQUE_RANDOM_VALUES_ARRAY);
+	free(UNIQUE_RANDOM_VALUES_ARRAY_COPY);
+	free(UNIQUE_RANDOM_VALUES_REPETITIONS_AMOUNT_ARRAY);
+	REPETITION_COUNTING_ARRAY_LENGTH = 0;
+	REPETITION_AMOUNT = 0;
+	UNIQUE_RANDOM_VALUES_ARRAY_LENGTH = 0;
+	UNIQUE_RANDOM_VALUES_ARRAY_LENGTH_COPY = 0;
+	UNIQUE_RANDOM_VALUES_REPETITIONS_AMOUNT_ARRAY_LENGTH = 0;
 }
