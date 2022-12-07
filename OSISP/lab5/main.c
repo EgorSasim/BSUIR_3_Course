@@ -53,6 +53,7 @@ int main()
 	chunks = BreakWordsInChunks(words, buffer);
 	int wordsPerChunk = CountWords(buffer) / THREAD_COUNT;
 	int wordsInLastChunk = CountWords(buffer) - (THREAD_COUNT - 1) * wordsPerChunk;
+	//adding to queue
 	for (int i = 0; i < THREAD_COUNT - 1; i++)
 	{
 		EnqueueParams params = { chunks[i], 0, wordsPerChunk, QuickSort };
@@ -64,29 +65,13 @@ int main()
 	hThreads[THREAD_COUNT - 1] = CreateThread(NULL, 0, &Enqueue, &lastChunkParams, 0, NULL);
 	WaitForSingleObject(hThreads[THREAD_COUNT - 1], INFINITE);
 	QueueNode* tmp = head;
+	//sorting
 	for (int i = 0; i < THREAD_COUNT; i++)
 	{
 		hThreads[i] = CreateThread(NULL, 0, &ProcessQueue, tmp, 0, NULL);
 		tmp = tmp->next;
 	}
 	WaitForMultipleObjects(THREAD_COUNT, hThreads, TRUE, INFINITE);
-	tmp = head;
-	char*** arrays = (char***) malloc(sizeof(char**) * THREAD_COUNT);
-	for (int i = 0; i < THREAD_COUNT - 1; i++)
-	{
-		arrays[i] = (char**) malloc (sizeof(char*) * wordsPerChunk);
-		for (int j = 0; j < wordsPerChunk; j++)
-			arrays[i][j] = (char*) malloc(sizeof(char) * WORD_SIZE);
-	}
-	arrays[THREAD_COUNT - 1] = (char**) malloc (sizeof(char*) * wordsInLastChunk);
-	for (int j = 0; j < wordsInLastChunk; j++)
-		arrays[THREAD_COUNT - 1][j] = (char*) malloc (sizeof(char) * WORD_SIZE);
-	int count = 0;
-	while (tmp != NULL)
-	{
-		arrays[count++] = tmp->words;
-		tmp = tmp->next;
-	}
 	tmp = head;
 	int currentLength = 0;
 	char** result = MergeArrays(NULL, tmp->words, 0, tmp->endIndex);
