@@ -163,6 +163,11 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
             free(valueRangeMax);
             free(slowGenSpeed);
         }
+        if (LOWORD(wParam) == IDC_WRITE_TO_FILE) 
+        {
+            writeToFile(UNIQUE_RANDOM_VALUES_ARRAY_COPY, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH_COPY, REPETITION_COUNTING_ARRAY, REPETITION_COUNTING_ARRAY_LENGTH, "Output.txt");
+            MessageBox(hMainWindow, L"Successfully write to file", L"Write to file", MB_OK);
+        }
         break;
     case WM_DESTROY:
         clearData();

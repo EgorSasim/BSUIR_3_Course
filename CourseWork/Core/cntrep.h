@@ -3,6 +3,9 @@
 #endif
 
 #include "../Typings/typings.h"
+#include <iostream>
+#include <fstream>
+#include <windows.h>
 
 using namespace std;
 
@@ -43,7 +46,7 @@ void writeArrayToOutput(HWND hWnd, int* array, int arrayLength, wstring title);
 void appendArrayToOutput(HWND hWnd, int* array, int arrayLength, wstring title);
 void copyArr(int *sourceArr, int *destArr, int arrLength);
 void clearData();
-
+void writeToFile(int* randomValuesArray, int randomValuesArrayLength, int* repetitionCountingArray, int repetitionCoutingArrayLength, const char* fileName);
 
 int* initArray(int arrayLength)
 {
@@ -201,14 +204,14 @@ void calcArray(wchar_t* arrayLength, wchar_t* repetitionsAmount, wchar_t* valueR
 	
 	generateUniqueRandomValues(UNIQUE_RANDOM_VALUES_ARRAY, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH, randNumRange);
 	copyArr(UNIQUE_RANDOM_VALUES_ARRAY, UNIQUE_RANDOM_VALUES_ARRAY_COPY, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH);
-	printf("Random values: \n");
-	showArray(UNIQUE_RANDOM_VALUES_ARRAY, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH);
+	// printf("Random values: \n");
+	// showArray(UNIQUE_RANDOM_VALUES_ARRAY, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH);
 	fillRepetitionCountingArray(REPETITION_COUNTING_ARRAY, REPETITION_COUNTING_ARRAY_LENGTH,
 								UNIQUE_RANDOM_VALUES_ARRAY, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH,
 								UNIQUE_RANDOM_VALUES_REPETITIONS_AMOUNT_ARRAY, UNIQUE_RANDOM_VALUES_REPETITIONS_AMOUNT_ARRAY_LENGTH,
 								REPETITION_AMOUNT);
-	printf("Repetition counting array:\n\n");
-	showArray(REPETITION_COUNTING_ARRAY, REPETITION_COUNTING_ARRAY_LENGTH);
+	// printf("Repetition counting array:\n\n");
+	// showArray(REPETITION_COUNTING_ARRAY, REPETITION_COUNTING_ARRAY_LENGTH);
 	
 	return;
 }
@@ -261,4 +264,24 @@ void clearData()
 	UNIQUE_RANDOM_VALUES_ARRAY_LENGTH = 0;
 	UNIQUE_RANDOM_VALUES_ARRAY_LENGTH_COPY = 0;
 	UNIQUE_RANDOM_VALUES_REPETITIONS_AMOUNT_ARRAY_LENGTH = 0;
+}
+
+void writeToFile(int* randomValuesArray, int randomValuesArrayLength, int* repetitionCountingArray, int repetitionCoutingArrayLength, const char* fileName) 
+{
+	wstring output = L"Array of random values:\n";
+	for (int i = 0; i < randomValuesArrayLength; ++i) 
+	{
+		output += to_wstring(randomValuesArray[i]) + L"\n";
+	}
+	output += L"Repetition counting array:\n";
+	for (int i = 0; i < repetitionCoutingArrayLength; ++i) 
+	{
+		output += to_wstring(repetitionCountingArray[i]) + L"\n";
+	}
+	output += L"Array generation complited successfully";
+	
+	wofstream resFile;
+	resFile.open(fileName);
+	resFile << output << endl;
+	resFile.close();
 }
