@@ -65,7 +65,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine,
     wc.hInstance     = hInstance;
     wc.lpszClassName = MAIN_WINDOW_CLASS_NAME;
     wc.hbrBackground = (HBRUSH)mainWindowBackgroundColor;
-
+    wc.hCursor       = LoadCursor(NULL, IDC_CROSS);
+    
     if (!RegisterClass(&wc))
         return -1;
 
