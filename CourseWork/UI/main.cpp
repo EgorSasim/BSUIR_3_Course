@@ -176,7 +176,6 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
                     EnableWindow(hWriteToFileBtn, true);
                     EnableWindow(hFillTableBtn, true);
                     TABLE = createTable(700, 100, 500, 500, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH_COPY);
-                    InvalidateRect(hWnd, NULL, false);
                     break;
             }
           
