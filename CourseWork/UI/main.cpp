@@ -5,6 +5,7 @@
 #include <windows.h>
 #include <string>
 #include <wingdi.h>
+#include <math.h>
 
 #include "../Core/cntrep.h"
 
@@ -18,8 +19,8 @@ using namespace std;
 #define IDC_GEN_ARRAY           1005
 #define IDC_WRITE_TO_FILE       1006
 #define IDC_ARRAY_OUTPUT        1007
-#define IDC_BUTTON  1010
-#define IDC_STATIC  1011
+#define IDC_FILL_TABLE          1008
+
 
 
 #define INPUT_MAX_LENGTH 25
@@ -40,17 +41,35 @@ HWND hSlowGenSpeedInput;
 //Buton controls
 HWND hGenerateArrayBtn;
 HWND hWriteToFileBtn;
+HWND hFillTableBtn;
 
 //Output 
 HWND hArrayOutputEdit;
 
+// Table
+RECT* TABLE;
+
+// Table cell
+typedef struct {
+    int width;
+    int height;
+} tableCellSize;
 
 void setRectCoords(RECT *rect, LONG top, LONG left, LONG right, LONG bottom);
-void createLabels(HWND hWnd, HINSTANCE wndInstance, HDC hdc) ;
+void createLabels(HWND hWnd, HINSTANCE wndInstance) ;
 void createInputs(HWND hWnd, HINSTANCE wndInstance);
 void createButtons(HWND hWnd, HINSTANCE wndInstance);
 void createArrayOutput(HWND hWnd, HINSTANCE wndInstance);
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+RECT* createTable(int x, int y, int width, int height, int uniqueRandomValuesArrayLength);
+void infoTable(RECT *table, int tableSize);
+tableCellSize calcTableCellSize(int tableWidth, int tableHeight, int elementsAmount);
+void showTable(HDC hdc, RECT* table, int tableSize);
+void writeTableValues(HDC hdc, int* uniqueRandomValuesArray, RECT* table, int tableSize);
+COLORREF* generateTableColors(int uniqueRandomValuesArrayLength);
+int findIndex(int* array, int arrLength, int number);
+void fillTable(HWND hWnd, HDC hdc, RECT* table, int* repetitionsCountingArray, int repetitionCountingArrayLength, int* uniqueRandomValuesArray, int uniqueRandomValuesArrayLength, COLORREF* tableColors, int generationSpeed);
+
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow)
 {
@@ -77,7 +96,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine,
         L"Repetition counting",
         WS_OVERLAPPEDWINDOW,
 
-        200, 50, 1200, 950,
+        200, 50, 1400, 950,
 
         NULL, 
         NULL,
@@ -110,14 +129,14 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     {
     case WM_CREATE: 
     {
-        HDC createDC = GetDC(hWnd);
-        createLabels(hWnd, hMainWindowInstance, createDC);
-        ReleaseDC(hWnd, createDC);
+        createLabels(hWnd, hMainWindowInstance);
         hMainWindow = hWnd;
         createInputs(hWnd, hMainWindowInstance);
         createButtons(hWnd, hMainWindowInstance);
         createArrayOutput(hWnd, hMainWindowInstance);
         EnableWindow(hWriteToFileBtn, false);
+        EnableWindow(hFillTableBtn, false);
+        InvalidateRect(hWnd, NULL, false);
         break; 
     }  
     case WM_COMMAND: 
@@ -155,6 +174,9 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
                     writeArrayToOutput(hArrayOutputEdit, UNIQUE_RANDOM_VALUES_ARRAY_COPY, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH_COPY, L"Array of random values:");
                     appendArrayToOutput(hArrayOutputEdit, REPETITION_COUNTING_ARRAY, REPETITION_COUNTING_ARRAY_LENGTH, L"Repetition counting array:");
                     EnableWindow(hWriteToFileBtn, true);
+                    EnableWindow(hFillTableBtn, true);
+                    TABLE = createTable(700, 100, 500, 500, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH_COPY);
+                    InvalidateRect(hWnd, NULL, false);
                     break;
             }
           
@@ -169,6 +191,16 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
             writeToFile(UNIQUE_RANDOM_VALUES_ARRAY_COPY, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH_COPY, REPETITION_COUNTING_ARRAY, REPETITION_COUNTING_ARRAY_LENGTH, "Output.txt");
             MessageBox(hMainWindow, L"Successfully write to file", L"Write to file", MB_OK);
         }
+        if (LOWORD(wParam) == IDC_FILL_TABLE)
+        {
+            TABLE_COLORS = generateTableColors(UNIQUE_RANDOM_VALUES_ARRAY_LENGTH_COPY);
+            HDC dc = GetDC(hWnd);
+                wchar_t* slowGenSpeed = (wchar_t*)malloc(sizeof(wchar_t*));
+                GetWindowText(hSlowGenSpeedInput, slowGenSpeed, INPUT_MAX_LENGTH);
+                fillTable(hWnd, dc, TABLE, REPETITION_COUNTING_ARRAY, REPETITION_COUNTING_ARRAY_LENGTH, UNIQUE_RANDOM_VALUES_ARRAY_COPY, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH_COPY, TABLE_COLORS, _wtoi(slowGenSpeed));
+                free(slowGenSpeed);
+            ReleaseDC(hWnd, dc);
+        }
         break;
     case WM_DESTROY:
         clearData();
@@ -179,7 +211,8 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
-              createLabels(hWnd, hMainWindowInstance, hdc);
+                // showTable(hdc, TABLE, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH_COPY);
+                // writeTableValues(hdc, UNIQUE_RANDOM_VALUES_ARRAY_COPY, TABLE, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH_COPY);
             EndPaint(hWnd, &ps);
         }
         return 0;
@@ -196,19 +229,13 @@ void setRectCoords(RECT* rect, LONG top, LONG left, LONG right, LONG bottom)
     rect->bottom = bottom;
 }
 
-void createLabels(HWND hWnd, HINSTANCE wndInstance, HDC hdc) 
+void createLabels(HWND hWnd, HINSTANCE wndInstance) 
 {  
-    SIZE labelSize;
-    GetTextExtentPoint(hdc, MY_NAMINGS.ARRAY_LENGTH, wcslen(MY_NAMINGS.ARRAY_LENGTH), &labelSize);
-    CreateWindow(L"static", MY_NAMINGS.ARRAY_LENGTH, WS_CHILD | WS_VISIBLE | WS_TABSTOP, 30, 30, labelSize.cx, labelSize.cy, hWnd, NULL, wndInstance, NULL); 
-    GetTextExtentPoint(hdc, MY_NAMINGS.REPETITIONS_AMOUNT, wcslen(MY_NAMINGS.REPETITIONS_AMOUNT), &labelSize);
-    CreateWindow(L"static", MY_NAMINGS.REPETITIONS_AMOUNT, WS_CHILD | WS_VISIBLE | WS_TABSTOP, 30, 100, labelSize.cx, labelSize.cy, hWnd, NULL, wndInstance, NULL);
-    GetTextExtentPoint(hdc, MY_NAMINGS.VALUES_RANGE, wcslen(MY_NAMINGS.VALUES_RANGE), &labelSize);
-    CreateWindow(L"static", MY_NAMINGS.VALUES_RANGE, WS_CHILD | WS_VISIBLE | WS_TABSTOP, 30, 170, labelSize.cx, labelSize.cy, hWnd, NULL, wndInstance, NULL);
-    GetTextExtentPoint(hdc, MY_NAMINGS.SLOW_GENERATION_SPEED, wcslen(MY_NAMINGS.SLOW_GENERATION_SPEED), &labelSize);
-    CreateWindow(L"static", MY_NAMINGS.SLOW_GENERATION_SPEED, WS_CHILD | WS_VISIBLE | WS_TABSTOP, 30, 250, labelSize.cx, labelSize.cy, hWnd, NULL, wndInstance, NULL);
-    GetTextExtentPoint(hdc, MY_NAMINGS.ARRAY_OUTPUT, wcslen(MY_NAMINGS.ARRAY_OUTPUT), &labelSize);
-    CreateWindow(L"static", MY_NAMINGS.ARRAY_OUTPUT, WS_CHILD | WS_VISIBLE | WS_TABSTOP, 30, 550, labelSize.cx, labelSize.cy, hWnd, NULL, wndInstance, NULL);
+    CreateWindow(L"static", MY_NAMINGS.ARRAY_LENGTH, WS_CHILD | WS_VISIBLE | WS_TABSTOP, 30, 30, 130, 20, hWnd, NULL, wndInstance, NULL); 
+    CreateWindow(L"static", MY_NAMINGS.REPETITIONS_AMOUNT, WS_CHILD | WS_VISIBLE | WS_TABSTOP, 30, 100, 150, 20, hWnd, NULL, wndInstance, NULL);
+    CreateWindow(L"static", MY_NAMINGS.VALUES_RANGE, WS_CHILD | WS_VISIBLE | WS_TABSTOP, 30, 170, 120, 20, hWnd, NULL, wndInstance, NULL);
+    CreateWindow(L"static", MY_NAMINGS.SLOW_GENERATION_SPEED, WS_CHILD | WS_VISIBLE | WS_TABSTOP, 30, 250, 200, 20, hWnd, NULL, wndInstance, NULL);
+    CreateWindow(L"static", MY_NAMINGS.ARRAY_OUTPUT, WS_CHILD | WS_VISIBLE | WS_TABSTOP, 30, 550, 120, 20, hWnd, NULL, wndInstance, NULL);
 }
 
 void createInputs(HWND hWnd, HINSTANCE wndInstance)
@@ -224,10 +251,110 @@ void createButtons(HWND hWnd, HINSTANCE wndInstance)
 {
     hGenerateArrayBtn = CreateWindowEx(WS_EX_CLIENTEDGE, L"BUTTON", MY_NAMINGS.GENERATE_ARRAY, WS_VISIBLE | WS_CHILD | ES_LEFT, 30, 350, 500, 60, hWnd, HMENU(IDC_GEN_ARRAY), wndInstance, NULL);
     hWriteToFileBtn = CreateWindowEx(WS_EX_CLIENTEDGE, L"BUTTON", MY_NAMINGS.WRITE_TO_FILE, WS_VISIBLE | WS_CHILD | ES_LEFT, 30, 450, 500, 60, hWnd, HMENU(IDC_WRITE_TO_FILE), wndInstance, NULL);
+    hFillTableBtn = CreateWindowEx(WS_EX_CLIENTEDGE, L"BUTTON", MY_NAMINGS.FILL_TABLE, WS_VISIBLE | WS_CHILD | ES_LEFT, 750, 800, 500, 60, hWnd, HMENU(IDC_FILL_TABLE), wndInstance, NULL);
 }
 
 void createArrayOutput(HWND hWnd, HINSTANCE wndInstance) 
 {
     hArrayOutputEdit = CreateWindow(L"EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_VSCROLL | ES_LEFT | ES_MULTILINE | ES_AUTOHSCROLL, 30, 
                 600, 500, 200, hWnd, (HMENU) IDC_ARRAY_OUTPUT, wndInstance, NULL);
+}
+
+
+
+RECT* createTable(int x, int y, int width, int height, int uniqueRandomValuesArrayLength)
+{
+    RECT* table = (RECT*)calloc(sizeof(RECT), uniqueRandomValuesArrayLength);
+    tableCellSize tableCellSize = calcTableCellSize(width, height, uniqueRandomValuesArrayLength);
+    int rowsAmount = height / tableCellSize.height;
+    int colsAmount = width / tableCellSize.width;
+    int rowNumber = 0;
+    
+    for (int i = 0; i < uniqueRandomValuesArrayLength; ++i) 
+    {
+        if (i != 0 && i % colsAmount == 0) 
+        {
+            ++rowNumber;
+        }
+        table[i].top = y + tableCellSize.height * rowNumber;
+        table[i].bottom = y + tableCellSize.height * rowNumber + tableCellSize.height;
+        table[i].left = x + tableCellSize.width * (i % colsAmount);
+        table[i].right = x + tableCellSize.width * (i % colsAmount) + tableCellSize.width;
+    }
+    return table;
+}
+
+void infoTable(RECT *table, int tableSize)
+{
+    for (int i = 0; i < tableSize; ++i) 
+    {
+        printf("TableCell[%d]: top: %d, bottom: %d, left: %d, right: %d\n", i, table[i].top, table[i].bottom, table[i].left, table[i].right);
+    }
+}
+
+tableCellSize calcTableCellSize(int tableWidth, int tableHeight, int elementsAmount)
+{
+    tableCellSize tableCellSize;
+    int tableCellSquare = (tableWidth * tableHeight) / elementsAmount;
+    tableCellSize.width = tableWidth / (int)sqrt(elementsAmount);
+    tableCellSize.height = tableCellSquare / tableCellSize.width;
+    return tableCellSize;
+}
+
+void writeTableValues(HDC hdc, int* uniqueRandomValuesArray, RECT* table, int tableSize) 
+{
+    for (int i = 0; i < tableSize; ++i) 
+    {
+        DrawTextW(hdc, to_wstring(uniqueRandomValuesArray[i]).c_str(), -1, &table[i], DT_CENTER | DT_SINGLELINE | DT_VCENTER);
+    }
+}
+
+void showTable(HDC hdc, RECT* table, int tableSize) 
+{
+    if (!table) return;
+    for (int i = 0; i < tableSize; ++i) 
+    {
+        Rectangle(hdc, table[i].left, table[i].top, table[i].right, table[i].bottom);
+    }
+}
+
+COLORREF* generateTableColors(int uniqueRandomValuesArrayLength)
+{
+    COLORREF* colorsArr = (COLORREF*)calloc(sizeof(COLORREF), uniqueRandomValuesArrayLength);
+    for (int i = 0; i < uniqueRandomValuesArrayLength; ++i)
+    {
+        colorsArr[i] = rand() % 256;
+    }
+    return colorsArr;
+}
+
+int findIndex(int* array, int arrLength, int number)
+{
+    for (int i = 0; i < arrLength; ++i) 
+    {
+        if (array[i] == number) 
+        {
+            return i;
+        } 
+    }
+    return 0;
+}
+
+void fillTable(HWND hWnd, HDC hdc, RECT* table, int* repetitionsCountingArray, int repetitionCountingArrayLength, int* uniqueRandomValuesArray, int uniqueRandomValuesArrayLength, COLORREF* tableColors, int generationSpeed)
+{
+    InvalidateRect(hWnd, NULL, false);
+    int index;
+    HBRUSH brush;
+    srand(time(NULL));
+    for (int i = 0; i < repetitionCountingArrayLength; ++i) 
+    {
+        Sleep(generationSpeed);
+        index = findIndex(uniqueRandomValuesArray, uniqueRandomValuesArrayLength, repetitionsCountingArray[i]);
+        printf("index: %d\n", index);
+        brush = CreateSolidBrush(tableColors[index]);
+        (HBRUSH)SelectObject(hdc, brush);
+        Rectangle(hdc, table[index].left, table[index].top, table[index].right, table[index].bottom);
+        DrawTextW(hdc, to_wstring(repetitionsCountingArray[i]).c_str(), -1, &table[index], DT_CENTER | DT_SINGLELINE | DT_VCENTER);
+    }
+    DeleteObject(brush);
 }
