@@ -197,7 +197,7 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
             HDC dc = GetDC(hWnd);
                 wchar_t* slowGenSpeed = (wchar_t*)malloc(sizeof(wchar_t*));
                 GetWindowText(hSlowGenSpeedInput, slowGenSpeed, INPUT_MAX_LENGTH);
-                InvalidateRect(hWnd, NULL, false);
+                InvalidateRect(hWnd, NULL, true);
                 UpdateWindow(hWnd);
                 fillTable(hWnd, dc, TABLE, REPETITION_COUNTING_ARRAY, REPETITION_COUNTING_ARRAY_LENGTH, UNIQUE_RANDOM_VALUES_ARRAY_COPY, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH_COPY, TABLE_COLORS, _wtoi(slowGenSpeed));
                 free(slowGenSpeed);
