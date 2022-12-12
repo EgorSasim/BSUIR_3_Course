@@ -197,8 +197,8 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
             HDC dc = GetDC(hWnd);
                 wchar_t* slowGenSpeed = (wchar_t*)malloc(sizeof(wchar_t*));
                 GetWindowText(hSlowGenSpeedInput, slowGenSpeed, INPUT_MAX_LENGTH);
-		InvalidateRect(hWnd, NULL, false);
-		UpdateWindow(hWnd);
+                InvalidateRect(hWnd, NULL, false);
+                UpdateWindow(hWnd);
                 fillTable(hWnd, dc, TABLE, REPETITION_COUNTING_ARRAY, REPETITION_COUNTING_ARRAY_LENGTH, UNIQUE_RANDOM_VALUES_ARRAY_COPY, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH_COPY, TABLE_COLORS, _wtoi(slowGenSpeed));
                 free(slowGenSpeed);
             ReleaseDC(hWnd, dc);
@@ -213,8 +213,7 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
-                // showTable(hdc, TABLE, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH_COPY);
-                // writeTableValues(hdc, UNIQUE_RANDOM_VALUES_ARRAY_COPY, TABLE, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH_COPY);
+                
             EndPaint(hWnd, &ps);
         }
         return 0;
@@ -322,10 +321,16 @@ void showTable(HDC hdc, RECT* table, int tableSize)
 
 COLORREF* generateTableColors(int uniqueRandomValuesArrayLength)
 {
+    int COLORREF_BASE = 256;
+    BYTE Red, Green, Blue;
     COLORREF* colorsArr = (COLORREF*)calloc(sizeof(COLORREF), uniqueRandomValuesArrayLength);
     for (int i = 0; i < uniqueRandomValuesArrayLength; ++i)
     {
-        colorsArr[i] = rand() % 256;
+        srand(GetTickCount());
+        Red = rand() % COLORREF_BASE;
+        Green = rand() % COLORREF_BASE;
+        Blue = rand() % COLORREF_BASE;
+        colorsArr[i] = RGB(Red, Green, Blue);
     }
     return colorsArr;
 }
@@ -337,7 +342,7 @@ int findIndex(int* array, int arrLength, int number)
         if (array[i] == number) 
         {
             return i;
-        } 
+        }
     }
     return 0;
 }
@@ -354,6 +359,7 @@ void fillTable(HWND hWnd, HDC hdc, RECT* table, int* repetitionsCountingArray, i
         index = findIndex(uniqueRandomValuesArray, uniqueRandomValuesArrayLength, repetitionsCountingArray[i]);
         printf("index: %d\n", index);
         brush = CreateSolidBrush(tableColors[index]);
+        tableColors[index] = tableColors[index] << 2;
         (HBRUSH)SelectObject(hdc, brush);
         Rectangle(hdc, table[index].left, table[index].top, table[index].right, table[index].bottom);
         DrawTextW(hdc, to_wstring(repetitionsCountingArray[i]).c_str(), -1, &table[index], DT_CENTER | DT_SINGLELINE | DT_VCENTER);
