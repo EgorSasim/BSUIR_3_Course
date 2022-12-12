@@ -6,6 +6,7 @@
 #include <string>
 #include <wingdi.h>
 #include <math.h>
+#include <time.h>
 
 #include "../Core/cntrep.h"
 
