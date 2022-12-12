@@ -50,11 +50,26 @@ HWND hArrayOutputEdit;
 // Table
 RECT* TABLE;
 
+//Multithread
+HANDLE hFillTable;
+
 // Table cell
 typedef struct {
     int width;
     int height;
 } tableCellSize;
+
+typedef struct {
+    HWND hWnd;
+    HDC  hdc;
+    RECT* TABLE;
+    int* REPETITION_COUNTING_ARRAY;
+    int REPETITION_COUNTING_ARRAY_LENGTH;
+    int* UNIQUE_RANDOM_VALUES_ARRAY_COPY;
+    int UNIQUE_RANDOM_VALUES_ARRAY_LENGTH_COPY;
+    COLORREF* TABLE_COLORS;
+    int slowGenSpeed;
+} fillTableParams;
 
 void setRectCoords(RECT *rect, LONG top, LONG left, LONG right, LONG bottom);
 void createLabels(HWND hWnd, HINSTANCE wndInstance) ;
@@ -70,7 +85,7 @@ void writeTableValues(HDC hdc, int* uniqueRandomValuesArray, RECT* table, int ta
 COLORREF* generateTableColors(int uniqueRandomValuesArrayLength);
 int findIndex(int* array, int arrLength, int number);
 void fillTable(HWND hWnd, HDC hdc, RECT* table, int* repetitionsCountingArray, int repetitionCountingArrayLength, int* uniqueRandomValuesArray, int uniqueRandomValuesArrayLength, COLORREF* tableColors, int generationSpeed);
-
+DWORD fillTableMultiThread(void* tableParams);
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow)
 {
@@ -199,7 +214,10 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
                 GetWindowText(hSlowGenSpeedInput, slowGenSpeed, INPUT_MAX_LENGTH);
                 InvalidateRect(hWnd, NULL, true);
                 UpdateWindow(hWnd);
-                fillTable(hWnd, dc, TABLE, REPETITION_COUNTING_ARRAY, REPETITION_COUNTING_ARRAY_LENGTH, UNIQUE_RANDOM_VALUES_ARRAY_COPY, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH_COPY, TABLE_COLORS, _wtoi(slowGenSpeed));
+                fillTableParams tableParams = {hWnd, dc, TABLE, REPETITION_COUNTING_ARRAY, REPETITION_COUNTING_ARRAY_LENGTH, UNIQUE_RANDOM_VALUES_ARRAY_COPY, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH_COPY, TABLE_COLORS, _wtoi(slowGenSpeed)};
+                
+                hFillTable = CreateThread(NULL, 0, fillTableMultiThread, &tableParams, 0, NULL);
+                WaitForSingleObject(hFillTable, INFINITY);
                 free(slowGenSpeed);
             ReleaseDC(hWnd, dc);
         }
@@ -359,10 +377,16 @@ void fillTable(HWND hWnd, HDC hdc, RECT* table, int* repetitionsCountingArray, i
         index = findIndex(uniqueRandomValuesArray, uniqueRandomValuesArrayLength, repetitionsCountingArray[i]);
         printf("index: %d\n", index);
         brush = CreateSolidBrush(tableColors[index]);
-        tableColors[index] = tableColors[index] << 2;
+        tableColors[index] = tableColors[index] << 1;
         (HBRUSH)SelectObject(hdc, brush);
         Rectangle(hdc, table[index].left, table[index].top, table[index].right, table[index].bottom);
         DrawTextW(hdc, to_wstring(repetitionsCountingArray[i]).c_str(), -1, &table[index], DT_CENTER | DT_SINGLELINE | DT_VCENTER);
     }
     DeleteObject(brush);
+}
+
+DWORD fillTableMultiThread(void* tableParams)
+{
+    fillTableParams* params = (fillTableParams*)tableParams;
+    fillTable(params->hWnd, params->hdc, params->TABLE, params->REPETITION_COUNTING_ARRAY, params->REPETITION_COUNTING_ARRAY_LENGTH, params->UNIQUE_RANDOM_VALUES_ARRAY_COPY, params->UNIQUE_RANDOM_VALUES_ARRAY_LENGTH_COPY, params->TABLE_COLORS, params->slowGenSpeed);
 }
