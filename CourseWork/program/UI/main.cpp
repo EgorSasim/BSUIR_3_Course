@@ -375,9 +375,9 @@ void fillTable(HWND hWnd, HDC hdc, RECT* table, int* repetitionsCountingArray, i
     {
         Sleep(generationSpeed);
         index = findIndex(uniqueRandomValuesArray, uniqueRandomValuesArrayLength, repetitionsCountingArray[i]);
-        printf("index: %d\n", index);
         brush = CreateSolidBrush(tableColors[index]);
         tableColors[index] = tableColors[index] << 1;
+        printf("table Colors: %d\n", tableColors[index]);
         (HBRUSH)SelectObject(hdc, brush);
         Rectangle(hdc, table[index].left, table[index].top, table[index].right, table[index].bottom);
         DrawTextW(hdc, to_wstring(repetitionsCountingArray[i]).c_str(), -1, &table[index], DT_CENTER | DT_SINGLELINE | DT_VCENTER);
