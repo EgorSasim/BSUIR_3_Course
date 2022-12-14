@@ -110,7 +110,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine,
         0,
         MAIN_WINDOW_CLASS_NAME,
         L"Repetition counting",
-        WS_OVERLAPPEDWINDOW,
+        WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU,
 
         200, 50, 1400, 950,
 
@@ -215,10 +215,15 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
                 InvalidateRect(hWnd, NULL, true);
                 UpdateWindow(hWnd);
                 fillTableParams tableParams = {hWnd, dc, TABLE, REPETITION_COUNTING_ARRAY, REPETITION_COUNTING_ARRAY_LENGTH, UNIQUE_RANDOM_VALUES_ARRAY_COPY, UNIQUE_RANDOM_VALUES_ARRAY_LENGTH_COPY, TABLE_COLORS, _wtoi(slowGenSpeed)};
-                
+                EnableWindow(hWriteToFileBtn, false);
+		EnableWindow(hGenerateArrayBtn, false);
+		EnableWindow(hFillTableBtn, false);
                 hFillTable = CreateThread(NULL, 0, fillTableMultiThread, &tableParams, 0, NULL);
                 WaitForSingleObject(hFillTable, INFINITY);
                 free(slowGenSpeed);
+		EnableWindow(hGenerateArrayBtn, true);
+		EnableWindow(hWriteToFileBtn, true);
+                EnableWindow(hFillTableBtn, true);
             ReleaseDC(hWnd, dc);
         }
         break;
